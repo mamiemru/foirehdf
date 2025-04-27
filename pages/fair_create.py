@@ -14,7 +14,7 @@ from backend.endpoints.fairEndpoint import create_fair_endpoint
 
 _ = gettext.gettext
 
-def fait_create():
+def fair_create():
     attractions_array: Dict[str, List[str]] = {}
     response: ResponseDto = list_attractions_names_and_id_endpoint()
     if isinstance(response, SuccessResponse):
@@ -35,7 +35,7 @@ def fait_create():
 
 
         st.divider()
-        st.header("Location of the fair")
+        st.header(_("Location of the fair"))
         colA, colB = st.columns([.5, .5])
         with colA:
             street = st.text_input(_("Street of the fair"))
@@ -49,14 +49,22 @@ def fait_create():
             country = st.text_input(_("Country of the fair"))
 
         st.divider()
-        st.header("What rides is present in the fair")
+        st.header(_("What rides is present in the fair"))
         attractions = st.multiselect(
-            "Select attractions present in the fair",
+            _("Select attractions present in the fair"),
             attractions_array['values'],
             [],
         )
+        walk_tour_video = st.text_input(_("Walk tour video url"))
 
-        submitted = st.button("Submit")
+        st.divider()
+        st.header(_("Sources"))
+        official_ad_page = st.text_input(_("Official advertissement page url"))
+        facebook_event_page = st.text_input(_("facebook event page url"))
+        city_event_page = st.text_input(_("City event page url"))
+
+
+        submitted = st.button(_("Submit"))
         if submitted:
             attractions = [ attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]
             fair_form: dict = {
@@ -64,7 +72,9 @@ def fait_create():
                 'location': {
                     'street': street, 'area': area, 'city': city, 'postal_code': postal_code,
                     'state': state, 'country': country, 'lat': lat, 'lng': lng
-                }
+                },
+                'walk_tour_video': walk_tour_video, 'official_ad_page': official_ad_page,
+                'facebook_event_page': facebook_event_page, 'city_event_page': city_event_page
             }
             response: ResponseDto = create_fair_endpoint(fair_form)
             if isinstance(response, SuccessResponse):
@@ -81,4 +91,4 @@ def fait_create():
                 image: AttractionImageDTO = response.data
                 st.image(image.path, width=100)
 
-fait_create()
+fair_create()

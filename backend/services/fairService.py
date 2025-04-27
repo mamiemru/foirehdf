@@ -1,5 +1,6 @@
 import datetime
 import uuid
+import locale
 
 from tinydb import TinyDB, Query
 from typing import Optional
@@ -13,6 +14,8 @@ from backend.services.locationService import location_to_dto, get_location_by_id
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("fair")
 FairQuery = Query()
+
+locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
 
 def _create_id():
     return str(uuid.uuid4())
@@ -29,6 +32,8 @@ def _timestamp_to_date(timestamp: float) -> datetime.date:
 
 def fair_to_dto(fair: Fair) -> FairDTO:
     location: Location = get_location_by_id(fair.location_id)
+    start_date=_timestamp_to_date(fair.start_date)
+    end_date=_timestamp_to_date(fair.end_date)
 
     fair_dict: dict = fair.model_dump(mode="json")
 
@@ -36,14 +41,21 @@ def fair_to_dto(fair: Fair) -> FairDTO:
         id=fair_dict['id'],
         name=fair_dict['name'],
         location=location_to_dto(location) if location else None,
-        start_date=_timestamp_to_date(fair.start_date),
-        end_date=_timestamp_to_date(fair.end_date),
+        start_date=start_date.strftime('%d %B %Y'),
+        end_date=end_date.strftime('%d %B %Y'),
         sources=fair_dict['sources'],
         attractions=list(),
         fair_done=fair.fair_done,
         fair_incoming=fair.fair_incoming,
         fair_available_today=fair.fair_available_today,
-        fair_status=fair.fair_status
+        fair_status=fair.fair_status,
+        facebook_event_page=fair_dict['facebook_event_page'],
+        official_ad_page=fair_dict['official_ad_page'],
+        city_event_page=fair_dict['city_event_page'],
+        walk_tour_video=fair_dict['walk_tour_video'],
+        days_before_start_date=fair.days_before_start_date,
+        days_before_end_date=fair.days_before_end_date
+
     )
 
 def fair_to_dto_detailed(fair: Fair) -> FairDTO:
@@ -62,7 +74,11 @@ def validate_fair(fair_dict: dict) -> Fair:
             'start_date': _date_to_timestamp(fair_dict['start_date']),
             'end_date': _date_to_timestamp(fair_dict['end_date']),
             'sources': fair_dict.get('sources', []),
-            'attractions': fair_dict['attractions']
+            'attractions': fair_dict['attractions'],
+            'official_ad_page': fair_dict['official_ad_page'],
+            'city_event_page': fair_dict['city_event_page'],
+            'facebook_event_page': fair_dict['facebook_event_page'],
+            'walk_tour_video': fair_dict['walk_tour_video']
         }
     )
 

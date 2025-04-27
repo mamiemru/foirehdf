@@ -40,16 +40,40 @@ def fair_view():
                     )
             with colb:
                 st.header(":material/calendar_month: "+ _("Dates"))
-                st.write(f"**From** {fair.start_date} **Until** {fair.end_date}")
+                st.write(f"**{_("From")}** {fair.start_date}")
+                st.write(f"**{_("Until")}** {fair.end_date}")
+
+                if fair.fair_incoming:
+                    st.write(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")
+
+                if fair.fair_available_today:
+                    st.write(f"{_("Days left until end")}:  {fair.days_before_end_date} {_("Days")}")
 
         with col2:
+            if fair.official_ad_page:
+                st.image(fair.official_ad_page)
             if fair.image:
                 st.image(fair.image)
 
         st.divider()
-        st.subheader(_("Sources and useful links"))
-        for source in fair.sources:
-            st.write(source)
+        st.subheader(_(":material/link: Sources and useful links"))
+
+        markdown_table = f"| {_("Url type")} | {_("Url")} |\n"
+        markdown_table += "|------|------|\n"
+
+        if fair.official_ad_page:
+            markdown_table += f"| {_("Ad")} | [{fair.official_ad_page}]({fair.official_ad_page}) |\n"
+        if fair.city_event_page:
+            markdown_table += f"| {_("City page")} | [{fair.city_event_page}]({fair.city_event_page}) |\n"
+        if fair.facebook_event_page:
+            markdown_table += f"| {_("Facebook page")} | [{fair.facebook_event_page}]({fair.facebook_event_page}) |\n"
+        if fair.walk_tour_video:
+            markdown_table += f"| {_("Walk tour")} | [{fair.walk_tour_video}]({fair.walk_tour_video}) |\n"
+
+        for url in fair.sources:
+            markdown_table += f"| {_("Other")} | [{url}]({url}) |\n"
+
+        st.markdown(markdown_table)
 
         st.divider()
         st.subheader(_("Attractions"))

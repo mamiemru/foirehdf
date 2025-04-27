@@ -485,11 +485,21 @@ wheels = [
 ]
 
 [[package]]
+name = "python-gettext"
+version = "5.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f6/c8/85df0d3956bebdbaff936df47a5705be9e0b42404589a07065a39c8324e5/python-gettext-5.0.tar.gz", hash = "sha256:869af1ea45e3dab6180557259824c2a62f1800e1286226af912431fe75c5084c", size = 9879 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0d/e7/70b80ec3480b9c453366a396e31eaa2f00b5a6824e1600d23f796e848b6b/python_gettext-5.0-py3-none-any.whl", hash = "sha256:083d4c72c5e72a6bd83b0570770792b9a1e572d8ab3e9cba554e0cd4781aa84a", size = 13086 },
+]
+
+[[package]]
 name = "pythonproject"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "pydantic" },
+    { name = "python-gettext" },
     { name = "streamlit" },
     { name = "tinydb" },
 ]
@@ -497,6 +507,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "pydantic", specifier = ">=2.11.3" },
+    { name = "python-gettext", specifier = ">=5.0" },
     { name = "streamlit", specifier = ">=1.44.1" },
     { name = "tinydb", specifier = ">=4.8.2" },
 ]

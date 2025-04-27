@@ -138,7 +138,7 @@ def ride_create():
                     if video_url:
                         st.session_state.images_url.append(video_url)
                     else:
-                        log.warning("Please enter a valid video URL.")
+                        log.warning(_("Please enter a valid video URL."))
 
             if st.session_state.images_url:
                 for cursor in range(0, len(st.session_state.images_url), 3):

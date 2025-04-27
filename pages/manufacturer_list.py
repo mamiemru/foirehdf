@@ -13,13 +13,16 @@ from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
 from backend.models.manufacturerModel import Manufacturer
+import gettext
 
-st.title("Manufacturer Management")
+_  = gettext.gettext
 
-@st.dialog("add manufacturer")
+st.title(_("Manufacturer Management"))
+
+@st.dialog(_("add manufacturer"))
 def add_manufacturer_dialog():
-    name = st.text_input("Name of the manufacturer")
-    if st.button("submit"):
+    name = st.text_input(_("Name of the manufacturer"))
+    if st.button(_("submit")):
         response: ResponseDto = create_attraction_endpoint({"name": name})
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
@@ -29,11 +32,11 @@ def add_manufacturer_dialog():
             st.error(response.errors, icon=":material/close:")
 
 
-@st.dialog("delete manufacturer")
+@st.dialog(_("delete manufacturer"))
 def delete_manufacturer_dialog(manufacturer: ManufacturerDto):
-    st.subheader("Delete a manufacturer")
-    st.write(f"Are you sure to delete {manufacturer.name}")
-    if st.button("Delete"):
+    st.subheader(_("Delete a manufacturer"))
+    st.write(f"{_('Are you sure to delete')} {manufacturer.name}")
+    if st.button(_("Delete")):
         message = delete_manufacturer_endpoint(manufacturer.id)
         st.success(message)
         st.rerun()
@@ -49,7 +52,7 @@ def manufacturer_list():
     col_search, col_add = st.columns([0.9, 0.1])
 
     with col_search:
-        search_manufacturer = st.text_input("search", label_visibility="collapsed")
+        search_manufacturer = st.text_input(_("search"), label_visibility="collapsed")
         if search_manufacturer:
             st.rerun()
 

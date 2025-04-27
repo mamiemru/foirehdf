@@ -15,9 +15,9 @@ _ = gettext.gettext
 
 @st.dialog("delete fair")
 def delete_fair_dialog(fair_dto: FairDTO):
-    st.subheader("Delete a Fair")
-    st.write(f"Are you sure to delete {fair_dto.name}")
-    if st.button("Delete"):
+    st.subheader(_("Delete a Fair"))
+    st.write(f"{_('Are you sure to delete')} {fair_dto.name}")
+    if st.button(_("Delete")):
         response: ResponseDto = delete_fair_endpoint(fair_dto.id)
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
@@ -27,17 +27,8 @@ def delete_fair_dialog(fair_dto: FairDTO):
             st.error(response.errors, icon=":material/close:")
 
 
-import pandas as pd
-import numpy as np
-
-df = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=["lat", "lon"],
-)
-
-
 def display_fair(fair: FairDTO):
-    with st.container(border=True, height=200):
+    with st.container(border=True):
         col1, col2 = st.columns([2, 1])
         with col1:
             st.subheader(fair.name)
@@ -61,7 +52,14 @@ def display_fair(fair: FairDTO):
             )
         with col2:
             st.write(":material/calendar_month: Dates")
-            st.caption(f"**From** {fair.start_date} **Until** {fair.end_date}")
+            st.caption(f"**{_("From")}** {fair.start_date}")
+            st.caption(f"**{_("Until")}** {fair.end_date}")
+
+            if fair.fair_incoming:
+                st.caption(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")
+
+            if fair.fair_available_today:
+                st.caption(f"{_("Days left until end")}:  {fair.days_before_end_date} {_("Days")}")
 
 
 def fair_list():
@@ -73,12 +71,12 @@ def fair_list():
         fairs_struct = response.data['fairs']
         data_map = response.data['map']
 
-    st.title("Fairs")
+    st.title(_("Fairs"))
 
     col_search, col_add = st.columns([0.9, 0.1])
 
     with col_search:
-        search_fair = st.text_input("search", label_visibility="collapsed")
+        search_fair = st.text_input(_("search"), label_visibility="collapsed")
         if search_fair:
             st.rerun()
 
@@ -86,7 +84,7 @@ def fair_list():
         if st.button("", icon=":material/add:"):
             st.switch_page("pages/fair_create.py")
 
-    st.header(_(":green[FunFairs currently available today]"))
+    st.header(f":green[{_('FunFairs currently available today')}]")
     colCurrent, colMap = st.columns([.5, .5])
     with colCurrent:
         with st.container(height=500, border=False):
@@ -98,12 +96,12 @@ def fair_list():
 
     colComming, colPast = st.columns([.5, .5])
     with colComming:
-        st.header(_(":orange[FunFairs coming soon]"))
+        st.header(f":orange[{_('FunFairs coming soon')}]")
         for fair in fairs_struct[FairStatus.INCOMING]:
             display_fair(fair)
 
     with colPast:
-        st.header(_(":blue[FunFairs done]"))
+        st.header(f":blue[{_('FunFairs done')}]")
         for fair in fairs_struct[FairStatus.DONE]:
             display_fair(fair)
 

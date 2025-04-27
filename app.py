@@ -1,22 +1,26 @@
-
+import gettext
 import streamlit as st
 
+_ = gettext.gettext
 
-list_fairs = st.Page("pages/fair_list.py", title="List fairs", icon=":material/list:")
-view_fair = st.Page("pages/fair_view.py", title="View a fair", icon=":material/visibility:")
-create_fair = st.Page("pages/fair_create.py", title="Create a fair", icon=":material/edit:")
+lang = gettext.translation('foirehdf', localedir='langs', languages=['fr'])
+lang.install()
 
-list_rides = st.Page("pages/ride_list.py", title="List rides", icon=":material/list:")
-view_ride = st.Page("pages/ride_view.py", title="View a ride", icon=":material/visibility:")
-create_ride = st.Page("pages/ride_create.py", title="Add a new ride", icon=":material/edit:")
+list_fairs = st.Page("pages/fair_list.py", title=_("List fairs"), icon=":material/list:")
+view_fair = st.Page("pages/fair_view.py", title=_("View a fair"), icon=":material/visibility:")
+create_fair = st.Page("pages/fair_create.py", title=_("Create a fair"), icon=":material/edit:")
 
-list_manufacturer = st.Page("pages/manufacturer_list.py", title="List manufacturers", icon=":material/list:")
+list_rides = st.Page("pages/ride_list.py", title=_("List rides"), icon=":material/list:")
+view_ride = st.Page("pages/ride_view.py", title=_("View a ride"), icon=":material/visibility:")
+create_ride = st.Page("pages/ride_create.py", title=_("Add a new ride"), icon=":material/edit:")
+
+list_manufacturer = st.Page("pages/manufacturer_list.py", title=_("List manufacturers"), icon=":material/list:")
 
 pg = st.navigation(
     {
-        "Fairs": [list_fairs, view_fair, create_fair],
-        "rides": [list_rides, view_ride, create_ride],
-        "manufacturer": [list_manufacturer]
+        _("Fairs"): [list_fairs, view_fair, create_fair],
+        _("rides"): [list_rides, view_ride, create_ride],
+        _("manufacturer"): [list_manufacturer]
     }
 )
 

@@ -7,7 +7,11 @@
       "start_date": 1735686000.0,
       "end_date": 1736636400.0,
       "attractions": [],
-      "sources": []
+      "sources": [],
+      "official_ad_page": null,
+      "city_event_page": null,
+      "facebook_event_page": null,
+      "walk_tour_video": null
     },
     "2": {
       "id": "-4027078564966575744--6521913956198788911-9215433807576962253-9215433807576962253",
@@ -16,7 +20,11 @@
       "start_date": 1741906800.0,
       "end_date": 1743289200.0,
       "attractions": [],
-      "sources": []
+      "sources": [],
+      "official_ad_page": null,
+      "city_event_page": null,
+      "facebook_event_page": null,
+      "walk_tour_video": null
     },
     "3": {
       "id": "-6464810603634185254--2752509858055531920-8898397103041668355-8898397103041668355",
@@ -29,7 +37,11 @@
         "6506608571647482960-3880504043995662165-0",
         "-5434965329692716790--7871163287953012211-3723174561573098610"
       ],
-      "sources": []
+      "sources": [],
+      "official_ad_page": null,
+      "city_event_page": null,
+      "facebook_event_page": null,
+      "walk_tour_video": null
     },
     "4": {
       "id": "5402202781903312289-2801383880613861741-8618883214497547204-8618883214497547204",
@@ -44,7 +56,11 @@
         "4403622345781794304--5935179949160995360--3778064984604607533",
         "8593564965155128664--95383799777337798--7385999907452752248"
       ],
-      "sources": []
+      "sources": [],
+      "official_ad_page": null,
+      "city_event_page": null,
+      "facebook_event_page": null,
+      "walk_tour_video": null
     },
     "5": {
       "id": "969cd212-e4ae-45cb-bfa1-02bf118c4dc5",
@@ -58,9 +74,12 @@
         "594344610873017782--5391186004553717748--2664660177390442791"
       ],
       "sources": [
-        "https://lilleaddict.fr/actus-lille/foire-de-printemps-2025.html",
-        "https://www.facebook.com/FoireAuxManegesDeLilleOfficiel"
-      ]
+        "https://lilleaddict.fr/actus-lille/foire-de-printemps-2025.html"
+      ],
+      "official_ad_page": "https://scontent-cdg4-3.xx.fbcdn.net/v/t39.30808-6/485154952_1069559361868554_4940014368324789448_n.png?stp=dst-png_s960x960&_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=qKIGVEI9uPcQ7kNvwE8IvLO&_nc_oc=AdmXyZHvH3mWhzrkw0cYjiXDcHLa1UmL4Llk9fQ0a0qhA3o9UQya1zkWidwmDxHEyQp1BZ-6EDCvhsfMW724mYaz&_nc_zt=23&_nc_ht=scontent-cdg4-3.xx&_nc_gid=OCebVLjV1ekA71tyrOrsEA&oh=00_AfHRiPkY-j0DVz8nEaXZcAEv0XFOW55zYz2-k-DYLnZWHg&oe=68140825",
+      "city_event_page": "https://www.lille.fr/Nos-equipements/La-Foire-aux-maneges",
+      "facebook_event_page": "https://www.facebook.com/FoireAuxManegesDeLilleOfficiel",
+      "walk_tour_video": "https://www.youtube.com/watch?v=wecR0qJTFCg"
     }
   },
   "manufacturer": {

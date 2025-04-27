@@ -26,17 +26,17 @@ def ride_view(ride: AttractionDTO):
         )
 
 
-        st.markdown(f"**Description:** {ride.description}")
-        st.markdown(f"**Ticket Price:** €{ride.ticket_price}")
-        st.markdown(f"**Manufacturer:** {ride.manufacturer}")
-        st.markdown(f"**Technical Name:** {ride.technical_name}")
-        st.markdown(f"**Attraction Type:** {ride.attraction_type}")
+        st.markdown(f"**{_('Description')}:** {ride.description}")
+        st.markdown(f"**{_('Ticket ')}:** €{ride.ticket_price}")
+        st.markdown(f"**{_('Manufacturer')}:** {ride.manufacturer}")
+        st.markdown(f"**{_('Technical Name')}:** {ride.technical_name}")
+        st.markdown(f"**{_('Attraction Type')}:** {ride.attraction_type}")
         if ride.owner:
-            st.markdown(f"**Owner:** {ride.owner}")
+            st.markdown(f"**{_('Owner')}:** {ride.owner}")
         if ride.manufacturer_page_url:
-            st.markdown(f"**Manufacturer Page:** [Link]({ride.manufacturer_page_url})")
+            st.markdown(f"**{_('Manufacturer Page')}:** [Link]({ride.manufacturer_page_url})")
         if ride.news_page_url:
-            st.markdown(f"**News Page:** [Link]({ride.news_page_url})")
+            st.markdown(f"**{_('News Page')}:** [Link]({ride.news_page_url})")
 
     with right_col:
         for image in ride.images:
@@ -48,7 +48,7 @@ def ride_view(ride: AttractionDTO):
     # Videos Section
     colA, colB = st.columns([.8, .2])
     with colA:
-        st.header("Videos")
+        st.header(_("Videos"))
     with colB:
         n_split = st.number_input(
             _("Show videos per rows of"), help=_("Show videos per rows of"), min_value=1, max_value=5, value=3

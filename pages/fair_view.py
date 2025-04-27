@@ -45,8 +45,6 @@ def fair_view():
         with col2:
             if fair.image:
                 st.image(fair.image)
-            else:
-                st.image("backend\\images\\placeholder.png", caption="Fair Screenshot Placeholder")
 
         st.divider()
         st.subheader(_("Sources and useful links"))

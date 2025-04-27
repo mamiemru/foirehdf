@@ -1,0 +1,315 @@
+msgid "Sources and useful links"
+msgstr "Liens utiles"
+
+msgid "List fairs"
+msgstr "Liste des foires"
+
+msgid "View a fair"
+msgstr "Voir une foire"
+
+msgid "Create a fair"
+msgstr "Créer une foire"
+
+msgid "List rides"
+msgstr "Liste des manèges"
+
+msgid "rides"
+msgstr "manèges"
+
+msgid "View a ride"
+msgstr "Voir un manège"
+
+msgid "Add a new ride"
+msgstr "Ajouter un manège"
+
+msgid "List manufacturers"
+msgstr "Liste des fabricants"
+
+msgid "A link to the product"
+msgstr "Lien vers le produit"
+
+msgid "A short description of the ride"
+msgstr "Description du manège"
+
+msgid "Ad"
+msgstr "Publicité"
+
+msgid "Add Image"
+msgstr "Ajouter une image"
+
+msgid "Add Video"
+msgstr "Ajouter une vidéo"
+
+msgid "Add a new ride"
+msgstr "Ajouter un manège"
+
+msgid "An image of the ride"
+msgstr "Une image du manège"
+
+msgid "Are you sure to delete"
+msgstr "Confirmation de suppression"
+
+msgid "Area of the fair"
+msgstr "Endroit de la foire"
+
+msgid "Attraction Type"
+msgstr "Type de manège"
+
+msgid "Attraction Type*"
+msgstr "Type de manège*"
+
+msgid "Attractions"
+msgstr "Manèges"
+
+msgid "Check your attractions"
+msgstr "Voir les manèges"
+
+msgid "City event page url"
+msgstr "Site de la ville"
+
+msgid "City of the fair"
+msgstr "Ville"
+
+msgid "City page"
+msgstr "Site de la ville"
+
+msgid "Country of the fair"
+msgstr "Pays"
+
+msgid "Create Fair"
+msgstr "Créer une foire"
+
+msgid "Dates"
+msgstr "Dates"
+
+msgid "Days"
+msgstr "Jours"
+
+msgid "Days before the fair"
+msgstr "Jours avant la foire"
+
+msgid "Days left until end"
+msgstr "Jours restants"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Delete a Fair"
+msgstr "Supprimer une foire"
+
+msgid "Delete a manufacturer"
+msgstr "Supprimer un fabricant"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Enter a image URL"
+msgstr "Entrer un lien vers une image"
+
+msgid "Enter a video URL (e.g., YouTube, MP4 link)"
+msgstr "Entrer un lien vers une vidéo (Youtubbe, MP4...)"
+
+msgid "Enter the url page of the manufacturer ride"
+msgstr "Entrer l'url du site du fabricant"
+
+msgid "Facebook page"
+msgstr "Page facebook"
+
+msgid "Fair name"
+msgstr "Nom de la foire"
+
+msgid "Fairs"
+msgstr "Foires au manèges"
+
+msgid "Family owner"
+msgstr "Famille propriétaire"
+
+msgid "First day of the fair"
+msgstr "Première journée de la foire"
+
+msgid "From"
+msgstr "De"
+
+msgid "FunFairs coming soon"
+msgstr "Foire bientôt"
+
+msgid "FunFairs currently available today"
+msgstr "Foires en cours"
+
+msgid "FunFairs done"
+msgstr "Foires terminées"
+
+msgid "General Information"
+msgstr "Informations"
+
+msgid "Images"
+msgstr "Images"
+
+msgid "Immages url"
+msgstr "Liens d'images"
+
+msgid "Last day of the fair"
+msgstr "Dernier jours de la foire"
+
+msgid "Latitude"
+msgstr "Latitude"
+
+msgid "Location of the fair"
+msgstr "Addresse de la foire"
+
+msgid "Longitude"
+msgstr "Longitude"
+
+msgid "manufacturer"
+msgstr "fabricant"
+
+msgid "Manufacturer"
+msgstr "Fabricant"
+
+msgid "Manufacturer Information"
+msgstr "Information Fabricant"
+
+msgid "Manufacturer Management"
+msgstr "Gèrer les fabricant"
+
+msgid "Manufacturer Page"
+msgstr "Page des fabricant"
+
+msgid "Manufacturer page"
+msgstr "Page des fabricant"
+
+msgid "Media"
+msgstr "Médias"
+
+msgid "Name of the family that own the ride"
+msgstr "Famille possédant le manège"
+
+msgid "Name of the manufacturer"
+msgstr "Nom du fabricant"
+
+msgid "Name of the manufacturer*"
+msgstr "Nom du fabricant*"
+
+msgid "Name of the ride"
+msgstr "Nom du manège"
+
+msgid "Name*"
+msgstr "Nom*"
+
+msgid "News Page"
+msgstr "Actualitées"
+
+msgid "No Images added yet. Add some above!"
+msgstr "Pas d'images ajouté"
+
+msgid "No videos added yet. Add some above!"
+msgstr "Pas de vidéos ajouté"
+
+msgid "Official advertissement page url"
+msgstr "Page officiel"
+
+msgid "Official news page of the ride"
+msgstr "Page d'actualité du manège"
+
+msgid "Official news page or fan page"
+msgstr "Fan page"
+
+msgid "Other"
+msgstr "Autre"
+
+msgid "Owner"
+msgstr "Propriètaire"
+
+msgid "Owners"
+msgstr "Propriètaires"
+
+msgid "Please enter a valid video URL."
+msgstr "Enter une url valide"
+
+msgid "Postal code of the fair"
+msgstr "Code postal"
+
+msgid "Select attractions present in the fair"
+msgstr "Selectionner les manèges présent à la foire"
+
+msgid "Show videos per rows of"
+msgstr "Montrer les vidéos par rangées de"
+
+msgid "Sources"
+msgstr "Sources"
+
+msgid "State/dpt of the fair"
+msgstr "Département"
+
+msgid "Street of the fair"
+msgstr "Rue"
+
+msgid "Submit"
+msgstr "Envoyer"
+
+msgid "Technical Name"
+msgstr "Nom technique"
+
+msgid "Tell us where to find this ride"
+msgstr "Dit nous où trouver ce manège"
+
+msgid "The name given by the manufacturer"
+msgstr "Nom donné par le fabricant"
+
+msgid "This attraction name already exists"
+msgstr "Ce nom de manège existe déjà"
+
+msgid "Ticket "
+msgstr "Ticket "
+
+msgid "Ticket Price"
+msgstr "Prix du ticket"
+
+msgid "Ticket price"
+msgstr "Prix du ticket"
+
+msgid "Until"
+msgstr "Au"
+
+msgid "Url"
+msgstr "Url"
+
+msgid "Url type"
+msgstr "Type de lien"
+
+msgid "Videos"
+msgstr "Vidéos
+
+msgid "Videos url"
+msgstr "Liens vidéos"
+
+msgid "View fair"
+msgstr "Voir une foire"
+
+msgid "Walk tour"
+msgstr "Visite de la foire"
+
+msgid "Walk tour video url"
+msgstr "Lien d'une visite de la foire"
+
+msgid "What rides is present in the fair"
+msgstr "Quelles sontles manèges présent dans la foire"
+
+msgid "add manufacturer"
+msgstr "Ajouter un fabricant"
+
+msgid "delete manufacturer"
+msgstr "Supprimer un fabricant"
+
+msgid "facebook event page url"
+msgstr "Lien Facebook de la foire"
+
+msgid "search"
+msgstr "Chercher"
+
+msgid "submit"
+msgstr "Envoyer"
+
+msgid "the type of the ride"
+msgstr "Type de manège"
+

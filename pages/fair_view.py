@@ -56,7 +56,7 @@ def fair_view():
                 st.image(fair.image)
 
         st.divider()
-        st.subheader(_(":material/link: Sources and useful links"))
+        st.subheader(f":material/link: {_('Sources and useful links')}")
 
         markdown_table = f"| {_("Url type")} | {_("Url")} |\n"
         markdown_table += "|------|------|\n"

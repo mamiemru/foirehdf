@@ -1,10 +1,13 @@
+import os
 import gettext
 import streamlit as st
 
-_ = gettext.gettext
 
-lang = gettext.translation('foirehdf', localedir='langs', languages=['fr'])
-lang.install()
+locale_path = os.path.join(os.path.dirname(__file__), 'locale')
+language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
+language.install()
+
+_ = gettext.gettext
 
 list_fairs = st.Page("pages/fair_list.py", title=_("List fairs"), icon=":material/list:")
 view_fair = st.Page("pages/fair_view.py", title=_("View a fair"), icon=":material/visibility:")

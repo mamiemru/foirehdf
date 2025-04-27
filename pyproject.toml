@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "polib>=1.2.0",
     "pydantic>=2.11.3",
     "python-gettext>=5.0",
     "streamlit>=1.44.1",

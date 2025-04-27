@@ -108,6 +108,9 @@
       "attraction_type": "Inverted Rides",
       "owner": null,
       "videos_url": [],
+      "images_url": [
+        "https://scontent-cdg4-2.xx.fbcdn.net/v/t1.6435-9/121167633_180055083728725_7933769127256398766_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=dEveaELIhtAQ7kNvwE0oECg&_nc_oc=AdmeRPGuK3gbQh2FLW3fhOil36Dr7CnGGdpZPjF7I41MwnZFV5XE_irbEb1FIwAnkVir7U9ubb9g9ivt8z1AHefe&_nc_zt=23&_nc_ht=scontent-cdg4-2.xx&_nc_gid=oOSEweeBcS4rq9X7c_EEFw&oh=00_AfExeQ5TEL-N_uj1wYxvgnK8CoYoZXJ1af1gvixN7KbivQ&oe=683589F5"
+      ],
       "manufacturer_page_url": null,
       "news_page_url": null
     },
@@ -122,6 +125,9 @@
       "owner": "Adajoud",
       "videos_url": [
         "https://www.youtube.com/watch?v=KomTT4fFNWc"
+      ],
+      "images_url": [
+        "https://i.ytimg.com/vi/KomTT4fFNWc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBm-F7xBT40-ubnhiXsVNJC35RxtA"
       ],
       "manufacturer_page_url": null,
       "news_page_url": null
@@ -139,6 +145,9 @@
         "https://www.youtube.com/watch?v=FYP0phSHozI",
         "https://www.youtube.com/watch?v=06OFTtHv4oA"
       ],
+      "images_url": [
+        "https://www.antibesland.fr//public//uploads/2024/05/BD-AIR-ONE-Maxxx01.png"
+      ],
       "manufacturer_page_url": "https://www.kmgrides.com/attractie/1987-2/",
       "news_page_url": "https://www.facebook.com/p/Air-One-Maxxx-100057408881584/"
     },
@@ -152,6 +161,9 @@
       "attraction_type": "Inverted Rides",
       "owner": "Audermatte",
       "videos_url": [],
+      "images_url": [
+        "https://i.ytimg.com/vi/0ZeEqOiZU2g/maxresdefault.jpg"
+      ],
       "manufacturer_page_url": null,
       "news_page_url": null
     },
@@ -168,6 +180,9 @@
         "https://www.youtube.com/watch?v=MKaPRRIGX8g",
         "https://www.youtube.com/watch?v=-IfPErDqW04"
       ],
+      "images_url": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXNPzVivGXXofCRfbVDRHcDyYSu-M-a70npg&s"
+      ],
       "manufacturer_page_url": "https://www.kmgrides.com/attractie/freak-out/",
       "news_page_url": null
     },
@@ -182,6 +197,9 @@
       "owner": null,
       "videos_url": [
         "https://www.youtube.com/watch?v=buVJ2BtJJjg"
+      ],
+      "images_url": [
+        "https://i.ytimg.com/vi/L-oJ6gZWZsE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAx_2626ABd1EGTpbU1kTDQTs8L5w"
       ],
       "manufacturer_page_url": null,
       "news_page_url": null
@@ -199,7 +217,9 @@
         "https://www.youtube.com/watch?v=0SLMtA4OUZU",
         "https://www.youtube.com/watch?v=17KQEbziXOE"
       ],
-      "images_url": [],
+      "images_url": [
+        "https://i.ytimg.com/vi/17KQEbziXOE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB_cHJJ3LdSEsGe8jp8OFiW5g3eEQ"
+      ],
       "manufacturer_page_url": "https://www.funlight.cz/en/product/extreme-australia",
       "news_page_url": null
     },
@@ -216,6 +236,9 @@
         "https://www.youtube.com/watch?v=p6apFZ1aGDc",
         "https://www.youtube.com/watch?v=hl2gYq3EWIY"
       ],
+      "images_url": [
+        "https://i.ytimg.com/vi/4pc365UIWBQ/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLDbH3zeLvWTcf1bu90TFkyj2YWWow"
+      ],
       "manufacturer_page_url": "https://www.fabbrigroup.com/major-rides/eclipse/",
       "news_page_url": "https://www.facebook.com/p/Tiki-party-frechon-100069793488449/"
     },
@@ -229,6 +252,9 @@
       "attraction_type": "Pendulum",
       "owner": null,
       "videos_url": [],
+      "images_url": [
+        "https://i.ytimg.com/vi/tWI_eH9bBts/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBMRjTtRgNXw_vVJmzVPrh8TF8I9Q"
+      ],
       "manufacturer_page_url": null,
       "news_page_url": null
     },
@@ -265,6 +291,9 @@
         "https://www.youtube.com/watch?v=qf7HgWvOhl8",
         "https://www.youtube.com/watch?v=9ytFdyNGZvw"
       ],
+      "images_url": [
+        "https://i.ytimg.com/vi/ULjsZ73LBKo/maxresdefault.jpg"
+      ],
       "manufacturer_page_url": null,
       "news_page_url": null
     },
@@ -279,6 +308,9 @@
       "owner": "Jacquier",
       "videos_url": [
         "https://www.youtube.com/watch?v=x32cX4QMs9Q"
+      ],
+      "images_url": [
+        "https://i.ytimg.com/vi/x32cX4QMs9Q/maxresdefault.jpg"
       ],
       "manufacturer_page_url": null,
       "news_page_url": null
@@ -296,6 +328,9 @@
         "https://www.youtube.com/watch?v=ZCaCy2UmZi4",
         "https://www.youtube.com/watch?v=jdFxSNIOxzo"
       ],
+      "images_url": [
+        "https://i.ytimg.com/vi/EK0KPaj5R68/maxresdefault.jpg"
+      ],
       "manufacturer_page_url": null,
       "news_page_url": null
     },
@@ -309,6 +344,9 @@
       "attraction_type": "Pendulum",
       "owner": null,
       "videos_url": [],
+      "images_url": [
+        "https://i.ytimg.com/vi/cAYq9YRSRTg/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGFYgXyhlMA8=&rs=AOn4CLBs1vIyz8SYFa7HZO2o3RI82QoOOQ"
+      ],
       "manufacturer_page_url": null,
       "news_page_url": "https://www.facebook.com/EclipseCapriolo/"
     },
@@ -326,95 +364,11 @@
         "https://www.youtube.com/watch?v=KdQzEsdI2Vg",
         "https://www.youtube.com/watch?v=HZZ20wDNiIU"
       ],
+      "images_url": [
+        "https://i.ytimg.com/vi/PN4pkrbEeEE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLALvPvwfFeB9ShDGJKXbya5TYWQSw"
+      ],
       "manufacturer_page_url": "https://www.mondialrides.com/capriolo-10-p",
       "news_page_url": "https://www.facebook.com/groups/235753404413893/?locale=fr_FR"
-    }
-  },
-  "attraction_image": {
-    "1": {
-      "id": "5fa200398ea961c6d3d0f59ff95d7a8db5f87f5e74737d93e0b9658f52bd4bd3",
-      "path": "backend\\images\\attractions\\rides\\5fa200398ea961c6d3d0f59ff95d7a8db5f87f5e74737d93e0b9658f52bd4bd3.jpg",
-      "attraction_id": "-1072017918549776658-2563550037260895279-4622940599343558763"
-    },
-    "2": {
-      "id": "5fa200398ea961c6d3d0f59ff95d7a8db5f87f5e74737d93e0b9658f52bd4bd3",
-      "path": "backend\\images\\attractions\\rides\\5fa200398ea961c6d3d0f59ff95d7a8db5f87f5e74737d93e0b9658f52bd4bd3.jpg",
-      "attraction_id": "-1072017918549776658-2563550037260895279-4622940599343558763"
-    },
-    "3": {
-      "id": "d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56",
-      "path": "backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg",
-      "attraction_id": "-7975944430348061856--8252064576748446955-5138821520618955465"
-    },
-    "4": {
-      "id": "bea15632b34641e01614a1485a97f2ef272b2751952b082a3e2d1ade9590aab3",
-      "path": "backend\\images\\attractions\\rides\\bea15632b34641e01614a1485a97f2ef272b2751952b082a3e2d1ade9590aab3.jpg",
-      "attraction_id": "-4959938169070027254--1792932415414312037--6109409021634977609"
-    },
-    "5": {
-      "id": "8a18ef0d01dfe4726753b9f1cd506855bc7f3c20d3435377b7e3d4378e648bc5",
-      "path": "backend\\images\\attractions\\rides\\8a18ef0d01dfe4726753b9f1cd506855bc7f3c20d3435377b7e3d4378e648bc5.jpg",
-      "attraction_id": "-5434965329692716790--7871163287953012211-3723174561573098610"
-    },
-    "6": {
-      "id": "8e1d78bf900863e928c81509a5811cd40df07a5ed76043aae7a4ab7efc0e4998",
-      "path": "backend\\images\\attractions\\rides\\8e1d78bf900863e928c81509a5811cd40df07a5ed76043aae7a4ab7efc0e4998.jpg",
-      "attraction_id": "-3129795948668102189--1792932415414312037-6789354908171081949"
-    },
-    "7": {
-      "id": "5588870bfa0fc5434c77fa9e3515bc5d5001ba0b78c2921ba253c9f87054e3c1",
-      "path": "backend\\images\\attractions\\rides\\5588870bfa0fc5434c77fa9e3515bc5d5001ba0b78c2921ba253c9f87054e3c1.jpg",
-      "attraction_id": "594344610873017782--5391186004553717748--2664660177390442790"
-    },
-    "8": {
-      "id": "855b78d229c589dba367788e9d477e9db8c08b1e4e6cc2e0885c7f5dca52e2be",
-      "path": "backend\\images\\attractions\\rides\\855b78d229c589dba367788e9d477e9db8c08b1e4e6cc2e0885c7f5dca52e2be.jpg",
-      "attraction_id": "6506608571647482960-3880504043995662165-0"
-    },
-    "9": {
-      "id": "a411ea76c7aafe8ec4a8e0b0845de4fcdce206ccffc7d04e4649a44a354012bb",
-      "path": "backend\\images\\attractions\\rides\\a411ea76c7aafe8ec4a8e0b0845de4fcdce206ccffc7d04e4649a44a354012bb.jpg",
-      "attraction_id": "-7713993045970631986-3147624950963034056--7692327210657428141"
-    },
-    "10": {
-      "id": "aa6c112e4ae0e7bc6092d9f9547c793d20d1a2df8ba4cfe4568873e234127c6c",
-      "path": "backend\\images\\attractions\\rides\\aa6c112e4ae0e7bc6092d9f9547c793d20d1a2df8ba4cfe4568873e234127c6c.jpg",
-      "attraction_id": "8593564965155128664--95383799777337798--7385999907452752248"
-    },
-    "11": {
-      "id": "a2b56f0ef9e4a928110136d0382ffc7cd7216e3bb544b9f2d6ffb7fa9c136dd3",
-      "path": "backend\\images\\attractions\\rides\\a2b56f0ef9e4a928110136d0382ffc7cd7216e3bb544b9f2d6ffb7fa9c136dd3.jpg",
-      "attraction_id": "-3418337969484145450--7939922360023607888--4257065706972853058"
-    },
-    "12": {
-      "id": "fdc9f998b06a8af199cd7a923da14f6aa9307b2b664402c99469614aab73d267",
-      "path": "backend\\images\\attractions\\rides\\fdc9f998b06a8af199cd7a923da14f6aa9307b2b664402c99469614aab73d267.jpg",
-      "attraction_id": "-8808173917599955043--4172150232482563672--8808173917599955043"
-    },
-    "13": {
-      "id": "6e13e62983e1add39144e4f6a00da4e8d4eccf8a890acfd6e01170ad453caad3",
-      "path": "backend\\images\\attractions\\rides\\6e13e62983e1add39144e4f6a00da4e8d4eccf8a890acfd6e01170ad453caad3.jpg",
-      "attraction_id": "4403622345781794304--5935179949160995360--3778064984604607533"
-    },
-    "14": {
-      "id": "def86919ca48f0cf8dff57112a8de0edc9d6f4415ac89aaf2b96673dd0dc4ef6",
-      "path": "backend\\images\\attractions\\rides\\def86919ca48f0cf8dff57112a8de0edc9d6f4415ac89aaf2b96673dd0dc4ef6.jpg",
-      "attraction_id": "5018120180034312219--1766454639196881275--6763980577645372347"
-    },
-    "15": {
-      "id": "c6694d9b18df8a6f498532049d55f60845552afa35eee4bb29bb0fcf87424cc7",
-      "path": "backend\\images\\attractions\\rides\\c6694d9b18df8a6f498532049d55f60845552afa35eee4bb29bb0fcf87424cc7.jpg",
-      "attraction_id": "-4006048950748477553--6499110921884243011--7181007023042994100"
-    },
-    "16": {
-      "id": "d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56",
-      "path": "backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg",
-      "attraction_id": "4238902595323205620--5657177229876917483--6278722598486517781"
-    },
-    "17": {
-      "id": "594344610873017782--5391186004553717748--2664660177390442792",
-      "attraction_id": "594344610873017782--5391186004553717748--2664660177390442791",
-      "path": "backend\\images\\attractions\\rides\\a2b56f0ef9e4a928110136d0382ffc7cd7216e3bb544b9f2d6ffb7fa9c136dd4.jpg"
     }
   },
   "locations": {

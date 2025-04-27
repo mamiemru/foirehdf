@@ -3,9 +3,9 @@ import gettext
 import streamlit as st
 
 
-locale_path = os.path.join(os.path.dirname(__file__), 'locale')
-language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
-language.install()
+## locale_path = os.path.join(os.path.dirname(__file__), 'locales')
+## language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
+## language.install()
 
 _ = gettext.gettext
 

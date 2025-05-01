@@ -13,11 +13,19 @@ _ = gettext.gettext
 
 def fair_view():
 
-    response: ResponseDto = get_fair_detailed_endpoint(st.session_state.view_fair_id)
+    response: ResponseDto = get_fair_detailed_endpoint(id=st.session_state.fair_id)
     if isinstance(response, SuccessResponse):
         fair: FairDTO = response.data
 
-        st.title(fair.name)
+        cola1, cola2 = st.columns([.8, .2])
+        with cola1:
+            st.title(fair.name)
+        with cola2:
+            if getattr(st.session_state, 'admin', False):
+                if st.button("", key="edit_fair", icon=":material/edit:"):
+                    st.session_state.fair_id = fair.id
+                    st.switch_page("pages/fair_edit.py")
+              
         col1, col2 = st.columns([2, 1])
         with col1:
             cola, colb = st.columns([2, 1])
@@ -40,8 +48,8 @@ def fair_view():
                     )
             with colb:
                 st.header(":material/calendar_month: "+ _("Dates"))
-                st.write(f"**{_("From")}** {fair.start_date}")
-                st.write(f"**{_("Until")}** {fair.end_date}")
+                st.write(f"**{_("From")}** {fair.start_date.strftime('%d %B %Y')}")
+                st.write(f"**{_("Until")}** {fair.end_date.strftime('%d %B %Y')}")
 
                 if fair.fair_incoming:
                     st.write(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")
@@ -76,11 +84,15 @@ def fair_view():
         st.markdown(markdown_table)
 
         st.divider()
-        st.subheader(_("Attractions"))
+         
         for attraction in fair.attractions:
             if attraction:
                 display_ride_as_item_in_list(_, st, attraction)
+    else:
+        st.error(response)
 
-
-if "view_fair_id" in st.session_state and st.session_state.view_fair_id:
+if "fair_id" in st.session_state and st.session_state.fair_id:
     fair_view()
+else:
+    st.error("no fair_id")
+    st.page_link("pages/fair_list.py")

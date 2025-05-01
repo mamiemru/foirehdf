@@ -1,3 +1,4 @@
+from dataclasses import asdict
 import datetime
 import uuid
 import locale
@@ -9,7 +10,7 @@ from backend.models.fairModel import Fair
 from backend.models.fairModel import FairDTO
 from backend.models.locationModel import LocationDTO, Location
 from backend.services.attractionService import attraction_to_dto, get_attraction_by_id
-from backend.services.locationService import location_to_dto, get_location_by_id
+from backend.services.locationService import location_to_dto, get_location_by_id, save_location, validate_location
 
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("fair")
@@ -31,7 +32,7 @@ def _timestamp_to_date(timestamp: float) -> datetime.date:
     return date_object
 
 def fair_to_dto(fair: Fair) -> FairDTO:
-    location: Location = get_location_by_id(fair.location_id)
+    locationdto: LocationDTO = get_location_by_id(fair.location_id)
     start_date=_timestamp_to_date(fair.start_date)
     end_date=_timestamp_to_date(fair.end_date)
 
@@ -40,9 +41,9 @@ def fair_to_dto(fair: Fair) -> FairDTO:
     return FairDTO(
         id=fair_dict['id'],
         name=fair_dict['name'],
-        location=location_to_dto(location) if location else None,
-        start_date=start_date.strftime('%d %B %Y'),
-        end_date=end_date.strftime('%d %B %Y'),
+        location=locationdto,
+        start_date=start_date,
+        end_date=end_date,
         sources=fair_dict['sources'],
         attractions=list(),
         fair_done=fair.fair_done,
@@ -75,16 +76,53 @@ def validate_fair(fair_dict: dict) -> Fair:
             'end_date': _date_to_timestamp(fair_dict['end_date']),
             'sources': fair_dict.get('sources', []),
             'attractions': fair_dict['attractions'],
-            'official_ad_page': fair_dict['official_ad_page'],
-            'city_event_page': fair_dict['city_event_page'],
-            'facebook_event_page': fair_dict['facebook_event_page'],
-            'walk_tour_video': fair_dict['walk_tour_video']
+            'official_ad_page': fair_dict['official_ad_page'] or None,
+            'city_event_page': fair_dict['city_event_page'] or None,
+            'facebook_event_page': fair_dict['facebook_event_page'] or None,
+            'walk_tour_video': fair_dict['walk_tour_video'] or None
         }
     )
 
+def create_fair(fair_dict: dict) -> FairDTO:
+    location: Location = validate_location(fair_dict['location'])
+    fair_dict['location_id'] = location.id
+    fair: Fair = validate_fair(fair_dict)
+    save_location(location)
+    save_fair(fair)
+    return fair_to_dto(fair)
 
-def save_fair(fair: Fair) -> bool:
-    success = db.insert(fair.model_dump(mode="json"))
+
+def update_fair(updated_fair_dict: dict, id: str) -> FairDTO:
+    fair: FairDTO = get_fair(id)
+    location: LocationDTO = get_location_by_id(fair.location.id)
+
+    fair_dict: dict = asdict(fair)
+    location_dict: dict = asdict(location)
+    
+    fair_dict.update(updated_fair_dict)
+    fair_dict['location_id'] = location.id
+    location_dict.update(updated_fair_dict['location'])
+    location_dict['id'] = location.id
+    
+    updated_location: Location = validate_location(location_dict)
+    updated_fair: Fair = validate_fair(fair_dict)
+    
+    updated_fair.location_id = fair.location.id
+    updated_location.id = fair.location.id
+
+    save_location(updated_location, update_id=fair.location.id)
+    save_fair(updated_fair, update_id=fair.id)
+
+    return fair_to_dto(updated_fair)
+
+
+def save_fair(fair: Fair, update_id: str=None) -> bool:
+    if update_id:
+        q = Query()
+        fair.id = update_id
+        success = db.update(fair.model_dump(mode="json"), q.id == update_id)
+    else:
+        success = db.insert(fair.model_dump(mode="json"))
     return bool(success)
 
 def list_fairs(name: Optional[str] = None, location: Optional[str] = None):
@@ -106,8 +144,7 @@ def get_fair_detailed(id: str) -> FairDTO:
         return fair_to_dto_detailed(fair)
     return None
 
-def update_fair(id: str, updated_fair: Fair):
-    pass
+
 
 def delete_fair(id: str):
     db.remove(FairQuery.id == id)

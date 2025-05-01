@@ -39,12 +39,17 @@ def validate_location(location_dict: Dict):
         }
     )
 
-def save_location(location: Location) -> bool:
-    success = db.insert(location.model_dump(mode="json"))
+def save_location(location: Location, update_id: str=None) -> bool:
+    if update_id:
+        q = Query()
+        location.id = update_id
+        success = db.update(location.model_dump(mode="json"), q.id == update_id)
+    else:
+        success = db.insert(location.model_dump(mode="json"))
     return bool(success)
 
 def get_location_by_id(location_id: str) -> Location:
-    result = db.search(Query().id == location_id)
+    result = db.get(Query().id == location_id)
     if result:
-        return Location(**result[0])
+        return location_to_dto(Location(**result))
     return None

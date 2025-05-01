@@ -1,6 +1,6 @@
 
 def display_ride_as_item_in_list(_, st, attraction):
-    with st.container(border=True, height=360):
+    with st.container(border=True):
         col1, col2 = st.columns([.7, .3])
         with col1:
             st.markdown(

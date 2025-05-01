@@ -9,8 +9,7 @@ from backend.services.attractionService import list_attraction_images_to_dto
 from backend.services.attractionService import get_attraction_by_id
 from backend.services.attractionService import list_attractions_names
 from backend.services.attractionService import create_attraction
-from backend.services.attractionService import validate_create_attraction
-
+from backend.services.attractionService import update_attraction
 from backend.models.attractionModel import Attraction
 
 from backend.dto.attraction_dto import AttractionDTO, AttractionImageDTO
@@ -29,7 +28,8 @@ def list_attractions_endpoint() -> ResponseDto:
     except Exception as e:
         return ErrorResponse(
             status=500,
-            message=str(e)
+            message=str(e),
+            errors={e.name: str(e)}
         )
     else:
         return PaginatedResponse(
@@ -39,10 +39,8 @@ def list_attractions_endpoint() -> ResponseDto:
         )
 
 def create_attraction_endpoint(attraction_dict: Dict, attraction_image=None) -> ResponseDto:
-
     try:
-        ride: Attraction = validate_create_attraction(attraction_dict)
-        ride_dto: AttractionDTO = create_attraction(ride, attraction_image)
+        ride_dto: AttractionDTO = create_attraction(attraction_dict, attraction_image)
     except KeyError as e:
         return ErrorResponse(
             status=400,
@@ -58,12 +56,39 @@ def create_attraction_endpoint(attraction_dict: Dict, attraction_image=None) -> 
         return ErrorResponse(
             status=500,
             message=str("An error occurred when creating the new attraction"),
-            errors=e
+            errors={e.name: str(e)}
         )
     else:
         return SuccessResponse(
             status=201,
             message=f"The attraction {ride_dto.name} has been created",
+            data=ride_dto
+        )
+
+def update_attraction_endpoint(attraction_dict: Dict, id: str) -> ResponseDto:
+    try:
+        ride_dto: AttractionDTO = update_attraction(id, attraction_dict)
+    except KeyError as e:
+        return ErrorResponse(
+            status=400,
+            message=str(e)
+        )
+    except ValidationError as e:
+        return ErrorResponse(
+            status=400,
+            message="One of your information is wrong or empty, check your form below",
+            errors={err['loc'][0]: err['msg'] for err in e.errors()}
+        )
+    except Exception as e:
+        return ErrorResponse(
+            status=500,
+            message=str("An error occurred when updating the new attraction"),
+            errors={e.name: str(e)}
+        )
+    else:
+        return SuccessResponse(
+            status=201,
+            message=f"The attraction {ride_dto.name} has been updated",
             data=ride_dto
         )
 
@@ -88,7 +113,7 @@ def get_attraction_image_by_id_endpoint(attraction_id: str) -> ResponseDto:
     return SuccessResponse(
         status=200,
         message="",
-        data=attraction_images[0]
+        data=attraction_images[0] if attraction_images else None
     )
 
 

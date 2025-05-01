@@ -20,8 +20,9 @@ def ride_list():
             st.rerun()
 
     with col_add:
-        if st.button("", icon=":material/add:"):
-            st.switch_page("pages/ride_create.py")
+        if getattr(st.session_state, 'admin', False):
+            if st.button("", icon=":material/add:"):
+                st.switch_page("pages/ride_create.py")
 
     response: ResponseDto = list_attractions_endpoint()
     if isinstance(response, PaginatedResponse):
@@ -40,6 +41,6 @@ def ride_list():
                 display_ride_as_item_in_list(_, st, attraction)
 
     elif isinstance(response, ErrorResponse):
-        st.write(response)
+        st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 ride_list()

@@ -65,8 +65,8 @@ def attraction_to_dto(attraction: Attraction) -> AttractionDTO:
         news_page_url=attraction_dict['news_page_url']
     )
 
-def validate_create_attraction(attraction_dict: dict) -> Attraction:
-
+def create_attraction(attraction_dict: dict, attraction_image=None) -> AttractionDTO:
+    
     manufacturer: Manufacturer = exists_manufacturer_by_name(attraction_dict['manufacturer'])
     if not manufacturer:
         raise KeyError("no manufacturer found")
@@ -77,20 +77,40 @@ def validate_create_attraction(attraction_dict: dict) -> Attraction:
             "description": attraction_dict['description'], "ticket_price": attraction_dict['ticket_price'],
             "manufacturer_id": manufacturer.id, "technical_name": attraction_dict['technical_name'],
             "attraction_type": AttractionType.from_value(attraction_dict['attraction_type']),
+            'manufacturer_page_url': attraction_dict['manufacturer_page_url'] or None, 'owner': attraction_dict['owner'],
+            'news_page_url': attraction_dict['news_page_url'] or None, 'videos_url': attraction_dict['videos_url'],
+            'images_url': attraction_dict['images_url']
+        }
+    )
+    
+    success = db.insert(validation_attraction.model_dump(mode="json"))
+    if success:
+        return attraction_to_dto(validation_attraction)
+    return None
+
+
+def update_attraction(id: str, attraction_dict: dict) -> AttractionDTO:
+        
+    manufacturer: Manufacturer = exists_manufacturer_by_name(attraction_dict['manufacturer'])
+    if not manufacturer:
+        raise KeyError("no manufacturer found")
+
+    validation_attraction: Attraction = Attraction.model_validate(
+        {
+            "id": id, "name": attraction_dict['name'],
+            "description": attraction_dict['description'], "ticket_price": attraction_dict['ticket_price'],
+            "manufacturer_id": manufacturer.id, "technical_name": attraction_dict['technical_name'],
+            "attraction_type": AttractionType.from_value(attraction_dict['attraction_type']),
             'manufacturer_page_url': attraction_dict['manufacturer_page_url'], 'owner': attraction_dict['owner'],
             'news_page_url': attraction_dict['news_page_url'], 'videos_url': attraction_dict['videos_url'],
             'images_url': attraction_dict['images_url']
         }
     )
-
-    return validation_attraction
-
-def create_attraction(attraction: Attraction, attraction_image=None) -> AttractionDTO:
-    success = db.insert(attraction.dict())
+    
+    q = Query()
+    success = db.update(validation_attraction.model_dump(mode="json"), q.id == id)
     if success:
-        if attraction_image:
-            upload_attraction_image(attraction_image, attraction.id)
-        return attraction_to_dto(attraction)
+        return attraction_to_dto(validation_attraction)
     return None
 
 def list_attractions_names_and_id() -> Dict[str, List[str]]:
@@ -115,9 +135,6 @@ def get_attraction_by_id(attraction_id: str) -> AttractionDTO:
         fair: Attraction = Attraction(**result[0])
         return attraction_to_dto(fair)
     return None
-
-def update_attraction(name: str, updated_fair: Attraction):
-    pass
 
 def delete_attraction(id: str):
     db.remove(AttractionQuery.id == id)

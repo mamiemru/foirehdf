@@ -20,6 +20,7 @@ class AttractionType(StrEnum):
     INVERTED_RIDES = "Inverted Rides"
     SHAKE = "Shake"
     BOOSTER = "Booster"
+    ROUND_UP = "Round up"
 
     @staticmethod
     def from_value(value: str):
@@ -68,7 +69,7 @@ class Attraction(BaseModel):
         if not value or not value.strip():
             raise ValueError("Must not be empty or blank")
         return value.strip()
-
+    
     @field_validator("ticket_price")
     def ticket_price_non_negative(cls, value: float) -> float:
         if value < 0:

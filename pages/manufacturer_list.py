@@ -5,6 +5,7 @@ import streamlit as st
 from backend.endpoints.attractionsEndpoint import create_attraction_endpoint
 from backend.endpoints.manufacturerEndpoint import delete_manufacturer_endpoint
 from backend.endpoints.manufacturerEndpoint import list_manufacturer_endpoint
+from backend.endpoints.manufacturerEndpoint import create_manufacturer_endpoint
 
 from backend.dto.list_dto import ListResponse
 from backend.dto.manufacturer_dto import ManufacturerDto
@@ -23,13 +24,12 @@ st.title(_("Manufacturer Management"))
 def add_manufacturer_dialog():
     name = st.text_input(_("Name of the manufacturer"))
     if st.button(_("submit")):
-        response: ResponseDto = create_attraction_endpoint({"name": name})
+        response: ResponseDto = create_manufacturer_endpoint({"name": name})
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
             st.rerun()
         elif isinstance(response, ErrorResponse):
-            st.error(response.message, icon=":material/close:")
-            st.error(response.errors, icon=":material/close:")
+            st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 
 @st.dialog(_("delete manufacturer"))
@@ -57,8 +57,9 @@ def manufacturer_list():
             st.rerun()
 
     with col_add:
-        if st.button("", icon=":material/add:"):
-            add_manufacturer_dialog()
+        if getattr(st.session_state, 'admin', False):
+            if st.button("", icon=":material/add:"):
+                add_manufacturer_dialog()
 
 
     for index, manufacturer in enumerate(manufacturers_list):
@@ -66,7 +67,8 @@ def manufacturer_list():
             with title:
                 st.subheader(manufacturer.name)
             with view:
-                if st.button("", key=f"del_manufacturer_{index}", icon=":material/delete:"):
-                    delete_manufacturer_dialog(manufacturer)
+                if getattr(st.session_state, 'admin', False):
+                    if st.button("", key=f"del_manufacturer_{index}", icon=":material/delete:"):
+                        delete_manufacturer_dialog(manufacturer)
 
 manufacturer_list()

@@ -1,0 +1,557 @@
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-04-27 11:51:05.384 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 45, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 37, in ride_list
+    display_ride_as_item_in_list(_, st, attraction)
+  File "/home/ubuntu/foirehdf/components/display_attraction_in_list.py", line 41, in display_ride_as_item_in_list
+    st.image(image.path, use_container_width=True)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\attractions\rides\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+2025-04-27 11:51:08.456 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 45, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 37, in ride_list
+    display_ride_as_item_in_list(_, st, attraction)
+  File "/home/ubuntu/foirehdf/components/display_attraction_in_list.py", line 41, in display_ride_as_item_in_list
+    st.image(image.path, use_container_width=True)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\attractions\rides\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+2025-04-27 11:51:12.198 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\placeholder.png'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\placeholder.png'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_view.py", line 64, in <module>
+    fair_view()
+  File "/home/ubuntu/foirehdf/pages/fair_view.py", line 49, in fair_view
+    st.image("backend\\images\\placeholder.png", caption="Fair Screenshot Placeholder")
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\placeholder.png'
+2025-04-27 12:03:04.557 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 45, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 37, in ride_list
+    display_ride_as_item_in_list(_, st, attraction)
+  File "/home/ubuntu/foirehdf/components/display_attraction_in_list.py", line 41, in display_ride_as_item_in_list
+    st.image(image.path, use_container_width=True)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\attractions\rides\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+2025-04-27 12:03:08.250 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 45, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 37, in ride_list
+    display_ride_as_item_in_list(_, st, attraction)
+  File "/home/ubuntu/foirehdf/components/display_attraction_in_list.py", line 41, in display_ride_as_item_in_list
+    st.image(image.path, use_container_width=True)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\attractions\rides\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+2025-04-27 12:03:08.703 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 45, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 37, in ride_list
+    display_ride_as_item_in_list(_, st, attraction)
+  File "/home/ubuntu/foirehdf/components/display_attraction_in_list.py", line 41, in display_ride_as_item_in_list
+    st.image(image.path, use_container_width=True)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\attractions\rides\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+2025-04-27 12:03:09.273 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\attractions\\rides\\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 45, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 37, in ride_list
+    display_ride_as_item_in_list(_, st, attraction)
+  File "/home/ubuntu/foirehdf/components/display_attraction_in_list.py", line 41, in display_ride_as_item_in_list
+    st.image(image.path, use_container_width=True)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\attractions\rides\d83cc68753d149aa2565928eac1c549e068339f8dba684e6e17c72bbcf3afb56.jpg'
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-04-27 12:10:14.535 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 286, in image_to_url
+    with open(image, "rb") as f:
+         ^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\placeholder.png'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 163, in _read_file
+    with open(filename, "rb") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'backend\\images\\placeholder.png'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 33, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_view.py", line 64, in <module>
+    fair_view()
+  File "/home/ubuntu/foirehdf/pages/fair_view.py", line 49, in fair_view
+    st.image("backend\\images\\placeholder.png", caption="Fair Screenshot Placeholder")
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/image.py", line 181, in image
+    marshall_images(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 442, in marshall_images
+    proto_img.url = image_to_url(
+                    ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/image_utils.py", line 298, in image_to_url
+    url = runtime.get_instance().media_file_mgr.add(image, mimetype, image_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/media_file_manager.py", line 226, in add
+    file_id = self._storage.load_and_get_id(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 114, in load_and_get_id
+    file_data = self._read_file(path_or_data)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/memory_media_file_storage.py", line 166, in _read_file
+    raise MediaFileStorageError(f"Error opening '{filename}'") from ex
+streamlit.runtime.media_file_storage.MediaFileStorageError: Error opening 'backend\images\placeholder.png'
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+  Stopping...
+Installed 2 packages in 3ms
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-04-27 15:39:07.925 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 40, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 10, in <module>
+    from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_sort_by_status_endpoint
+  File "/home/ubuntu/foirehdf/backend/endpoints/fairEndpoint.py", line 14, in <module>
+    from backend.services.fairService import get_fair_detailed, get_fair, delete_fair
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 18, in <module>
+    locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
+  File "/usr/lib/python3.12/locale.py", line 615, in setlocale
+    return _setlocale(category, locale)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+locale.Error: unsupported locale setting
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-04-30 17:44:03.003 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 40, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_create.py", line 94, in <module>
+    fair_create()
+  File "/home/ubuntu/foirehdf/pages/fair_create.py", line 88, in fair_create
+    for attraction_id in [attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]:
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: '594344610873017782--5391186004553717748--2664660177390442791' is not in list
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+

@@ -39,6 +39,12 @@ def ride_view(ride: AttractionDTO):
             st.markdown(f"**{_('News Page')}:** [Link]({ride.news_page_url})")
 
     with right_col:
+        
+        if getattr(st.session_state, 'admin', False):
+            if st.button("", key="edit_fair", icon=":material/edit:"):
+                st.session_state.ride_id = ride.id
+                st.switch_page("pages/ride_edit.py")
+    
         for image in ride.images:
             st.image(image.path, use_container_width=True)
 

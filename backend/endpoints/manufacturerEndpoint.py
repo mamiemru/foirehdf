@@ -24,7 +24,8 @@ def list_manufacturer_endpoint() -> ResponseDto:
     except Exception as e:
         return ErrorResponse(
             status=500,
-            message=str(e)
+            message=str(e),
+            errors={e.name: str(e)}
         )
     else:
         return ListResponse(
@@ -52,7 +53,7 @@ def create_manufacturer_endpoint(manufacturer_dict: Dict) -> ResponseDto:
         return ErrorResponse(
             status=500,
             message=str("An error occurred when adding the manufacturer"),
-            errors=e
+            errors={e.name: str(e)}
         )
     else:
         return SuccessResponse(
@@ -75,7 +76,7 @@ def delete_manufacturer_endpoint(manufacturer_id: str) -> ResponseDto:
         return ErrorResponse(
             status=500,
             message=str("An error occurred when adding the manufacturer"),
-            errors=e
+            errors={e.name: str(e)}
         )
     else:
         return SuccessResponse(

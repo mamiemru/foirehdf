@@ -23,8 +23,7 @@ def delete_fair_dialog(fair_dto: FairDTO):
             st.success(response.message, icon=":material/check_circle:")
             st.rerun()
         elif isinstance(response, ErrorResponse):
-            st.error(response.message, icon=":material/close:")
-            st.error(response.errors, icon=":material/close:")
+            st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 
 def display_fair(fair: FairDTO):
@@ -34,7 +33,7 @@ def display_fair(fair: FairDTO):
             st.subheader(fair.name)
         with col2:
             if st.button(_("View fair"), key=f"view_fair_{fair.id}", icon=":material/visibility:", use_container_width=True):
-                st.session_state.view_fair_id = fair.id
+                st.session_state.fair_id = fair.id
                 st.switch_page("pages/fair_view.py")
 
         col1, col2 = st.columns([2, 1])
@@ -52,8 +51,8 @@ def display_fair(fair: FairDTO):
             )
         with col2:
             st.write(":material/calendar_month: Dates")
-            st.caption(f"**{_("From")}** {fair.start_date}")
-            st.caption(f"**{_("Until")}** {fair.end_date}")
+            st.caption(f"**{_("From")}** {fair.start_date.strftime('%d %B %Y')}")
+            st.caption(f"**{_("Until")}** {fair.end_date.strftime('%d %B %Y')}")
 
             if fair.fair_incoming:
                 st.caption(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")
@@ -81,8 +80,9 @@ def fair_list():
             st.rerun()
 
     with col_add:
-        if st.button("", icon=":material/add:"):
-            st.switch_page("pages/fair_create.py")
+        if getattr(st.session_state, 'admin', False):
+            if st.button("", icon=":material/add:"):
+                st.switch_page("pages/fair_create.py")
 
     st.header(f":green[{_('FunFairs currently available today')}]")
     colCurrent, colMap = st.columns([.5, .5])

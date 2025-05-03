@@ -1,18 +1,15 @@
 from typing import Dict, List
 import streamlit as st
-import gettext
 
 from backend.dto.attraction_dto import AttractionImageDTO
 from backend.dto.error_dto import ErrorResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.endpoints.attractionsEndpoint import list_attractions_names_and_id_endpoint, \
-    get_attraction_image_by_id_endpoint
+from backend.endpoints.attractionsEndpoint import list_attractions_names_and_id_endpoint
+from backend.endpoints.attractionsEndpoint import get_attraction_image_by_id_endpoint
 
 from backend.endpoints.fairEndpoint import create_fair_endpoint
-
-_ = gettext.gettext
 
 def fair_create():
     

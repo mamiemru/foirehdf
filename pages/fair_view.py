@@ -1,15 +1,14 @@
 
-import gettext
+
 import streamlit as st
 
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
 from backend.endpoints.fairEndpoint import get_fair_detailed_endpoint
-from backend.models.fairModel import FairDTO
 from components.display_attraction_in_list import display_ride_as_item_in_list
 
-_ = gettext.gettext
+from backend.models.fairModel import FairDTO
 
 def fair_view():
 
@@ -30,7 +29,7 @@ def fair_view():
         with col1:
             cola, colb = st.columns([2, 1])
             with cola:
-                st.header(":material/location_on: Locations")
+                st.header(f":material/location_on: {_('Locations')}")
                 st.write(
                     ", ".join([
                         text for text in
@@ -53,10 +52,10 @@ def fair_view():
                 st.write(f"**{_("For")}**: {(fair.end_date - fair.start_date).days} days")
 
                 if fair.fair_incoming:
-                    st.write(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")
+                    st.write(f"**{_("Days before the fair")}**:  {fair.days_before_start_date} {_("Days")}")
 
                 if fair.fair_available_today:
-                    st.write(f"{_("Days left until end")}:  {fair.days_before_end_date} {_("Days")}")
+                    st.write(f"**{_("Days left until end")}**:  {fair.days_before_end_date} {_("Days")}")
 
         with col2:
             if fair.official_ad_page:

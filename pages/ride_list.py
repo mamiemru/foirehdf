@@ -1,5 +1,4 @@
 
-from gettext import gettext
 import streamlit as st
 
 from backend.endpoints.attractionsEndpoint import list_attractions_endpoint
@@ -9,7 +8,6 @@ from backend.dto.paginated_list_dto import PaginatedResponse
 from backend.dto.response_dto import ResponseDto
 from components.display_attraction_in_list import display_ride_as_item_in_list
 
-_ = gettext
 
 def ride_list():
     col_search, col_add = st.columns([0.9, 0.1])

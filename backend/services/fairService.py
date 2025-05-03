@@ -1,7 +1,7 @@
 from dataclasses import asdict
 import datetime
-import uuid
 import locale
+from bson import ObjectId
 
 from tinydb import TinyDB, Query
 from typing import Optional
@@ -9,8 +9,8 @@ from typing import Optional
 from backend.models.fairModel import Fair
 from backend.models.fairModel import FairDTO
 from backend.models.locationModel import LocationDTO, Location
-from backend.services.attractionService import attraction_to_dto, get_attraction_by_id
-from backend.services.locationService import location_to_dto, get_location_by_id, save_location, validate_location
+from backend.services.attractionService import get_attraction_by_id
+from backend.services.locationService import get_location_by_id, save_location, validate_location
 
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("fair")
@@ -19,7 +19,7 @@ FairQuery = Query()
 locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
 
 def _create_id():
-    return str(uuid.uuid4())
+    return str(ObjectId())
 
 def _date_to_timestamp(date: datetime.date) -> float:
     datetime_obj = datetime.datetime.combine(date, datetime.datetime.min.time())

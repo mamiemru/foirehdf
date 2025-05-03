@@ -13,10 +13,6 @@ from backend.dto.error_dto import ErrorResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.models.manufacturerModel import Manufacturer
-import gettext
-
-_  = gettext.gettext
 
 st.title(_("Manufacturer Management"))
 

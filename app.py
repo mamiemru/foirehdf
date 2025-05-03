@@ -1,15 +1,17 @@
-import os
+import locale
 import gettext
+import builtins
 from pathlib import Path
 from typing import List
 import streamlit as st
 
+locale.setlocale(locale.LC_ALL, 'fr_FR.UTF-8')
 
-## locale_path = os.path.join(os.path.dirname(__file__), 'locales')
-## language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
-## language.install()
+locale_path = Path(__file__).parent / 'locales' 
+language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
+language.install()
 
-_ = gettext.gettext
+builtins._ = language.gettext
 
 icon: Path = Path(__file__).parent / "statics" / "logo.png"
 st.logo(icon, size="large")

@@ -1,6 +1,4 @@
-import gettext
 
-import gettext
 import streamlit as st
 from typing import List
 
@@ -17,7 +15,6 @@ from backend.dto.success_dto import SuccessResponse
 from backend.dto.list_dto import ListResponse
 from pages.form_input import DotDict
 
-_ = gettext.gettext
 
 class Datas:
     ride: DotDict

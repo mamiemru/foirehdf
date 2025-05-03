@@ -1,4 +1,4 @@
-import gettext
+
 
 import gettext
 import streamlit as st
@@ -9,7 +9,6 @@ from backend.dto.success_dto import SuccessResponse
 
 from backend.endpoints.attractionsEndpoint import get_attraction_by_id_endpoint
 
-_ = gettext.gettext
 
 def ride_view(ride: AttractionDTO):
 

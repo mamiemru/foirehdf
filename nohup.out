@@ -682,3 +682,23 @@ Traceback (most recent call last):
   File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/components/v1/custom_component.py", line 142, in create_instance
     raise MarshallComponentException(
 streamlit.components.v1.custom_component.MarshallComponentException: ('Could not convert component args to JSON', TypeError('Object of type AttractionImageDTO is not JSON serializable'))
+2025-05-03 20:14:03.313 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 9, in <module>
+    language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/gettext.py", line 553, in translation
+    t = _translations.setdefault(key, class_(fp))
+                                      ^^^^^^^^^^
+  File "/usr/lib/python3.12/gettext.py", line 272, in __init__
+    self._parse(fp)
+  File "/usr/lib/python3.12/gettext.py", line 424, in _parse
+    catalog[str(msg, charset)] = str(tmsg, charset)
+                                 ^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 18: ordinal not in range(128)
+  Stopping...

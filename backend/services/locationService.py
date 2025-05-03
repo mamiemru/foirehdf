@@ -1,7 +1,7 @@
 
-import uuid
-from typing import Dict
 
+from typing import Dict
+from bson import ObjectId
 from tinydb import TinyDB, Query
 
 from backend.models.locationModel import LocationDTO, Location
@@ -11,7 +11,7 @@ db = tinydb.table("locations")
 FairQuery = Query()
 
 def _create_id():
-    return str(uuid.uuid4())
+    return str(ObjectId())
 
 
 def location_to_dto(location: Location) -> LocationDTO:

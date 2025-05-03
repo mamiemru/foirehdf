@@ -1,4 +1,4 @@
-import gettext
+
 from typing import List, Dict
 
 import streamlit as st
@@ -7,11 +7,11 @@ from backend.dto.error_dto import ErrorResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_sort_by_status_endpoint
+from backend.endpoints.fairEndpoint import delete_fair_endpoint
+from backend.endpoints.fairEndpoint import list_fair_sort_by_status_endpoint
 
 from backend.models.fairModel import FairDTO, FairStatus
 
-_ = gettext.gettext
 
 @st.dialog("delete fair")
 def delete_fair_dialog(fair_dto: FairDTO):
@@ -37,7 +37,7 @@ def display_fair(fair: FairDTO):
                 st.switch_page("pages/fair_view.py")
 
 
-        st.write(":material/location_on: Locations")
+        st.write(f":material/location_on: {_('Locations')}")
         st.caption(
             ", ".join([
                 text for text in
@@ -56,10 +56,10 @@ def display_fair(fair: FairDTO):
         ]
 
         if fair.fair_incoming:
-            date_str.append(f"{_("**Days before the fair**")}:  {fair.days_before_start_date} {_("Days")}")
+            date_str.append(f"**{_("Days before the fair")}**:  {fair.days_before_start_date} {_("Days")}")
 
         elif fair.fair_available_today:
-            date_str.append(f"{_("**Days left until end**")}:  {fair.days_before_end_date} {_("Days")}")
+            date_str.append(f"**{_("Days left until end")}**:  {fair.days_before_end_date} {_("Days")}")
             
         st.caption(",".join(date_str))
 

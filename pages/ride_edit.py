@@ -1,6 +1,4 @@
-import gettext
 
-import gettext
 import streamlit as st
 from typing import List
 
@@ -18,7 +16,6 @@ from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 from backend.dto.list_dto import ListResponse
 
-_ = gettext.gettext
 
 class Datas:
     ride: AttractionDTO

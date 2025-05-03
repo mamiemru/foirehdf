@@ -9,5 +9,6 @@ dependencies = [
     "pydantic>=2.11.3",
     "python-gettext>=5.0",
     "streamlit>=1.44.1",
+    "streamlit-card>=1.0.2",
     "tinydb>=4.8.2",
 ]

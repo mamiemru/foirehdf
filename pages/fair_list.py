@@ -36,29 +36,32 @@ def display_fair(fair: FairDTO):
                 st.session_state.fair_id = fair.id
                 st.switch_page("pages/fair_view.py")
 
-        col1, col2 = st.columns([2, 1])
-        with col1:
-            st.write(":material/location_on: Locations")
-            st.caption(
-                ", ".join([
-                    text for text in
-                    [
-                        fair.location.street or "", fair.location.area or "", fair.location.city,
-                        fair.location.postal_code, fair.location.state, fair.location.country
-                    ] if text
-                ]
-                )
+
+        st.write(":material/location_on: Locations")
+        st.caption(
+            ", ".join([
+                text for text in
+                [
+                    fair.location.street or "", fair.location.area or "", fair.location.city,
+                    fair.location.postal_code, fair.location.state, fair.location.country
+                ] if text
+            ]
             )
-        with col2:
-            st.write(":material/calendar_month: Dates")
-            st.caption(f"**{_("From")}** {fair.start_date.strftime('%d %B %Y')}")
-            st.caption(f"**{_("Until")}** {fair.end_date.strftime('%d %B %Y')}")
+        )
+        st.write(":material/calendar_month: Dates")
+        date_str: List[str] = [
+            f"**{_("From")}**: {fair.start_date.strftime('%d %B %Y')}", 
+            f"**{_("Until")}**: {fair.end_date.strftime('%d %B %Y')}",
+            f"**{_("For")}**: {(fair.end_date - fair.start_date).days} days"
+        ]
 
-            if fair.fair_incoming:
-                st.caption(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")
+        if fair.fair_incoming:
+            date_str.append(f"{_("**Days before the fair**")}:  {fair.days_before_start_date} {_("Days")}")
 
-            if fair.fair_available_today:
-                st.caption(f"{_("Days left until end")}:  {fair.days_before_end_date} {_("Days")}")
+        elif fair.fair_available_today:
+            date_str.append(f"{_("**Days left until end**")}:  {fair.days_before_end_date} {_("Days")}")
+            
+        st.caption(",".join(date_str))
 
 
 def fair_list():

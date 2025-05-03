@@ -555,3 +555,130 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
   Network URL: http://51.178.26.35:8501
   External URL: http://51.178.26.35:8501
 
+2025-05-01 19:43:10.365 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 62, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 111, in <module>
+    fair_list()
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    response: ResponseDto = list_fair_sort_by_status_endpoint()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/endpoints/fairEndpoint.py", line 83, in list_fair_sort_by_status_endpoint
+    fairs: List[FairDTO] = list_fairs()
+                           ^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 131, in list_fairs
+    return [fair_to_dto(Fair(**result)) for result in results]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 58, in fair_to_dto
+    days_before_end_date=fair.days_before_end_date
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pydantic/main.py", line 991, in __getattr__
+    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/models/fairModel.py", line 96, in days_before_end_date
+    return (datetime.datetime.fromtimestamp(self.end_date) - datetime.datetime.now()).days
+            ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
+2025-05-01 19:44:57.640 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 62, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 111, in <module>
+    fair_list()
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    response: ResponseDto = list_fair_sort_by_status_endpoint()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/endpoints/fairEndpoint.py", line 83, in list_fair_sort_by_status_endpoint
+    fairs: List[FairDTO] = list_fairs()
+                           ^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 131, in list_fairs
+    return [fair_to_dto(Fair(**result)) for result in results]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 35, in fair_to_dto
+    locationdto: LocationDTO = get_location_by_id(fair.location_id)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/locationService.py", line 52, in get_location_by_id
+    result = db.get(Query().id == location_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/table.py", line 335, in get
+    for doc_id_, doc in self._read_table().items():
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/table.py", line 708, in _read_table
+    tables = self._storage.read()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/storages.py", line 136, in read
+    return json.load(self._handle)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-05-03 20:01:54.589 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/components/v1/custom_component.py", line 140, in create_instance
+    serialized_json_args = json.dumps(json_args)
+                           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type AttractionImageDTO is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 62, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 61, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 50, in ride_list
+    card(
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit_card/__init__.py", line 44, in card
+    clicked = _streamlit_card(
+              ^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/components/v1/custom_component.py", line 58, in __call__
+    return self.create_instance(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/components/v1/custom_component.py", line 142, in create_instance
+    raise MarshallComponentException(
+streamlit.components.v1.custom_component.MarshallComponentException: ('Could not convert component args to JSON', TypeError('Object of type AttractionImageDTO is not JSON serializable'))

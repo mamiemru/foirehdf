@@ -29,16 +29,8 @@ def ride_list():
         rides = response.data
         rides.reverse()
 
-        col1, col2 = st.columns([.5, .5])
-        rides1 = rides[:len(rides)>>1]
-        rides2 = rides[len(rides)>>1:]
-
-        with col1:
-            for attraction in rides1:
-                display_ride_as_item_in_list(_, st, attraction)
-        with col2:
-            for attraction in rides2:
-                display_ride_as_item_in_list(_, st, attraction)
+        for attraction in rides:
+            display_ride_as_item_in_list(_, st, attraction)
 
     elif isinstance(response, ErrorResponse):
         st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")

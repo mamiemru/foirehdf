@@ -1,8 +1,8 @@
 import dataclasses
-import datetime
 import enum
 import time
 from datetime import date
+from datetime import datetime
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, HttpUrl, PositiveFloat
@@ -87,13 +87,13 @@ class Fair(BaseModel):
     @property
     def days_before_start_date(self):
         if self.fair_incoming:
-            return (datetime.datetime.fromtimestamp(self.start_date) - datetime.datetime.now()).days
+            return (datetime.fromtimestamp(self.start_date) - datetime.now()).days
         return None
 
     @property
     def days_before_end_date(self):
         if self.fair_available_today:
-            return (datetime.datetime.fromtimestamp(self.end_date) - datetime.datetime.now()).days
+            return (datetime.fromtimestamp(self.end_date) - datetime.now()).days
         return None
 
 @dataclasses.dataclass
@@ -101,8 +101,8 @@ class FairDTO:
     id: str
     name: str
     location: LocationDTO
-    start_date: str
-    end_date: str
+    start_date: datetime
+    end_date: datetime
     fair_status: str
     days_before_start_date: Optional[int]
     days_before_end_date: Optional[int]

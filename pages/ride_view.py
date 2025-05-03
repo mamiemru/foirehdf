@@ -67,8 +67,8 @@ def ride_view(ride: AttractionDTO):
                         st.video(ride.videos_url[cursor+i])
 
 
-if "view_ride_id" in st.session_state and st.session_state.view_ride_id:
-    response: ResponseDto = get_attraction_by_id_endpoint(st.session_state.view_ride_id)
+if "ride_id" in st.session_state and st.session_state.ride_id:
+    response: ResponseDto = get_attraction_by_id_endpoint(st.session_state.ride_id)
     if isinstance(response, SuccessResponse):
         ride = response.data
         ride_view(ride)

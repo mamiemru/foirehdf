@@ -50,6 +50,7 @@ def fair_view():
                 st.header(":material/calendar_month: "+ _("Dates"))
                 st.write(f"**{_("From")}** {fair.start_date.strftime('%d %B %Y')}")
                 st.write(f"**{_("Until")}** {fair.end_date.strftime('%d %B %Y')}")
+                st.write(f"**{_("For")}**: {(fair.end_date - fair.start_date).days} days")
 
                 if fair.fair_incoming:
                     st.write(f"{_("Days before the fair")}:  {fair.days_before_start_date} {_("Days")}")

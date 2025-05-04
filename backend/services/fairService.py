@@ -216,6 +216,6 @@ def delete_fair(id: str):
 def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
     fairs: List[FairDTO] = [fair_to_dto(Fair(**fair)) for fair in db.search(FairQuery.attractions.any(ride_id))]
     hidden_fairs: List[FairBaseDTO] = [fair_base_to_dto(FairBase(**fair)) for fair in tinydb.table("hidden_fair").search(FairQuery.attractions.any(ride_id))]
-    fairs.extend(hidden_fairs)
+    ## fairs.extend(hidden_fairs)
     fairs.sort(key=lambda fair: fair.start_date, reverse=True)
     return fairs

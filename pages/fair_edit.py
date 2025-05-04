@@ -91,7 +91,7 @@ def fair_edit():
                 st.success(response.message, icon=":material/check_circle:")
                 st.rerun()
             elif isinstance(response, ErrorResponse):
-                    st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+                    st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
     with col2:
         for attraction_id in [attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]:

@@ -23,7 +23,7 @@ def delete_fair_dialog(fair_dto: FairDTO):
             st.success(response.message, icon=":material/check_circle:")
             st.rerun()
         elif isinstance(response, ErrorResponse):
-            st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+            st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 
 def display_fair(fair: FairDTO):
@@ -61,7 +61,7 @@ def display_fair(fair: FairDTO):
         elif fair.fair_available_today:
             date_str.append(f"**{_("FAIR_DAYS_LEFT_UNTIL_END")}**:  {fair.days_before_end_date} {_("DAYS")}")
             
-        st.caption(",".join(date_str))
+        st.caption(", ".join(date_str))
 
 
 def fair_list():

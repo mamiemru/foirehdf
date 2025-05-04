@@ -74,9 +74,9 @@ def fair_view():
         if fair.city_event_page:
             markdown_table += f"| {_("FAIR_CITY_PAGE")} | [{fair.city_event_page}]({fair.city_event_page}) |\n"
         if fair.facebook_event_page:
-            markdown_table += f"| {_("FAIR_FACEBOOK_PAGE")} | [{fair.facebook_event_page}]({fair.facebook_event_page}) |\n"
+            markdown_table += f"| {_("FAIR_FACEBOOK_EVENT_PAGE_URL")} | [{fair.facebook_event_page}]({fair.facebook_event_page}) |\n"
         if fair.walk_tour_video:
-            markdown_table += f"| {_("FAIR_WALK_TOUR")} | [{fair.walk_tour_video}]({fair.walk_tour_video}) |\n"
+            markdown_table += f"| {_("FAIR_WALKTOUR_VIDEO")} | [{fair.walk_tour_video}]({fair.walk_tour_video}) |\n"
 
         for url in fair.sources:
             markdown_table += f"| {_("FAIR_VIEW_OTHER")} | [{url}]({url}) |\n"

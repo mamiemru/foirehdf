@@ -62,7 +62,7 @@ def ride_view(ride: AttractionDTO):
                     text for text in
                     [
                         fair.location.street or "", fair.location.area or "", fair.location.city,
-                        fair.location.postal_code, fair.location.state, fair.location.country
+                        fair.location.postal_code, fair.location.state
                     ] if text
                 ])
             )

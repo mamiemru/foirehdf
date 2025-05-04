@@ -1,6 +1,6 @@
 from typing import List
 from tinydb import TinyDB, Query
-
+from bson import ObjectId
 from backend.dto.manufacturer_dto import ManufacturerDto
 from backend.models.manufacturerModel import Manufacturer
 
@@ -8,27 +8,25 @@ tinydb = TinyDB("fair_db.json")
 db = tinydb.table("manufacturer")
 query = Query()
 
-def _create_id(manufacturer: dict):
-    return f"{hash(manufacturer['name'])}"
+def _create_id():
+    return str(ObjectId())
 
 def manufacturer_to_dto(manufacturer: Manufacturer) -> ManufacturerDto:
     return ManufacturerDto(
         id=manufacturer.id,
-        name=manufacturer.name
+        name=manufacturer.name,
+        website_url=manufacturer.website_url
     )
 
 def validate_manufacturer(manufacturer_dict: dict) -> Manufacturer:
-    try:
-        validation_manufacturer: Manufacturer = Manufacturer(
-            id=_create_id(manufacturer_dict),
-            name=manufacturer_dict['name'],
-        )
-    except Exception as e:
-        print(e)
-        return None
-    else:
-        if validation_manufacturer.name not in list_manufacturers_names():
-            return validation_manufacturer
+    validation_manufacturer: Manufacturer = Manufacturer(
+        id=_create_id(),
+        name=manufacturer_dict['name'],
+        website_url=manufacturer_dict['website_url']
+    )
+
+    if validation_manufacturer.name not in list_manufacturers_names():
+        return validation_manufacturer
     return None
 
 def create_manufacturer(manufacturer: Manufacturer) -> ManufacturerDto:
@@ -56,7 +54,7 @@ def get_manufacturer(id: str) -> Manufacturer:
     return None
 
 def update_manufacturer(id: str, updated_manufacturer: Manufacturer) -> Manufacturer:
-    db.update(updated_manufacturer.dict(), query.id == id)
+    db.update(updated_manufacturer.model_dump(mode="json"), query.id == id)
     return get_manufacturer(id)
 
 def delete_manufacturer(id: str) -> bool:

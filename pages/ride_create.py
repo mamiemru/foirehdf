@@ -35,7 +35,7 @@ def add_manufacturer_dialog():
             st.success(response.message, icon=":material/check_circle:")
             st.rerun()
         elif isinstance(response, ErrorResponse):
-            st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+            st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 
 @st.fragment
@@ -170,7 +170,7 @@ def ride_create():
                     st.success(response.message, icon=":material/check_circle:")
                     st.page_link("pages/ride_list.py", label=_("RIDE_CHECK_YOUR_ATTRACTIONS"), icon=":material/celebration:")
                 elif isinstance(response, ErrorResponse):
-                    st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+                    st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
     with colB:
         pass

@@ -713,3 +713,90 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
   External URL: http://51.178.26.35:8501
 
   Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-05-04 12:11:59.654 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 639, in code_to_exec
+    _mpa_v1(self._main_script_path)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 159, in _mpa_v1
+    page.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 36, in <module>
+    ride_list()
+  File "/home/ubuntu/foirehdf/pages/ride_list.py", line 16, in ride_list
+    search_fair = st.text_input(_("RIDE_SEARCH"), key="search", label_visibility="collapsed")
+                                ^
+NameError: name '_' is not defined
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-05-04 12:18:19.206 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 65, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 111, in <module>
+    fair_list()
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    response: ResponseDto = list_fair_sort_by_status_endpoint()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/endpoints/fairEndpoint.py", line 83, in list_fair_sort_by_status_endpoint
+    fairs: List[FairDTO] = list_fairs()
+                           ^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 138, in list_fairs
+    return [fair_to_dto(Fair(**result)) for result in results]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 38, in fair_to_dto
+    locationdto: LocationDTO = get_location_by_id(fair.location_id)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/locationService.py", line 52, in get_location_by_id
+    result = db.get(Query().id == location_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/table.py", line 335, in get
+    for doc_id_, doc in self._read_table().items():
+                        ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/table.py", line 708, in _read_table
+    tables = self._storage.read()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/storages.py", line 136, in read
+    return json.load(self._handle)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

@@ -31,6 +31,6 @@ def ride_list():
             display_ride_as_item_in_list(_, st, attraction)
 
     elif isinstance(response, ErrorResponse):
-        st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+        st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 ride_list()

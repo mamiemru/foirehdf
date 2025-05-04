@@ -160,4 +160,6 @@ def delete_fair(id: str):
 
 
 def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
-    return [fair_to_dto(Fair(**fair)) for fair in db.search(FairQuery.attractions.any(ride_id))]
+    fairs: List[FairDTO] = [fair_to_dto(Fair(**fair)) for fair in db.search(FairQuery.attractions.any(ride_id))]
+    fairs.sort(key=lambda fair: fair.start_date, reverse=True)
+    return fairs

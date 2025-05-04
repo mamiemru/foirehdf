@@ -131,6 +131,9 @@ msgstr "Voulez vous vraiment supprimer cette foire?"
 msgid "FAIR_DAYS_BEFORE_THE_FAIR"
 msgstr "dans"
 
+msgid "FAIR_FOR_DATE"
+msgstr "pour"
+
 msgid "FAIR_DAYS_LEFT_UNTIL_END"
 msgstr "pour encore"
 
@@ -187,6 +190,9 @@ msgstr "Supprimer fabricant"
 
 msgid "MANUFACTURER_LIST_MANUFACTURER_MANAGEMENT"
 msgstr "Liste des fabricants connu"
+
+msgid "MANUFACTURER_LIST_WEBSITE_URL"
+msgstr "Site du fabricant"
 
 msgid "MANUFACTURER_LIST_NAME_OF_THE_MANUFACTURER"
 msgstr "Nom du fabricant"
@@ -339,7 +345,7 @@ msgid "RIDE_NEWS_PAGE"
 msgstr "Actualitées du manège"
 
 msgid "RIDE_WAS_INSTALLED_IN_FAIRS"
-msgstr "Manège installé à la foire"
+msgstr "Historique du manège"
 
 msgid "SHOW_VIDEOS_PER_ROWS_OF"
 msgstr "Afficher les vidéos par rangées de"

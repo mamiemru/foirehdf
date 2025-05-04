@@ -19,13 +19,14 @@ st.title(_("MANUFACTURER_LIST_MANUFACTURER_MANAGEMENT"))
 @st.dialog(_("MANUFACTURER_LIST_ADD_MANUFACTURER"))
 def add_manufacturer_dialog():
     name = st.text_input(_("MANUFACTURER_LIST_NAME_OF_THE_MANUFACTURER"))
+    website_url = st.text_input(_("MANUFACTURER_LIST_WEBSITE_URL"))
     if st.button(_("SUBMIT")):
-        response: ResponseDto = create_manufacturer_endpoint({"name": name})
+        response: ResponseDto = create_manufacturer_endpoint({"name": name, "website_url": website_url})
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
             st.rerun()
         elif isinstance(response, ErrorResponse):
-            st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+            st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 
 @st.dialog(_("MANUFACTURER_LIST_DELETE_MANUFACTURER"))
@@ -58,10 +59,13 @@ def manufacturer_list():
                 add_manufacturer_dialog()
 
 
+    title, view = st.columns([9, 1])
     for index, manufacturer in enumerate(manufacturers_list):
-            title, view = st.columns([9, 1])
             with title:
-                st.subheader(manufacturer.name)
+                if manufacturer.website_url:
+                    st.markdown(f"[{manufacturer.name}]({manufacturer.website_url})")
+                else:
+                    st.markdown(manufacturer.name)
             with view:
                 if getattr(st.session_state, 'admin', False):
                     if st.button("", key=f"del_manufacturer_{index}", icon=":material/delete:"):

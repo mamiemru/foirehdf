@@ -173,6 +173,12 @@ msgstr "Liens"
 msgid "FAIR_URL_TYPE"
 msgstr "Type de liens"
 
+msgid "FAIR_HIDE"
+msgstr "Foire hors périmètre"
+
+msgid "FAIR_HIDE_TOOLTIP"
+msgstr "Foire hors des haut de france, sert à historiser les emplacements desv manèges quittant le hdf" 
+
 msgid "LOCATIONS"
 msgstr "Addresse"
 

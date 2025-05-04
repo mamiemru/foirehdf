@@ -1,6 +1,5 @@
 
 from typing import Dict, List
-from dataclasses import asdict
 
 from pydantic_core._pydantic_core import ValidationError
 
@@ -9,18 +8,19 @@ from backend.dto.list_dto import ListResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.models.fairModel import Fair, FairDTO, FairStatus
-from backend.models.locationModel import Location, LocationDTO
+from backend.models.fairModel import FairBaseDTO, FairDTO, FairStatus
 
 
-from backend.services.fairService import create_fair, get_fair_detailed, get_fair, delete_fair, list_fairs_containing_ride_id, update_fair
-from backend.services.fairService import validate_fair, save_fair, list_fairs, fair_to_dto
-from backend.services.locationService import validate_location, save_location, get_location_by_id
+from backend.services.fairService import create_fair, create_hidden_fair, get_fair_detailed, get_fair, delete_fair, list_fairs_containing_ride_id, update_fair
+from backend.services.fairService import list_fairs
 
 
-def create_fair_endpoint(fair_dict: Dict) -> ResponseDto:
+def create_fair_endpoint(fair_dict: Dict, hidden_fair: bool = False) -> ResponseDto:
     try:
-        fair_dto: FairDTO = create_fair(fair_dict)
+        if hidden_fair:
+            fair_dto: FairBaseDTO = create_hidden_fair(fair_dict)
+        else:
+            fair_dto: FairDTO = create_fair(fair_dict)
     except KeyError as e:
         return ErrorResponse(
             status=400,

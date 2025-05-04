@@ -26,10 +26,10 @@ def fair_create():
         st.header(_("FAIR_INFORMATION"))
         colA, colB = st.columns([.5, .5])
         with colA:
-            name = st.text_input(_("FAIR_NAME"))
+            name = st.text_input(f'{_("FAIR_NAME")}*')
         with colB:
-            start_date = st.date_input(_("FAIR_START_DATE"), value=None)
-            end_date = st.date_input(_("FAIR_END_DATE"), value=None)
+            start_date = st.date_input(f'{_("FAIR_START_DATE")}*', value=None)
+            end_date = st.date_input(f'{_("FAIR_END_DATE")}*', value=None)
 
         st.divider()
         st.header(_("FAIR_LOCATION"))
@@ -37,16 +37,16 @@ def fair_create():
         with colA:
             street = st.text_input(_("STREET"))
             area = st.text_input(_("AREA"))
-            lat = st.text_input(_("LATITUDE"))
-            lng = st.text_input(_("LONGITUDE"))
+            lat = st.text_input(f'{_("LATITUDE")}*')
+            lng = st.text_input(f'{_("LONGITUDE")}*')
         with colB:
-            city = st.text_input(_("CITY"))
-            postal_code = st.text_input(_("POSTAL_CODE"))
-            state = st.text_input(_("STATE"))
-            country = st.text_input(_("COUNTRY"))
+            city = st.text_input(f'{_("CITY")}*')
+            postal_code = st.text_input(f'{_("POSTAL_CODE")}*')
+            state = st.text_input(f'{_("STATE")}*')
+            country = st.text_input(f'{_("COUNTRY")}*', value="France")
 
         st.divider()
-        st.header(_("FAIR_RIDES_IN_THE_FAIR"))
+        st.header(f'{_("FAIR_RIDES_IN_THE_FAIR")}*')
         attractions = st.multiselect(
             _("FAIR_SELECT_RIDE_MESSAGE"),
             attractions_array['values'],
@@ -56,10 +56,11 @@ def fair_create():
 
         st.divider()
         st.header(_("FAIR_SOURCES"))
-        official_ad_page = st.text_input(_("FAIR_CREATE_AD_URL"))
+        official_ad_page = st.text_input(_("FAIR_AD_URL"))
         facebook_event_page = st.text_input(_("FAIR_FACEBOOK_EVENT_PAGE_URL"))
         city_event_page = st.text_input(_("FAIR_CITY_PAGE"))
-
+        
+        hidden_fair = st.toggle(_("FAIR_HIDE"), help=_("FAIR_HIDE_TOOLTIP"), value=False)
 
         submitted = st.button(_("SUBMIT"))
         if submitted:
@@ -73,7 +74,7 @@ def fair_create():
                 'walk_tour_video': walk_tour_video, 'official_ad_page': official_ad_page,
                 'facebook_event_page': facebook_event_page, 'city_event_page': city_event_page
             }
-            response: ResponseDto = create_fair_endpoint(fair_form)
+            response: ResponseDto = create_fair_endpoint(fair_form , hidden_fair)
             if isinstance(response, SuccessResponse):
                 st.success(response.message, icon=":material/check_circle:")
                 st.rerun()

@@ -6,7 +6,7 @@ from bson import ObjectId
 from tinydb import TinyDB, Query
 from typing import List, Optional
 
-from backend.models.fairModel import Fair
+from backend.models.fairModel import Fair, FairBase, FairBaseDTO
 from backend.models.fairModel import FairDTO
 from backend.models.locationModel import LocationDTO, Location
 from backend.services.attractionService import get_attraction_by_id
@@ -34,6 +34,29 @@ def _timestamp_to_date(timestamp: float) -> datetime.date:
     return date_object
 
 
+def fair_base_to_dto(fair: FairBase) -> FairBaseDTO:
+    locationdto: LocationDTO = get_location_by_id(fair.location_id)
+    start_date=_timestamp_to_date(fair.start_date)
+    end_date=_timestamp_to_date(fair.end_date)
+
+    fair_dict: dict = fair.model_dump(mode="json")
+
+    return FairBaseDTO(
+        id=fair_dict['id'],
+        name=fair_dict['name'],
+        location=locationdto,
+        start_date=start_date,
+        end_date=end_date,
+        attractions=list(),
+        fair_done=fair.fair_done,
+        fair_incoming=fair.fair_incoming,
+        fair_available_today=fair.fair_available_today,
+        fair_status=fair.fair_status,
+        days_before_start_date=fair.days_before_start_date,
+        days_before_end_date=fair.days_before_end_date
+    )
+
+
 def fair_to_dto(fair: Fair) -> FairDTO:
     locationdto: LocationDTO = get_location_by_id(fair.location_id)
     start_date=_timestamp_to_date(fair.start_date)
@@ -59,7 +82,6 @@ def fair_to_dto(fair: Fair) -> FairDTO:
         walk_tour_video=fair_dict['walk_tour_video'],
         days_before_start_date=fair.days_before_start_date,
         days_before_end_date=fair.days_before_end_date
-
     )
 
 
@@ -87,6 +109,28 @@ def validate_fair(fair_dict: dict) -> Fair:
             'walk_tour_video': fair_dict['walk_tour_video'] or None
         }
     )
+   
+    
+def validate_fair_base(fair_dict: dict) -> FairBase:
+    return FairBase.model_validate(
+        {
+            'id': _create_id(),
+            'name': fair_dict['name'],
+            'location_id': fair_dict['location_id'],
+            'start_date': _date_to_timestamp(fair_dict['start_date']),
+            'end_date': _date_to_timestamp(fair_dict['end_date']),
+            'attractions': fair_dict['attractions'],
+        }
+    )
+
+
+def create_hidden_fair(fair_dict: dict) -> FairBaseDTO:
+    location: Location = validate_location(fair_dict['location'])
+    fair_dict['location_id'] = location.id
+    fair: Fair = validate_fair_base(fair_dict)
+    save_location(location)
+    save_hidden_fair(fair)
+    return fair_base_to_dto(fair)
 
 
 def create_fair(fair_dict: dict) -> FairDTO:
@@ -132,6 +176,16 @@ def save_fair(fair: Fair, update_id: str=None) -> bool:
     return bool(success)
 
 
+def save_hidden_fair(fair: FairBase, update_id: str=None) -> bool:
+    if update_id:
+        q = Query()
+        fair.id = update_id
+        success = tinydb.table("hidden_fair").update(fair.model_dump(mode="json"), q.id == update_id)
+    else:
+        success = tinydb.table("hidden_fair").insert(fair.model_dump(mode="json"))
+    return bool(success)
+
+
 def list_fairs(name: Optional[str] = None, location: Optional[str] = None) -> List[FairDTO]:
     query = (FairQuery.name == name) if name else (FairQuery.location == location) if location else None
     results = db.search(query) if query else db.all()
@@ -161,5 +215,7 @@ def delete_fair(id: str):
 
 def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
     fairs: List[FairDTO] = [fair_to_dto(Fair(**fair)) for fair in db.search(FairQuery.attractions.any(ride_id))]
+    hidden_fairs: List[FairBaseDTO] = [fair_base_to_dto(FairBase(**fair)) for fair in tinydb.table("hidden_fair").search(FairQuery.attractions.any(ride_id))]
+    fairs.extend(hidden_fairs)
     fairs.sort(key=lambda fair: fair.start_date, reverse=True)
     return fairs

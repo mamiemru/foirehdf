@@ -1,6 +1,6 @@
 
 
-import gettext
+from typing import List
 import streamlit as st
 
 from backend.dto.attraction_dto import AttractionDTO
@@ -8,6 +8,7 @@ from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
 from backend.endpoints.attractionsEndpoint import get_attraction_by_id_endpoint
+from backend.endpoints.fairEndpoint import list_fairs_containing_ride_id_endpoint
 
 
 def ride_view(ride: AttractionDTO):
@@ -24,21 +25,19 @@ def ride_view(ride: AttractionDTO):
             """, unsafe_allow_html=True
         )
 
-
-        st.markdown(f"**{_('Description')}:** {ride.description}")
-        st.markdown(f"**{_('Ticket ')}:** €{ride.ticket_price}")
-        st.markdown(f"**{_('Manufacturer')}:** {ride.manufacturer}")
-        st.markdown(f"**{_('Technical Name')}:** {ride.technical_name}")
-        st.markdown(f"**{_('Attraction Type')}:** {ride.attraction_type}")
+        st.markdown(f"**{_('RIDE_DESCRIPTION')}:** {ride.description}")
+        st.markdown(f"**{_('RIDE_TICKET_PRICE ')}:** €{ride.ticket_price}")
+        st.markdown(f"**{_('RIDE_MANUFACTURER')}:** {ride.manufacturer}")
+        st.markdown(f"**{_('RIDE_TECHNICAL_NAME')}:** {ride.technical_name}")
+        st.markdown(f"**{_('RIDE_ATTRACTION_TYPE')}:** {ride.attraction_type}")
         if ride.owner:
-            st.markdown(f"**{_('Owner')}:** {ride.owner}")
+            st.markdown(f"**{_('RIDE_OWNER')}:** {ride.owner}")
         if ride.manufacturer_page_url:
-            st.markdown(f"**{_('Manufacturer Page')}:** [Link]({ride.manufacturer_page_url})")
+            st.markdown(f"**{_('RIDE_MANUFACTURER_PAGE')}:** [Link]({ride.manufacturer_page_url})")
         if ride.news_page_url:
-            st.markdown(f"**{_('News Page')}:** [Link]({ride.news_page_url})")
+            st.markdown(f"**{_('RIDE_NEWS_PAGE')}:** [Link]({ride.news_page_url})")
 
     with right_col:
-        
         if getattr(st.session_state, 'admin', False):
             if st.button("", key="edit_fair", icon=":material/edit:"):
                 st.session_state.ride_id = ride.id
@@ -47,16 +46,42 @@ def ride_view(ride: AttractionDTO):
         for image in ride.images:
             st.image(image.path, use_container_width=True)
 
-    # Divider
-    st.markdown("---")
+    st.divider()
+    
+    st.header(_("RIDE_WAS_INSTALLED_IN_FAIRS"))
+    fairs_table = st.columns([.25, .35, .25, .10])
+    for col, head in zip(fairs_table, [_("RIDE_FAIR_NAME"), _("RIDE_FAIR_LOCATION"), _("RIDE_FAIR_DATES")]):
+        with col:
+            st.write(head)
+    for fair in list_fairs_containing_ride_id_endpoint(st.session_state.ride_id).data:
+        with fairs_table[0]:
+            st.write(fair.name)
+        with fairs_table[1]:
+            st.caption(
+                ", ".join([
+                    text for text in
+                    [
+                        fair.location.street or "", fair.location.area or "", fair.location.city,
+                        fair.location.postal_code, fair.location.state, fair.location.country
+                    ] if text
+                ])
+            )
+        with fairs_table[2]:
+            date_str: List[str] = [
+                f"**{_("FAIR_FROM_DATE")}**: {fair.start_date.strftime('%d %B %Y')}", 
+                f"**{_("FAIR_UNTIL_DATE")}**: {fair.end_date.strftime('%d %B %Y')}"
+            ]
+            st.caption(",".join(date_str))
+        st.empty()
+        
+    st.divider()
 
-    # Videos Section
     colA, colB = st.columns([.8, .2])
     with colA:
-        st.header(_("Videos"))
+        st.header(_("RIDE_LIST_OF_VIDEOS"))
     with colB:
         n_split = st.number_input(
-            _("Show videos per rows of"), help=_("Show videos per rows of"), min_value=1, max_value=5, value=3
+            _("SHOW_VIDEOS_PER_ROWS_OF"), min_value=1, max_value=5, value=3
         )
     if ride.videos_url:
         for cursor in range(0, len(ride.videos_url), n_split):

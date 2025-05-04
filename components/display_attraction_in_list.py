@@ -32,7 +32,7 @@ def display_ride_as_item_in_list(_, st, attraction):
                 unsafe_allow_html=True
             )
         with col2:
-            if st.button(_("View ride details"), key=f"view_ride_{attraction.id}_detail", use_container_width=True):
+            if st.button(_("VIEW_RIDE_DETAILS"), key=f"view_ride_{attraction.id}_detail", use_container_width=True):
                 st.session_state.ride_id = attraction.id
                 st.switch_page("pages/ride_view.py")
 

@@ -26,32 +26,32 @@ def fair_edit():
     if isinstance(response, SuccessResponse):
         attractions_array = response.data
 
-    st.title(_("Edit Fair"))
+    st.title(_("FAIR_EDIT_FAIR"))
 
     col1, col2 = st.columns([.5, .5])
     with col1:
-        st.header("Information about the fair")
+        st.header(_("FAIR_INFORMATION"))
         colA, colB = st.columns([.5, .5])
         with colA:
-            name = st.text_input(_("Fair name"), value=fair.name)
+            name = st.text_input(_("FAIR_NAME"), value=fair.name)
         with colB:
-            start_date = st.date_input(_("First day of the fair"), value=fair.start_date)
-            end_date = st.date_input(_("Last day of the fair"), value=fair.end_date)
+            start_date = st.date_input(_("FAIR_START_DATE"), value=fair.start_date)
+            end_date = st.date_input(_("FAIR_END_DATE"), value=fair.end_date)
 
 
         st.divider()
-        st.header(_("Location of the fair"))
+        st.header(_("LOCATION"))
         colA, colB = st.columns([.5, .5])
         with colA:
-            street = st.text_input(_("Street of the fair"), value=fair.location.street)
-            area = st.text_input(_("Area of the fair"), value=fair.location.area)
-            lat = st.text_input(_("Latitude"), value=fair.location.lat)
-            lng = st.text_input(_("Longitude"), value=fair.location.lng)
+            street = st.text_input(_("STREET"), value=fair.location.street)
+            area = st.text_input(_("AREA"), value=fair.location.area)
+            lat = st.text_input(_("LATITUDE"), value=fair.location.lat)
+            lng = st.text_input(_("LONGITUDE"), value=fair.location.lng)
         with colB:
-            city = st.text_input(_("City of the fair"), value=fair.location.city)
-            postal_code = st.text_input(_("Postal code of the fair"), value=fair.location.postal_code)
-            state = st.text_input(_("State/dpt of the fair"), value=fair.location.state)
-            country = st.text_input(_("Country of the fair"), value=fair.location.country)
+            city = st.text_input(_("CITY"), value=fair.location.city)
+            postal_code = st.text_input(_("POSTAL_CODE"), value=fair.location.postal_code)
+            state = st.text_input(_("STATE"), value=fair.location.state)
+            country = st.text_input(_("COUNTRY"), value=fair.location.country)
 
         st.divider()
         
@@ -59,22 +59,22 @@ def fair_edit():
             attractions_array['values'][attractions_array['keys'].index(attraction.id)] for attraction in fair.attractions
         ]
         
-        st.header(_("What rides are present in the fair"))
+        st.header(_("FAIR_RIDES_IN_THE_FAIR"))
         attractions = st.multiselect(
-            _("Select attractions present in the fair"),
+            _("FAIR_SELECT_RIDE_MESSAGE"),
             attractions_array['values'],
             selected_attractions_array,
         )
-        walk_tour_video = st.text_input(_("Walk tour video url"), value=fair.walk_tour_video)
+        walk_tour_video = st.text_input(_("FAIR_WALKTOUR_VIDEO"), value=fair.walk_tour_video)
 
         st.divider()
-        st.header(_("Sources"))
-        official_ad_page = st.text_input(_("Official advertissement page url"), value=fair.official_ad_page)
-        facebook_event_page = st.text_input(_("facebook event page url"), value=fair.facebook_event_page)
-        city_event_page = st.text_input(_("City event page url"), value=fair.city_event_page)
+        st.header(_("FAIR_SOURCES"))
+        official_ad_page = st.text_input(_("FAIR_AD_URL"), value=fair.official_ad_page)
+        facebook_event_page = st.text_input(_("FAIR_FACEBOOK_EVENT_PAGE_URL"), value=fair.facebook_event_page)
+        city_event_page = st.text_input(_("FAIR_CITY_PAGE"), value=fair.city_event_page)
 
 
-        submitted = st.button(_("Submit"))
+        submitted = st.button(_("SUBMIT"))
         if submitted:
             attractions = [ attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]
             fair_form: dict = {

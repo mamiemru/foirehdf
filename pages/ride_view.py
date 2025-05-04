@@ -26,7 +26,7 @@ def ride_view(ride: AttractionDTO):
         )
 
         st.markdown(f"**{_('RIDE_DESCRIPTION')}:** {ride.description}")
-        st.markdown(f"**{_('RIDE_TICKET_PRICE ')}:** €{ride.ticket_price}")
+        st.markdown(f"**{_('RIDE_TICKET_PRICE')}:** €{ride.ticket_price}")
         st.markdown(f"**{_('RIDE_MANUFACTURER')}:** {ride.manufacturer}")
         st.markdown(f"**{_('RIDE_TECHNICAL_NAME')}:** {ride.technical_name}")
         st.markdown(f"**{_('RIDE_ATTRACTION_TYPE')}:** {ride.attraction_type}")
@@ -50,7 +50,7 @@ def ride_view(ride: AttractionDTO):
     
     st.header(_("RIDE_WAS_INSTALLED_IN_FAIRS"))
     fairs_table = st.columns([.25, .35, .25, .10])
-    for col, head in zip(fairs_table, [_("RIDE_FAIR_NAME"), _("RIDE_FAIR_LOCATION"), _("RIDE_FAIR_DATES")]):
+    for col, head in zip(fairs_table, [_("FAIR_NAME"), _("FAIR_LOCATION"), _("FAIR_DATES")]):
         with col:
             st.write(head)
     for fair in list_fairs_containing_ride_id_endpoint(st.session_state.ride_id).data:

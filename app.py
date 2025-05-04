@@ -16,17 +16,17 @@ builtins._ = language.gettext
 icon: Path = Path(__file__).parent / "statics" / "logo.png"
 st.logo(icon, size="large")
 
-list_fairs = st.Page("pages/fair_list.py", title=_("List fairs"), icon=":material/list:")
-view_fair = st.Page("pages/fair_view.py", title=_("View a fair"), icon=":material/visibility:")
-create_fair = st.Page("pages/fair_create.py", title=_("Create a fair"), icon=":material/add:")
-edit_fair = st.Page("pages/fair_edit.py", title=_("Edit a fair"), icon=":material/edit:")
+list_fairs = st.Page("pages/fair_list.py", title=_("APP_LIST_FAIRS"), icon=":material/list:")
+view_fair = st.Page("pages/fair_view.py", title=_("APP_VIEW_A_FAIR"), icon=":material/visibility:")
+create_fair = st.Page("pages/fair_create.py", title=_("APP_CREATE_A_FAIR"), icon=":material/add:")
+edit_fair = st.Page("pages/fair_edit.py", title=_("APP_EDIT_A_FAIR"), icon=":material/edit:")
 
-list_rides = st.Page("pages/ride_list.py", title=_("List rides"), icon=":material/list:")
-view_ride = st.Page("pages/ride_view.py", title=_("View a ride"), icon=":material/visibility:")
-create_ride = st.Page("pages/ride_create.py", title=_("Add a new ride"), icon=":material/add:")
-edit_ride = st.Page("pages/ride_edit.py", title=_("Edit a ride"), icon=":material/edit:")
+list_rides = st.Page("pages/ride_list.py", title=_("APP_LIST_RIDES"), icon=":material/list:")
+view_ride = st.Page("pages/ride_view.py", title=_("APP_VIEW_A_RIDE"), icon=":material/visibility:")
+create_ride = st.Page("pages/ride_create.py", title=_("APP_ADD_A_NEW_RIDE"), icon=":material/add:")
+edit_ride = st.Page("pages/ride_edit.py", title=_("APP_EDIT_A_RIDE"), icon=":material/edit:")
 
-list_manufacturer = st.Page("pages/manufacturer_list.py", title=_("List manufacturers"), icon=":material/list:")
+list_manufacturer = st.Page("pages/manufacturer_list.py", title=_("APP_LIST_MANUFACTURERS"), icon=":material/list:")
 
 if 'admin' not in st.session_state:
     st.session_state.admin = False
@@ -43,9 +43,9 @@ if st.session_state.admin:
 
 pg = st.navigation(
     {
-        _("Fairs"): fair,
-        _("rides"): ride,
-        _("manufacturer"): manu
+        _("APP_FAIRS"): fair,
+        _("APP_RIDES"): ride,
+        _("APP_MANUFACTURERS"): manu
     }
 )
 
@@ -57,6 +57,7 @@ with st.sidebar:
         Il s'agit d'une base de données dédiée aux attractions d’intensité moyenne, forte et extrême.
         Mon objectif est de centraliser des informations sur certains manèges présents lors des foires dans les Hauts-de-France (proche de Lille), 
         car je trouve que, même avec Internet, certaines informations restent difficiles à trouver.
+        Je ne stock aucune images ou vidéos, toutes les ressources vienent d'ailleurs (page crédits à faire).
     """)
     
     

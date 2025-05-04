@@ -13,7 +13,7 @@ def ride_list():
     col_search, col_add = st.columns([0.9, 0.1])
 
     with col_search:
-        search_fair = st.text_input(_("search"), key="search", label_visibility="collapsed")
+        search_fair = st.text_input(_("RIDE_SEARCH"), key="search", label_visibility="collapsed")
         if search_fair:
             st.rerun()
 

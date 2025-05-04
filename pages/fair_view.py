@@ -29,7 +29,7 @@ def fair_view():
         with col1:
             cola, colb = st.columns([2, 1])
             with cola:
-                st.header(f":material/location_on: {_('Locations')}")
+                st.header(f":material/location_on: {_('LOCATIONS')}")
                 st.write(
                     ", ".join([
                         text for text in
@@ -46,16 +46,16 @@ def fair_view():
                         latitude="lat", longitude="lng", size=15, color='#ffff00', zoom=8
                     )
             with colb:
-                st.header(":material/calendar_month: "+ _("Dates"))
-                st.write(f"**{_("From")}** {fair.start_date.strftime('%d %B %Y')}")
-                st.write(f"**{_("Until")}** {fair.end_date.strftime('%d %B %Y')}")
-                st.write(f"**{_("For")}**: {(fair.end_date - fair.start_date).days} days")
+                st.header(":material/calendar_month: "+ _("DATES"))
+                st.write(f"**{_("FAIR_FROM_DATE")}** {fair.start_date.strftime('%d %B %Y')}")
+                st.write(f"**{_("FAIR_UNTIL_DATE")}** {fair.end_date.strftime('%d %B %Y')}")
+                st.write(f"**{_("FAIR_FOR_DATE")}**: {(fair.end_date - fair.start_date).days} {_('DAYS')}")
 
                 if fair.fair_incoming:
-                    st.write(f"**{_("Days before the fair")}**:  {fair.days_before_start_date} {_("Days")}")
+                    st.write(f"**{_("FAIR_DAYS_BEFORE_THE_FAIR")}**:  {fair.days_before_start_date} {_("DAYS")}")
 
                 if fair.fair_available_today:
-                    st.write(f"**{_("Days left until end")}**:  {fair.days_before_end_date} {_("Days")}")
+                    st.write(f"**{_("FAIR_DAYS_LEFT_UNTIL_END")}**:  {fair.days_before_end_date} {_("DAYS")}")
 
         with col2:
             if fair.official_ad_page:
@@ -64,22 +64,22 @@ def fair_view():
                 st.image(fair.image)
 
         st.divider()
-        st.subheader(f":material/link: {_('Sources and useful links')}")
+        st.subheader(f":material/link: {_('FAIR_VIEW_SOURCES_AND_USEFUL_LINKS')}")
 
-        markdown_table = f"| {_("Url type")} | {_("Url")} |\n"
+        markdown_table = f"| {_("FAIR_URL_TYPE")} | {_("FAIR_URL")} |\n"
         markdown_table += "|------|------|\n"
 
         if fair.official_ad_page:
-            markdown_table += f"| {_("Ad")} | [{fair.official_ad_page}]({fair.official_ad_page}) |\n"
+            markdown_table += f"| {_("FAIR_AD_URL")} | [{fair.official_ad_page}]({fair.official_ad_page}) |\n"
         if fair.city_event_page:
-            markdown_table += f"| {_("City page")} | [{fair.city_event_page}]({fair.city_event_page}) |\n"
+            markdown_table += f"| {_("FAIR_CITY_PAGE")} | [{fair.city_event_page}]({fair.city_event_page}) |\n"
         if fair.facebook_event_page:
-            markdown_table += f"| {_("Facebook page")} | [{fair.facebook_event_page}]({fair.facebook_event_page}) |\n"
+            markdown_table += f"| {_("FAIR_FACEBOOK_PAGE")} | [{fair.facebook_event_page}]({fair.facebook_event_page}) |\n"
         if fair.walk_tour_video:
-            markdown_table += f"| {_("Walk tour")} | [{fair.walk_tour_video}]({fair.walk_tour_video}) |\n"
+            markdown_table += f"| {_("FAIR_WALK_TOUR")} | [{fair.walk_tour_video}]({fair.walk_tour_video}) |\n"
 
         for url in fair.sources:
-            markdown_table += f"| {_("Other")} | [{url}]({url}) |\n"
+            markdown_table += f"| {_("FAIR_VIEW_OTHER")} | [{url}]({url}) |\n"
 
         st.markdown(markdown_table)
 

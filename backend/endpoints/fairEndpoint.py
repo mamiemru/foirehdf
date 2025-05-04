@@ -13,7 +13,7 @@ from backend.models.fairModel import Fair, FairDTO, FairStatus
 from backend.models.locationModel import Location, LocationDTO
 
 
-from backend.services.fairService import create_fair, get_fair_detailed, get_fair, delete_fair, update_fair
+from backend.services.fairService import create_fair, get_fair_detailed, get_fair, delete_fair, list_fairs_containing_ride_id, update_fair
 from backend.services.fairService import validate_fair, save_fair, list_fairs, fair_to_dto
 from backend.services.locationService import validate_location, save_location, get_location_by_id
 
@@ -121,7 +121,6 @@ def get_fair_detailed_endpoint(id: str) -> ResponseDto:
     return ErrorResponse(status=404, message="Fair not found")
 
 
-
 def delete_fair_endpoint(fair_id: str) -> ResponseDto:
     try:
         delete_fair(fair_id)
@@ -138,3 +137,9 @@ def delete_fair_endpoint(fair_id: str) -> ResponseDto:
             data=None
         )
 
+def list_fairs_containing_ride_id_endpoint(ride_id: str) -> ResponseDto:
+    return SuccessResponse(
+        status=200,
+        data=list_fairs_containing_ride_id(ride_id),
+        message=""
+    )

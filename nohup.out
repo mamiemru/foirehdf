@@ -702,3 +702,14 @@ Traceback (most recent call last):
                                  ^^^^^^^^^^^^^^^^^^
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 18: ordinal not in range(128)
   Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+  Stopping...

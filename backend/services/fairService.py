@@ -4,7 +4,7 @@ import locale
 from bson import ObjectId
 
 from tinydb import TinyDB, Query
-from typing import Optional
+from typing import List, Optional
 
 from backend.models.fairModel import Fair
 from backend.models.fairModel import FairDTO
@@ -21,15 +21,18 @@ locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
 def _create_id():
     return str(ObjectId())
 
+
 def _date_to_timestamp(date: datetime.date) -> float:
     datetime_obj = datetime.datetime.combine(date, datetime.datetime.min.time())
     timestamp = datetime_obj.timestamp()
     return timestamp
 
+
 def _timestamp_to_date(timestamp: float) -> datetime.date:
     dt_object = datetime.datetime.fromtimestamp(timestamp)
     date_object = dt_object.date()
     return date_object
+
 
 def fair_to_dto(fair: Fair) -> FairDTO:
     locationdto: LocationDTO = get_location_by_id(fair.location_id)
@@ -59,12 +62,14 @@ def fair_to_dto(fair: Fair) -> FairDTO:
 
     )
 
+
 def fair_to_dto_detailed(fair: Fair) -> FairDTO:
     fair_dto: FairDTO = fair_to_dto(fair)
     fair_dto.attractions = [
         get_attraction_by_id(attraction) for attraction in fair.attractions
     ]
     return fair_dto
+
 
 def validate_fair(fair_dict: dict) -> Fair:
     return Fair.model_validate(
@@ -82,6 +87,7 @@ def validate_fair(fair_dict: dict) -> Fair:
             'walk_tour_video': fair_dict['walk_tour_video'] or None
         }
     )
+
 
 def create_fair(fair_dict: dict) -> FairDTO:
     location: Location = validate_location(fair_dict['location'])
@@ -125,10 +131,12 @@ def save_fair(fair: Fair, update_id: str=None) -> bool:
         success = db.insert(fair.model_dump(mode="json"))
     return bool(success)
 
-def list_fairs(name: Optional[str] = None, location: Optional[str] = None):
+
+def list_fairs(name: Optional[str] = None, location: Optional[str] = None) -> List[FairDTO]:
     query = (FairQuery.name == name) if name else (FairQuery.location == location) if location else None
     results = db.search(query) if query else db.all()
     return [fair_to_dto(Fair(**result)) for result in results]
+
 
 def get_fair(id: str) -> FairDTO:
     result = db.get(FairQuery.id == id)
@@ -136,6 +144,7 @@ def get_fair(id: str) -> FairDTO:
         fair: Fair = Fair(**result)
         return fair_to_dto(fair)
     return None
+
 
 def get_fair_detailed(id: str) -> FairDTO:
     result = db.get(FairQuery.id == id)
@@ -145,7 +154,10 @@ def get_fair_detailed(id: str) -> FairDTO:
     return None
 
 
-
 def delete_fair(id: str):
     db.remove(FairQuery.id == id)
     return f"Fair '{id}' has been deleted."
+
+
+def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
+    return [fair_to_dto(Fair(**fair)) for fair in db.search(FairQuery.attractions.any(ride_id))]

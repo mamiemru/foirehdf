@@ -15,9 +15,9 @@ from backend.models.fairModel import FairDTO, FairStatus
 
 @st.dialog("delete fair")
 def delete_fair_dialog(fair_dto: FairDTO):
-    st.subheader(_("Delete a Fair"))
-    st.write(f"{_('Are you sure to delete')} {fair_dto.name}")
-    if st.button(_("Delete")):
+    st.subheader(_("FAIR_DELETE_A_FAIR"))
+    st.write(f"{_('FAIR_ARE_YOU_SURE_TO_DELETE')} {fair_dto.name}")
+    if st.button(_("DELETE")):
         response: ResponseDto = delete_fair_endpoint(fair_dto.id)
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
@@ -32,12 +32,12 @@ def display_fair(fair: FairDTO):
         with col1:
             st.subheader(fair.name)
         with col2:
-            if st.button(_("View fair"), key=f"view_fair_{fair.id}", icon=":material/visibility:", use_container_width=True):
+            if st.button(_("FAIR_VIEW_FAIR"), key=f"view_fair_{fair.id}", icon=":material/visibility:", use_container_width=True):
                 st.session_state.fair_id = fair.id
                 st.switch_page("pages/fair_view.py")
 
 
-        st.write(f":material/location_on: {_('Locations')}")
+        st.write(f":material/location_on: {_('LOCATIONS')}")
         st.caption(
             ", ".join([
                 text for text in
@@ -48,18 +48,18 @@ def display_fair(fair: FairDTO):
             ]
             )
         )
-        st.write(":material/calendar_month: Dates")
+        st.write(f":material/calendar_month: {_("DATES")}")
         date_str: List[str] = [
-            f"**{_("From")}**: {fair.start_date.strftime('%d %B %Y')}", 
-            f"**{_("Until")}**: {fair.end_date.strftime('%d %B %Y')}",
-            f"**{_("For")}**: {(fair.end_date - fair.start_date).days} days"
+            f"**{_("FAIR_FROM_DATE")}**: {fair.start_date.strftime('%d %B %Y')}", 
+            f"**{_("FAIR_UNTIL_DATE")}**: {fair.end_date.strftime('%d %B %Y')}",
+            f"**{_("FAIR_FOR_DATE")}**: {(fair.end_date - fair.start_date).days} {_("DAYS")}"
         ]
 
         if fair.fair_incoming:
-            date_str.append(f"**{_("Days before the fair")}**:  {fair.days_before_start_date} {_("Days")}")
+            date_str.append(f"**{_("FAIR_DAYS_BEFORE_THE_FAIR")}**:  {fair.days_before_start_date} {_("DAYS")}")
 
         elif fair.fair_available_today:
-            date_str.append(f"**{_("Days left until end")}**:  {fair.days_before_end_date} {_("Days")}")
+            date_str.append(f"**{_("FAIR_DAYS_LEFT_UNTIL_END")}**:  {fair.days_before_end_date} {_("DAYS")}")
             
         st.caption(",".join(date_str))
 
@@ -73,12 +73,12 @@ def fair_list():
         fairs_struct = response.data['fairs']
         data_map = response.data['map']
 
-    st.title(_("Fairs"))
+    st.title(_("FAIRS_LIST"))
 
     col_search, col_add = st.columns([0.9, 0.1])
 
     with col_search:
-        search_fair = st.text_input(_("search"), label_visibility="collapsed")
+        search_fair = st.text_input(_("FAIR_SEARCH"), label_visibility="collapsed")
         if search_fair:
             st.rerun()
 
@@ -87,7 +87,7 @@ def fair_list():
             if st.button("", icon=":material/add:"):
                 st.switch_page("pages/fair_create.py")
 
-    st.header(f":green[{_('FunFairs currently available today')}]")
+    st.header(f":green[{_('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY')}]")
     colCurrent, colMap = st.columns([.5, .5])
     with colCurrent:
         with st.container(height=500, border=False):
@@ -99,12 +99,12 @@ def fair_list():
 
     colComming, colPast = st.columns([.5, .5])
     with colComming:
-        st.header(f":orange[{_('FunFairs coming soon')}]")
+        st.header(f":orange[{_('FAIR_LIST_FUNFAIRS_COMING_SOON')}]")
         for fair in fairs_struct[FairStatus.INCOMING]:
             display_fair(fair)
 
     with colPast:
-        st.header(f":blue[{_('FunFairs done')}]")
+        st.header(f":blue[{_('FAIR_LIST_FUNFAIRS_DONE')}]")
         for fair in fairs_struct[FairStatus.DONE]:
             display_fair(fair)
 

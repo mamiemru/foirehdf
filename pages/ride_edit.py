@@ -40,11 +40,11 @@ class Datas:
             self.manufacturer_names: List[str] = response.data
 
 
-@st.dialog(_("add manufacturer"))
+@st.dialog(_("RIDE_ADD_MANUFACTURER"))
 def add_manufacturer_dialog():    
 
-    name = st.text_input(_("Name of the manufacturer*"))
-    if st.button(_("submit")):
+    name = st.text_input(_("RIDE_NAME_OF_THE_MANUFACTURER"))
+    if st.button(_("SUBMIT")):
         response: ResponseDto = create_manufacturer_endpoint({"name": name})
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
@@ -55,25 +55,25 @@ def add_manufacturer_dialog():
 
 @st.fragment
 def ride_edit():
-    st.header(_("Update a new ride"))
+    st.header(_("RIDE_UPDATE_A_NEW_RIDE"))
 
     colA, colB = st.columns([.5, .5])
     with colA:
         with st.container(border=True):
 
-            st.header(_("General Information"))
+            st.header(_("RIDE_GENERAL_INFORMATION"))
 
-            st.session_state.datas.name = st.text_input(_("Name*"), placeholder=_("Name of the ride"), value=st.session_state.datas.ride.name)
-            st.session_state.datas.description = st.text_area(_("Description"), placeholder=_("A short description of the ride"), value=st.session_state.datas.ride.description)
-            st.session_state.datas.ticket_price = st.number_input(_("Ticket Price"), placeholder=_("Ticket price"), value=st.session_state.datas.ride.ticket_price)
+            st.session_state.datas.name = st.text_input(f'{_("RIDE_NAME")}*', placeholder=_("RIDE_NAME_OF_THE_RIDE"), value=st.session_state.datas.ride.name)
+            st.session_state.datas.description = st.text_area(_("RIDE_DESCRIPTION"), placeholder=_("RIDE_A_SHORT_DESCRIPTION_OF_THE_RIDE"), value=st.session_state.datas.ride.description)
+            st.session_state.datas.ticket_price = st.number_input(_("RIDE_TICKET_PRICE"), placeholder=_("RIDE_TICKET_PRICE"), value=st.session_state.datas.ride.ticket_price)
 
             st.divider()
-            st.header(_("Manufacturer Information"))
+            st.header(_("RIDE_MANUFACTURER_INFORMATION"))
 
             manufacturer_col, add_col = st.columns([.9, .1])
             with manufacturer_col:
                 st.session_state.datas.manufacturer = st.selectbox(
-                    _("Manufacturer"), options=st.session_state.datas.manufacturer_names, index=st.session_state.datas.manufacturer_names.index(st.session_state.datas.ride.manufacturer), placeholder=_("Manufacturer")
+                    _("RIDE_MANUFACTURER"), options=st.session_state.datas.manufacturer_names, index=st.session_state.datas.manufacturer_names.index(st.session_state.datas.ride.manufacturer)
                 )
             with add_col:
                 st.write("")
@@ -81,45 +81,45 @@ def ride_edit():
                     add_manufacturer_dialog()
 
             st.session_state.datas.technical_name = st.text_input(
-                _("Technical Name"), placeholder=_("The name given by the manufacturer"), value=st.session_state.datas.ride.technical_name
+                _("RIDE_TECHNICAL_NAME"), placeholder=_("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"), value=st.session_state.datas.ride.technical_name
             )
             attraction_type_options = list(AttractionType)
             st.session_state.datas.attraction_type = st.selectbox(
-                _("Attraction Type*"), options=attraction_type_options, placeholder=_("the type of the ride"), index=attraction_type_options.index(st.session_state.datas.ride.attraction_type)
+                _("RIDE_ATTRACTION_TYPE"), options=attraction_type_options, placeholder=_("RIDE_THE_TYPE_OF_THE_RIDE"), index=attraction_type_options.index(st.session_state.datas.ride.attraction_type)
             )
             st.session_state.datas.manufacturer_page_url = st.text_input(
-                _("Manufacturer page"), help=_("A link to the product"),
-                placeholder=_("Enter the url page of the manufacturer ride"), value=st.session_state.datas.ride.manufacturer_page_url
+                _("RIDE_MANUFACTURER_PAGE"), help=_("RIDE_A_LINK_TO_THE_PRODUCT"),
+                placeholder=_("RIDE_ENTER_THE_URL_PAGE_OF_THE_MANUFACTURER_RIDE"), value=st.session_state.datas.ride.manufacturer_page_url
             )
 
             st.divider()
-            st.header(_("Owners"))
+            st.header(_("RIDE_OWNER"))
 
             st.session_state.datas.owner = st.text_input(
-                _("Family owner"), placeholder=_("Name of the family that own the ride"), value=st.session_state.datas.ride.owner
+                _("RIDE_FAMILY_OWNER"), placeholder=_("RIDE_NAME_OF_THE_FAMILY_THAT_OWN_THE_RIDE"), value=st.session_state.datas.ride.owner
             )
 
             st.divider()
-            st.header(_("Media"))
+            st.header(_("RIDE_MEDIAS"))
 
             st.session_state.datas.news_page_url = st.text_input(
-                _("Official news page of the ride"), placeholder=_("Official news page or fan page"), help=_("Tell us where to find this ride"), value=st.session_state.datas.ride.news_page_url
+                _("RIDE_OFFICIAL_NEWS_PAGE_OF_THE_RIDE"), placeholder=_("RIDE_OFFICIAL_NEWS_PAGE_OR_FAN_PAGE"), help=_("RIDE_TELL_US_WHERE_TO_FIND_THIS_RIDE"), value=st.session_state.datas.ride.news_page_url
             )
 
             with st.container(border=False):
-                st.write(_("Videos"))
+                st.write(_("RIDE_VIDEOS"))
                 colC, colD = st.columns([.8, .2])
                 with colC:
                     video_url = st.text_input(
-                        _("Videos url"), placeholder=_("Enter a video URL (e.g., YouTube, MP4 link)"), label_visibility="collapsed"
+                        _("RIDE_VIDEOS_URL"), placeholder=_("RIDE_ENTER_A_VIDEO_URL_E_G_YOUTUBE_MP4_LINK"), label_visibility="collapsed"
                     )
                     log = st.empty()
                 with colD:
-                    if st.button(_("Add Video")):
+                    if st.button(_("RIDE_ADD_VIDEO")):
                         if video_url:
                             st.session_state.datas.ride.videos_url.append(video_url)
                         else:
-                            log.warning("Please enter a valid video URL.")
+                            log.warning(_("RIDE_PLEASE_ENTER_A_VALID_VIDEO_URL"))
 
                 cols_video, cols_video_del = st.columns([.8, .2])
                 if st.session_state.datas.ride.videos_url:
@@ -130,22 +130,22 @@ def ride_edit():
                             if st.button("", key=f"delete_video_{i}", icon=":material/delete:"):
                                 st.session_state.datas.ride.videos_url.pop(i)
                 else:
-                    st.info(_("No videos added yet. Add some above!"))
+                    st.info(_("RIDE_NO_VIDEOS_ADDED_YET_ADD_SOME_ABOVE"))
 
             with st.container(border=False):
-                st.write(_("Images"))
+                st.write(_("RIDE_IMAGES"))
                 colC, colD = st.columns([.8, .2])
                 with colC:
                     image_url = st.text_input(
-                        _("Immages url"), placeholder=_("Enter a image URL"), label_visibility="collapsed"
+                        _("RIDE_IMAGES_URL"), placeholder=_("RIDE_ENTER_A_IMAGE_URL"), label_visibility="collapsed"
                     )
                     log = st.empty()
                 with colD:
-                    if st.button(_("Add Image")):
+                    if st.button(_("RIDE_ADD_IMAGE")):
                         if image_url:
                             st.session_state.datas.ride.images_url.append(image_url)
                         else:
-                            log.warning(_("Please enter a valid video URL."))
+                            log.warning(_("RIDE_PLEASE_ENTER_A_VALID_IMAGE_URL"))
 
                 cols_image, cols_image_del = st.columns([.8, .2])
                 if st.session_state.datas.ride.images_url:
@@ -157,7 +157,7 @@ def ride_edit():
                                 st.session_state.datas.ride.images_url.pop(i)
 
             st.divider()
-            submitted = st.button(_("Submit"))
+            submitted = st.button(_("SUBMIT"))
             if submitted:
                 attraction_form: dict = {
                     'name': st.session_state.datas.name, 'description': st.session_state.datas.description,
@@ -171,7 +171,7 @@ def ride_edit():
                 response: ResponseDto = update_attraction_endpoint(id=st.session_state.datas.ride.id, attraction_dict=attraction_form)
                 if isinstance(response, SuccessResponse):
                     st.success(response.message, icon=":material/check_circle:")
-                    st.page_link("pages/ride_list.py", label=_("Check your attractions"), icon=":material/celebration:")
+                    st.page_link("pages/ride_list.py", label=_("RIDE_CHECK_YOUR_ATTRACTIONS"), icon=":material/celebration:")
                 elif isinstance(response, ErrorResponse):
                     st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 

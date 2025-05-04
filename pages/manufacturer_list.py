@@ -14,12 +14,12 @@ from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
 
-st.title(_("Manufacturer Management"))
+st.title(_("MANUFACTURER_LIST_MANUFACTURER_MANAGEMENT"))
 
-@st.dialog(_("add manufacturer"))
+@st.dialog(_("MANUFACTURER_LIST_ADD_MANUFACTURER"))
 def add_manufacturer_dialog():
-    name = st.text_input(_("Name of the manufacturer"))
-    if st.button(_("submit")):
+    name = st.text_input(_("MANUFACTURER_LIST_NAME_OF_THE_MANUFACTURER"))
+    if st.button(_("SUBMIT")):
         response: ResponseDto = create_manufacturer_endpoint({"name": name})
         if isinstance(response, SuccessResponse):
             st.success(response.message, icon=":material/check_circle:")
@@ -28,11 +28,11 @@ def add_manufacturer_dialog():
             st.error(f"{response.message}\n \n {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
 
-@st.dialog(_("delete manufacturer"))
+@st.dialog(_("MANUFACTURER_LIST_DELETE_MANUFACTURER"))
 def delete_manufacturer_dialog(manufacturer: ManufacturerDto):
-    st.subheader(_("Delete a manufacturer"))
-    st.write(f"{_('Are you sure to delete')} {manufacturer.name}")
-    if st.button(_("Delete")):
+    st.subheader(_("MANUFACTURER_LIST_DELETE_A_MANUFACTURER"))
+    st.write(f"{_('MANUFACTURER_LIST_ARE_YOU_SURE_TO_DELETE')} {manufacturer.name}")
+    if st.button(_("DELETE")):
         message = delete_manufacturer_endpoint(manufacturer.id)
         st.success(message)
         st.rerun()
@@ -48,7 +48,7 @@ def manufacturer_list():
     col_search, col_add = st.columns([0.9, 0.1])
 
     with col_search:
-        search_manufacturer = st.text_input(_("search"), label_visibility="collapsed")
+        search_manufacturer = st.text_input(_("MANUFACTURER_SEARCH"), label_visibility="collapsed")
         if search_manufacturer:
             st.rerun()
 

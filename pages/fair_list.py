@@ -1,13 +1,14 @@
 
 from typing import List, Dict
 
+import altair as alt
 import streamlit as st
 
 from backend.dto.error_dto import ErrorResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.endpoints.fairEndpoint import delete_fair_endpoint
+from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_for_gantt_chart_endpoint
 from backend.endpoints.fairEndpoint import list_fair_sort_by_status_endpoint
 
 from backend.models.fairModel import FairDTO, FairStatus
@@ -72,6 +73,11 @@ def fair_list():
     if isinstance(response, SuccessResponse):
         fairs_struct = response.data['fairs']
         data_map = response.data['map']
+        
+    gantt_chart_pd = None
+    response: ResponseDto = list_fair_for_gantt_chart_endpoint()
+    if isinstance(response, SuccessResponse):
+        gantt_chart_pd = response.data
 
     st.title(_("FAIRS_LIST"))
 
@@ -86,6 +92,16 @@ def fair_list():
         if getattr(st.session_state, 'admin', False):
             if st.button("", icon=":material/add:"):
                 st.switch_page("pages/fair_create.py")
+                
+    chart = alt.Chart(gantt_chart_pd).mark_bar().encode(
+        x="Start",
+        x2="Finish",
+        y="Task",
+        color="Color",
+        tooltip=["Description", "Completion"]
+    )
+
+    st.altair_chart(chart, use_container_width=True)
 
     st.header(f":green[{_('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY')}]")
     colCurrent, colMap = st.columns([.5, .5])

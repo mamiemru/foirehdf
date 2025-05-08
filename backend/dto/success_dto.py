@@ -14,3 +14,8 @@ class SuccessResponse(ResponseDto):
     message: str
     data: Any
     meta: Optional[Meta] = None
+
+    def __init__(self, data, message="", status=200):
+        self.message = message
+        self.status = status
+        self.data = data

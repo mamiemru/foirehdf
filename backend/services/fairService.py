@@ -3,8 +3,9 @@ import datetime
 import locale
 from bson import ObjectId
 
+import pandas
 from tinydb import TinyDB, Query
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from backend.models.fairModel import Fair, FairBase, FairBaseDTO
 from backend.models.fairModel import FairDTO
@@ -223,3 +224,22 @@ def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
     ## fairs.extend(hidden_fairs)
     fairs.sort(key=lambda fair: fair.start_date, reverse=True)
     return fairs
+
+
+def list_fair_for_gantt_chart() -> pandas.DataFrame:
+    pd_dict: List[Dict[str, str]] = list()
+    for fair_dict in db.all():
+        fair: FairDTO = fair_to_dto(Fair(**fair_dict))
+        
+        pd_dict.append({
+            "Task": fair.location.city,
+            "Start": fair.start_date,
+            "Finish": fair.end_date,
+            "Resource": fair.location.city,
+            "Color": '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc',
+            "Completion": fair.days_before_start_date if fair.fair_incoming else fair.days_before_end_date if fair.fair_available_today else "Fair Done",
+            "Description": fair.name
+        })
+        
+    df = pandas.DataFrame(pd_dict)
+    return df

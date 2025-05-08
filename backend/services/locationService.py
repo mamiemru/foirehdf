@@ -49,7 +49,7 @@ def save_location(location: Location, update_id: str=None) -> bool:
         success = db.insert(location.model_dump(mode="json"))
     return bool(success)
 
-def get_location_by_id(location_id: str) -> Location:
+def get_location_by_id(location_id: str) -> LocationDTO:
     result = db.get(Query().id == location_id)
     if result:
         return location_to_dto(Location(**result))

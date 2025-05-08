@@ -11,7 +11,7 @@ from backend.dto.success_dto import SuccessResponse
 from backend.models.fairModel import FairBaseDTO, FairDTO, FairStatus
 
 
-from backend.services.fairService import create_fair, create_hidden_fair, get_fair_detailed, get_fair, delete_fair, list_fairs_containing_ride_id, update_fair
+from backend.services.fairService import create_fair, create_hidden_fair, get_fair_detailed, get_fair, delete_fair, list_fair_for_gantt_chart, list_fairs_containing_ride_id, update_fair
 from backend.services.fairService import list_fairs
 
 
@@ -74,10 +74,7 @@ def update_fair_endpoint(id: str, updated_fair_dict: Dict) -> ResponseDto:
 
 
 def list_fairs_endpoint() -> ResponseDto:
-    return ListResponse(
-        status=200,
-        data=list_fairs()
-    )
+    return ListResponse(data=list_fairs())
 
 def list_fair_sort_by_status_endpoint() -> ResponseDto:
     fairs: List[FairDTO] = list_fairs()
@@ -103,21 +100,19 @@ def list_fair_sort_by_status_endpoint() -> ResponseDto:
     for key, fair_list in response['fairs'].items():
         response['fairs'][key] = sorted(fair_list, key=lambda fair: fair.start_date, reverse=True)
 
-    return SuccessResponse(
-        data=response, message="", status=200
-    )
+    return SuccessResponse(data=response)
 
 
 def get_fair_endpoint(id: str) -> ResponseDto:
     fair = get_fair(id)
     if fair:
-        return SuccessResponse(status=200, data=fair, message="")
+        return SuccessResponse(data=fair)
     return ErrorResponse(status=404, message="Fair not found")
 
 def get_fair_detailed_endpoint(id: str) -> ResponseDto:
     fair = get_fair_detailed(id)
     if fair:
-        return SuccessResponse(status=200, data=fair, message="")
+        return SuccessResponse(data=fair)
     return ErrorResponse(status=404, message="Fair not found")
 
 
@@ -125,21 +120,12 @@ def delete_fair_endpoint(fair_id: str) -> ResponseDto:
     try:
         delete_fair(fair_id)
     except Exception as e:
-        return ErrorResponse(
-            status=500,
-            message=str("An error occurred when adding the fair"),
-            errors={e.name: str(e)}
-        )
+        return ErrorResponse(status=500, message=str("An error occurred when adding the fair"), errors={e.name: str(e)})
     else:
-        return SuccessResponse(
-            status=404,
-            message=f"Fair has been deleted",
-            data=None
-        )
+        return SuccessResponse(status=404, message=f"Fair has been deleted", data=None)
 
 def list_fairs_containing_ride_id_endpoint(ride_id: str) -> ResponseDto:
-    return SuccessResponse(
-        status=200,
-        data=list_fairs_containing_ride_id(ride_id),
-        message=""
-    )
+    return SuccessResponse(data=list_fairs_containing_ride_id(ride_id))
+
+def list_fair_for_gantt_chart_endpoint() -> ResponseDto:
+    return SuccessResponse(data=list_fair_for_gantt_chart())

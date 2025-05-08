@@ -134,10 +134,14 @@ def create_hidden_fair(fair_dict: dict) -> FairBaseDTO:
 
 
 def create_fair(fair_dict: dict) -> FairDTO:
-    location: Location = validate_location(fair_dict['location'])
-    fair_dict['location_id'] = location.id
+    if fair_dict['location_id'] is None and fair_dict['location']:
+        location: Location = validate_location(fair_dict['location'])
+        save_location(location)
+        fair_dict['location_id'] = location.id
+    else:
+        fair_dict['location_id'] = fair_dict['location_id']
+    
     fair: Fair = validate_fair(fair_dict)
-    save_location(location)
     save_fair(fair)
     return fair_to_dto(fair)
 

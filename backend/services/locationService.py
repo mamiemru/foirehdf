@@ -1,6 +1,7 @@
 
 
-from typing import Dict
+from dataclasses import asdict
+from typing import Dict, List
 from bson import ObjectId
 from tinydb import TinyDB, Query
 
@@ -53,3 +54,22 @@ def get_location_by_id(location_id: str) -> Location:
     if result:
         return location_to_dto(Location(**result))
     return None
+
+def create_location(location_dict: Dict) -> LocationDTO:
+    location: Location = validate_location(location_dict=location_dict)
+    if save_location(location=location):
+        return location_to_dto(Location(**location))
+    return None
+
+def update_location(location_id: str, updated_location_dict: Dict) -> LocationDTO:
+    location: LocationDTO = get_location_by_id(location_id=location.id)
+    location_dict: dict = asdict(location)
+    location_dict.update(updated_location_dict)
+    location_dict['id'] = location.id
+    location: Location = validate_location(location_dict=location_dict)
+    if save_location(location=location ,update_id=location_id):
+        return location_to_dto(Location(**location))
+    return None
+
+def list_locations() -> List[LocationDTO]:
+    return [location_to_dto(Location(**location)) for location in db.all()]

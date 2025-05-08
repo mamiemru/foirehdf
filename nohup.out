@@ -817,3 +817,4 @@ Traceback (most recent call last):
     attractions_array['values'][attractions_array['keys'].index(attraction.id)] for attraction in fair.attractions
                                                                 ^^^^^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'id'
+  Stopping...

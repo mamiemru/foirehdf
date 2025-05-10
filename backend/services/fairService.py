@@ -11,7 +11,7 @@ from backend.models.fairModel import Fair, FairBase, FairBaseDTO
 from backend.models.fairModel import FairDTO
 from backend.models.locationModel import LocationDTO, Location
 from backend.services.attractionService import get_attraction_by_id
-from backend.services.locationService import get_location_by_id, save_location, validate_location
+from backend.services.locationService import get_location_by_id, list_locations_cities, save_location, validate_location
 
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("fair")
@@ -191,10 +191,19 @@ def save_hidden_fair(fair: FairBase, update_id: str=None) -> bool:
     return bool(success)
 
 
-def list_fairs(name: Optional[str] = None, location: Optional[str] = None) -> List[FairDTO]:
-    query = (FairQuery.name == name) if name else (FairQuery.location == location) if location else None
-    results = db.search(query) if query else db.all()
-    return [fair_to_dto(Fair(**result)) for result in results]
+def list_fairs(search_fair_query:Dict=None) -> List[FairDTO]:
+    
+    def search_query_func(record):
+        date = datetime.datetime.fromtimestamp(record['start_date'])
+        if search_fair_query.cities and record.get('city') not in search_fair_query.cities:
+            return False
+        if search_fair_query.months and date.month not in search_fair_query.months:
+            return False
+        if search_fair_query.years and date.year not in search_fair_query.years:
+            return False
+        return True
+    
+    return [fair_to_dto(Fair(**result)) for result in db.search(search_query_func)]
 
 
 def get_fair(id: str) -> FairDTO:
@@ -232,14 +241,31 @@ def list_fair_for_gantt_chart() -> pandas.DataFrame:
         fair: FairDTO = fair_to_dto(Fair(**fair_dict))
         
         pd_dict.append({
-            "Task": fair.location.city,
-            "Start": fair.start_date,
-            "Finish": fair.end_date,
-            "Resource": fair.location.city,
-            "Color": '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc',
-            "Completion": fair.days_before_start_date if fair.fair_incoming else fair.days_before_end_date if fair.fair_available_today else "Fair Done",
-            "Description": fair.name
+            "task": fair.location.city,
+            "start": fair.start_date,
+            "finish": fair.end_date,
+            "resource": fair.location.city,
+            "color": '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc',
+            "date": fair.days_before_start_date if fair.fair_incoming else fair.days_before_end_date if fair.fair_available_today else "Fair Done",
+            "name": fair.name
         })
         
     df = pandas.DataFrame(pd_dict)
     return df
+
+
+def list_fair_locations() -> List[Dict[str, str]]:
+    return list_locations_cities()
+
+def list_fair_months() -> List[Dict[str, str]]:
+    english_months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    
+    french_months = [
+        "janvier", "février", "mars", "avril", "mai", "juin",
+        "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+    ]
+    
+    return [{'key': en, 'value': fr} for en, fr in zip(english_months, french_months)]

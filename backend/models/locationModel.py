@@ -28,11 +28,11 @@ class Location(BaseModel):
     lat: Optional[float] = Field(None,description="Latitude value between -90 and 90.")
     lng: Optional[float] = Field(None, description="Longitude value between -180 and 180.")
 
-    @field_validator('city', 'state', 'city')
+    @field_validator('city', 'state', 'country')
     def non_empty_string(cls, value: str) -> str:
         if not value or not value.strip():
             raise ValueError("Must not be empty or blank")
-        return value.strip()
+        return value.strip().title()
 
     @field_validator('postal_code')
     def validate_postal_code_format(cls, v):

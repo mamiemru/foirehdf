@@ -55,7 +55,11 @@ def fair_view():
                     st.write(f"**{_("FAIR_DAYS_BEFORE_THE_FAIR")}**:  {fair.days_before_start_date} {_("DAYS")}")
 
                 if fair.fair_available_today:
-                    st.write(f"**{_("FAIR_DAYS_LEFT_UNTIL_END")}**:  {fair.days_before_end_date} {_("DAYS")}")
+                    if fair.days_before_end_date:
+                        st.write(f"**{_("FAIR_FOR_DATE")}**: {fair.days_before_end_date} {_("DAYS")}")
+                    else:
+                        st.write(f"**{_("FAIR_LAST_DAY")}**")
+                    
 
         with col2:
             if fair.official_ad_page:

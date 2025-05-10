@@ -73,3 +73,6 @@ def update_location(location_id: str, updated_location_dict: Dict) -> LocationDT
 
 def list_locations() -> List[LocationDTO]:
     return [location_to_dto(Location(**location)) for location in db.all()]
+
+def list_locations_cities() -> List[Dict[str, str]]:
+    return [{'key': location['id'], 'value': location['city']} for location in db.all()]

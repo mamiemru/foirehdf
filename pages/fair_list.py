@@ -8,10 +8,11 @@ from backend.dto.error_dto import ErrorResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_for_gantt_chart_endpoint
+from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_for_gantt_chart_endpoint, list_fair_locations_endpoint, list_fair_months_endpoint
 from backend.endpoints.fairEndpoint import list_fair_sort_by_status_endpoint
 
 from backend.models.fairModel import FairDTO, FairStatus
+from pages.form_input import DotDict
 
 
 @st.dialog("delete fair")
@@ -60,48 +61,71 @@ def display_fair(fair: FairDTO):
             date_str.append(f"**{_("FAIR_DAYS_BEFORE_THE_FAIR")}**:  {fair.days_before_start_date} {_("DAYS")}")
 
         elif fair.fair_available_today:
-            date_str.append(f"**{_("FAIR_DAYS_LEFT_UNTIL_END")}**:  {fair.days_before_end_date} {_("DAYS")}")
+            if fair.days_before_end_date:
+                date_str.append(f"**{_("FAIR_FOR_DATE")}**: {fair.days_before_end_date} {_("DAYS")}")
+            else:
+                date_str.append(f"**{_("FAIR_LAST_DAY")}**")
             
         st.caption(", ".join(date_str))
 
 
+@st.fragment
 def fair_list():
 
     fairs_struct: Dict[str, List[FairDTO]] = {}
     data_map: List[Dict[str, str]] = []
-    response: ResponseDto = list_fair_sort_by_status_endpoint()
+    response: ResponseDto = list_fair_sort_by_status_endpoint(search_fair_query=st.session_state.search_fair_query)
     if isinstance(response, SuccessResponse):
         fairs_struct = response.data['fairs']
         data_map = response.data['map']
+        
         
     gantt_chart_pd = None
     response: ResponseDto = list_fair_for_gantt_chart_endpoint()
     if isinstance(response, SuccessResponse):
         gantt_chart_pd = response.data
+        
+    cities: List[Dict[str, str]] = list_fair_locations_endpoint().data
+    months: List[Dict[str, str]] = list_fair_months_endpoint().data
+    years: List[int] = list(range(2023, 2027, 1))
 
-    st.title(_("FAIRS_LIST"))
-
-    col_search, col_add = st.columns([0.9, 0.1])
-
-    with col_search:
-        search_fair = st.text_input(_("FAIR_SEARCH"), label_visibility="collapsed")
-        if search_fair:
-            st.rerun()
-
-    with col_add:
+    colTitle, colAdd = st.columns([.8, .2])
+    with colTitle:
+        st.title(_("FAIRS_LIST"))
+    with colAdd:
         if getattr(st.session_state, 'admin', False):
             if st.button("", icon=":material/add:"):
                 st.switch_page("pages/fair_create.py")
-                
-    chart = alt.Chart(gantt_chart_pd).mark_bar().encode(
-        x="Start",
-        x2="Finish",
-        y="Task",
-        color="Color",
-        tooltip=["Description", "Completion"]
-    )
 
-    st.altair_chart(chart, use_container_width=True)
+    with st.expander(_("FAIR_SEARCH_TITLE"), expanded=False, icon=":material/search:"):
+        
+        st.session_state.search_fair_query.cities = st.multiselect(
+            _("FAIR_SEARCH_BY_CITY"), options=cities, default=st.session_state.search_fair_query.cities or None,
+            format_func=lambda c: c['value']
+        )
+        
+        st.session_state.search_fair_query.months = st.multiselect(
+            _("FAIR_SEARCH_BY_MONTH"), options=months, default=st.session_state.search_fair_query.months or None,
+            format_func=lambda m: m['value']
+        )
+        
+        st.session_state.search_fair_query.years = st.multiselect(
+            _("FAIR_SEARCH_BY_YEAR"), options=years, default=st.session_state.search_fair_query.years or None
+        )
+        
+        if st.button(_("FAIR_SEARCH_BUTTON")):
+            st.rerun(scope="fragment")
+    
+    with st.container(border=True):
+        chart = alt.Chart(gantt_chart_pd).mark_bar().encode(
+            x=alt.X('start', title=_("FAIR_DATES")),      
+            x2=alt.X2('finish'),
+            y=alt.Y('task', title=_("FAIR_LOCATIONS")),
+            color=alt.Color('color', scale=None),
+            tooltip=["name", "date"]
+        )
+
+        st.altair_chart(chart, use_container_width=True)
 
     st.header(f":green[{_('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY')}]")
     colCurrent, colMap = st.columns([.5, .5])
@@ -123,5 +147,7 @@ def fair_list():
         st.header(f":blue[{_('FAIR_LIST_FUNFAIRS_DONE')}]")
         for fair in fairs_struct[FairStatus.DONE]:
             display_fair(fair)
+
+st.session_state.search_fair_query = DotDict()
 
 fair_list()

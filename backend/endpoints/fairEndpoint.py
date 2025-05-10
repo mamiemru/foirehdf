@@ -11,7 +11,9 @@ from backend.dto.success_dto import SuccessResponse
 from backend.models.fairModel import FairBaseDTO, FairDTO, FairStatus
 
 
-from backend.services.fairService import create_fair, create_hidden_fair, get_fair_detailed, get_fair, delete_fair, list_fair_for_gantt_chart, list_fairs_containing_ride_id, update_fair
+from backend.services.fairService import create_fair, create_hidden_fair, get_fair_detailed, get_fair, list_fair_months
+from backend.services.fairService import delete_fair, list_fair_for_gantt_chart, list_fair_locations
+from backend.services.fairService import list_fairs_containing_ride_id, update_fair
 from backend.services.fairService import list_fairs
 
 
@@ -76,8 +78,8 @@ def update_fair_endpoint(id: str, updated_fair_dict: Dict) -> ResponseDto:
 def list_fairs_endpoint() -> ResponseDto:
     return ListResponse(data=list_fairs())
 
-def list_fair_sort_by_status_endpoint() -> ResponseDto:
-    fairs: List[FairDTO] = list_fairs()
+def list_fair_sort_by_status_endpoint(search_fair_query: Dict=None) -> ResponseDto:
+    fairs: List[FairDTO] = list_fairs(search_fair_query=search_fair_query)
     response: Dict = {
         'fairs': {
             str(FairStatus.INCOMING): [],
@@ -129,3 +131,9 @@ def list_fairs_containing_ride_id_endpoint(ride_id: str) -> ResponseDto:
 
 def list_fair_for_gantt_chart_endpoint() -> ResponseDto:
     return SuccessResponse(data=list_fair_for_gantt_chart())
+
+def list_fair_locations_endpoint() -> ResponseDto:
+    return ListResponse(data=list_fair_locations())
+
+def list_fair_months_endpoint() -> ResponseDto:
+    return ListResponse(data=list_fair_months())

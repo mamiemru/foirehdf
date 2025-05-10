@@ -126,3 +126,4 @@ class FairDTO(FairBaseDTO):
     city_event_page: Optional[str] = None
     walk_tour_video: Optional[str] = None
     facebook_event_page: Optional[str] = None
+

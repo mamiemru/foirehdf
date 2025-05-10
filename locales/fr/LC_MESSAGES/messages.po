@@ -179,6 +179,18 @@ msgstr "Foire hors périmètre"
 msgid "FAIR_LOCATION_ID"
 msgstr "Selectionner une addresse"
 
+msgid "FAIR_LAST_DAY"
+msgstr "C'est le dernier jour"
+
+msgid "FAIR_SEARCH_BY_CITY"
+msgstr "Chercher par ville"
+
+msgid "FAIR_SEARCH_BY_MONTH"
+msgstr "Chercher par mois"
+
+msgid "FAIR_SEARCH_BY_YEAR"
+msgstr "Chercher par années"
+
 msgid "FAIR_CREATE_LOCATION"
 msgstr "Ajouter une addresse"
 

@@ -155,6 +155,27 @@ msgstr "Information de la foire"
 msgid "FAIR_SEARCH"
 msgstr "Chercher une foire"
 
+msgid "FAIR_SEARCH_BUTTON"
+msgstr "Appliquer les filtres"
+
+msgid "FAIR_SEARCH_BUTTON_RESET"
+msgstr "Re-initialiser les filtres"
+
+msgid "FAIR_NO_FAIRS_TO_DISPLAY_BY_SEARCH"
+msgstr "Aucune foire à afficher (Essayer de changer vos filtrers)"
+
+msgid "FAIR_NO_FAIRS_TO_DISPLAY"
+msgstr "Aucune foire à afficher"
+
+msgid "FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"
+msgstr "Aucune foire actuellement"
+
+msgid "FAIR_NO_FAIRS_COMMING_SOON"
+msgstr "Aucune foire à venir"
+
+msgid "FAIR_NO_FAIRS_DONE"
+msgstr "Aucune foire terminée"
+
 msgid "FAIR_VIEW_FAIR"
 msgstr "La foire en détails"
 
@@ -182,14 +203,17 @@ msgstr "Selectionner une addresse"
 msgid "FAIR_LAST_DAY"
 msgstr "C'est le dernier jour"
 
+msgid "FAIR_SEARCH_TITLE"
+msgstr "Chercher / Filtrer foires"
+
 msgid "FAIR_SEARCH_BY_CITY"
 msgstr "Chercher par ville"
 
-msgid "FAIR_SEARCH_BY_MONTH"
-msgstr "Chercher par mois"
+msgid "FAIR_SEARCH_BY_MIN_DATE"
+msgstr "Foire à partir de cette date"
 
-msgid "FAIR_SEARCH_BY_YEAR"
-msgstr "Chercher par années"
+msgid "FAIR_SEARCH_BY_MAX_DATE"
+msgstr "Foires jusqua cette date"
 
 msgid "FAIR_CREATE_LOCATION"
 msgstr "Ajouter une addresse"

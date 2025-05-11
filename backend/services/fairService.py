@@ -193,17 +193,23 @@ def save_hidden_fair(fair: FairBase, update_id: str=None) -> bool:
 
 def list_fairs(search_fair_query:Dict=None) -> List[FairDTO]:
     
+    cities = [obj['key'] for obj in search_fair_query.cities] if search_fair_query.cities else []
+    date_min = search_fair_query.date_min or None
+    date_max = search_fair_query.date_max or None
+    
     def search_query_func(record):
-        date = datetime.datetime.fromtimestamp(record['start_date'])
-        if search_fair_query.cities and record.get('city') not in search_fair_query.cities:
+        date = datetime.datetime.fromtimestamp(record['start_date']).date()
+        print(cities, record.get('location_id'), date_min, date, date_max)
+        if cities and record.get('location_id') not in cities:
             return False
-        if search_fair_query.months and date.month not in search_fair_query.months:
+        if date_min and date < date_min:
             return False
-        if search_fair_query.years and date.year not in search_fair_query.years:
+        if date_max and date_max < date:
             return False
         return True
-    
-    return [fair_to_dto(Fair(**result)) for result in db.search(search_query_func)]
+
+    f = [fair_to_dto(Fair(**result)) for result in db.all() if search_query_func(result)]
+    return f
 
 
 def get_fair(id: str) -> FairDTO:
@@ -233,25 +239,6 @@ def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
     ## fairs.extend(hidden_fairs)
     fairs.sort(key=lambda fair: fair.start_date, reverse=True)
     return fairs
-
-
-def list_fair_for_gantt_chart() -> pandas.DataFrame:
-    pd_dict: List[Dict[str, str]] = list()
-    for fair_dict in db.all():
-        fair: FairDTO = fair_to_dto(Fair(**fair_dict))
-        
-        pd_dict.append({
-            "task": fair.location.city,
-            "start": fair.start_date,
-            "finish": fair.end_date,
-            "resource": fair.location.city,
-            "color": '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc',
-            "date": fair.days_before_start_date if fair.fair_incoming else fair.days_before_end_date if fair.fair_available_today else "Fair Done",
-            "name": fair.name
-        })
-        
-    df = pandas.DataFrame(pd_dict)
-    return df
 
 
 def list_fair_locations() -> List[Dict[str, str]]:

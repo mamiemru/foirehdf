@@ -2116,3 +2116,750 @@ Traceback (most recent call last):
   File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
 pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
   Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+2025-05-11 06:48:07.077 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 10:02:21.103 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:05:03.295 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:07:25.015 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:11:44.593 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:13:44.305 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:14:34.698 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:14:35.847 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:14:35.866 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 143, in fair_list
+    st.map(data=data_map, latitude="lat", longitude="lng", size="size", color="color", zoom=7)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 242, in map
+    deck_gl_json = to_deckgl_json(
+                   ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 276, in to_deckgl_json
+    lat_col_name = _get_lat_or_lon_col_name(df, "latitude", lat, _DEFAULT_LAT_COL_NAMES)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 351, in _get_lat_or_lon_col_name
+    raise StreamlitAPIException(
+streamlit.errors.StreamlitAPIException: Map data must contain a latitude column named: 'LAT', 'LATITUDE', 'lat', 'latitude'. Existing columns: 
+2025-05-11 13:17:03.657 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:17:08.267 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:17:11.518 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:18:55.849 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:18:56.871 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:18:56.889 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 149, in fair_list
+    st.map(data=data_map, latitude="lat", longitude="lng", size="size", color="color", zoom=7)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 242, in map
+    deck_gl_json = to_deckgl_json(
+                   ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 276, in to_deckgl_json
+    lat_col_name = _get_lat_or_lon_col_name(df, "latitude", lat, _DEFAULT_LAT_COL_NAMES)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 351, in _get_lat_or_lon_col_name
+    raise StreamlitAPIException(
+streamlit.errors.StreamlitAPIException: Map data must contain a latitude column named: 'LAT', 'LATITUDE', 'lat', 'latitude'. Existing columns: 
+2025-05-11 13:18:58.229 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+2025-05-11 13:18:58.246 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 149, in fair_list
+    st.map(data=data_map, latitude="lat", longitude="lng", size="size", color="color", zoom=7)
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 242, in map
+    deck_gl_json = to_deckgl_json(
+                   ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 276, in to_deckgl_json
+    lat_col_name = _get_lat_or_lon_col_name(df, "latitude", lat, _DEFAULT_LAT_COL_NAMES)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/map.py", line 351, in _get_lat_or_lon_col_name
+    raise StreamlitAPIException(
+streamlit.errors.StreamlitAPIException: Map data must contain a latitude column named: 'LAT', 'LATITUDE', 'lat', 'latitude'. Existing columns: 
+  Stopping...
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://51.178.26.35:8501
+  External URL: http://51.178.26.35:8501
+
+[] 681785f093d20116d052b86f None 2024-12-31 None
+[] 681785f093d20116d052b870 None 2025-03-13 None
+[] 68190eff93d2010952070b8d None 2025-04-04 None
+[] 681785f093d20116d052b872 None 2024-08-24 None
+[] 681785f093d20116d052b872 None 2025-04-05 None
+[] 681785f093d20116d052b873 None 2025-02-14 None
+[] 681785f093d20116d052b874 None 2025-01-18 None
+[] 681785f093d20116d052b875 None 2024-05-01 None
+[] 681785f093d20116d052b876 None 2024-07-05 None
+[] 681785f093d20116d052b877 None 2024-08-09 None
+[] 681785f093d20116d052b878 None 2024-07-27 None
+[] 68190cab93d2010952070b87 None 2024-06-21 None
+[] 68190d6293d2010952070b89 None 2024-03-22 None
+[] 68190def93d2010952070b8b None 2024-07-20 None
+[] 68190eff93d2010952070b8d None 2024-08-23 None
+[] 68190fad93d2010952070b91 None 2025-06-21 None
+[] 681785f093d20116d052b875 None 2025-05-23 None
+2025-05-11 14:16:12.464 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+[] 681785f093d20116d052b86f None 2024-12-31 None
+[] 681785f093d20116d052b870 None 2025-03-13 None
+[] 68190eff93d2010952070b8d None 2025-04-04 None
+[] 681785f093d20116d052b872 None 2024-08-24 None
+[] 681785f093d20116d052b872 None 2025-04-05 None
+[] 681785f093d20116d052b873 None 2025-02-14 None
+[] 681785f093d20116d052b874 None 2025-01-18 None
+[] 681785f093d20116d052b875 None 2024-05-01 None
+[] 681785f093d20116d052b876 None 2024-07-05 None
+[] 681785f093d20116d052b877 None 2024-08-09 None
+[] 681785f093d20116d052b878 None 2024-07-27 None
+[] 68190cab93d2010952070b87 None 2024-06-21 None
+[] 68190d6293d2010952070b89 None 2024-03-22 None
+[] 68190def93d2010952070b8b None 2024-07-20 None
+[] 68190eff93d2010952070b8d None 2024-08-23 None
+[] 68190fad93d2010952070b91 None 2025-06-21 None
+[] 681785f093d20116d052b875 None 2025-05-23 None
+2025-05-11 14:16:24.841 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+['681785f093d20116d052b872'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872'] 681785f093d20116d052b875 None 2025-05-23 None
+['681785f093d20116d052b872'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872'] 681785f093d20116d052b875 None 2025-05-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2025-05-23 None
+2025-05-11 14:16:29.066 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2025-05-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2025-05-23 None
+2025-05-11 14:16:30.314 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2025-05-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2025-05-23 None
+2025-05-11 14:16:32.147 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f None 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 None 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 None 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 None 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 None 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 None 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 None 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 None 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 None 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 None 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b None 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d None 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 None 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 None 2025-05-23 None
+2025-05-11 14:16:42.516 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f 2025-01-01 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 2025-01-01 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d 2025-01-01 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 2025-01-01 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 2025-01-01 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 2025-01-01 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 2025-01-01 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 2025-01-01 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 2025-01-01 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 2025-01-01 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 2025-01-01 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 2025-01-01 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 2025-01-01 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b 2025-01-01 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d 2025-01-01 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 2025-01-01 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 2025-01-01 2025-05-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f 2025-01-01 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 2025-01-01 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d 2025-01-01 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 2025-01-01 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 2025-01-01 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 2025-01-01 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 2025-01-01 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 2025-01-01 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 2025-01-01 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 2025-01-01 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 2025-01-01 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 2025-01-01 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 2025-01-01 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b 2025-01-01 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d 2025-01-01 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 2025-01-01 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 2025-01-01 2025-05-23 None
+2025-05-11 14:16:43.520 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b86f 2025-01-01 2024-12-31 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b870 2025-01-01 2025-03-13 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d 2025-01-01 2025-04-04 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 2025-01-01 2024-08-24 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b872 2025-01-01 2025-04-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b873 2025-01-01 2025-02-14 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b874 2025-01-01 2025-01-18 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 2025-01-01 2024-05-01 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b876 2025-01-01 2024-07-05 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b877 2025-01-01 2024-08-09 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b878 2025-01-01 2024-07-27 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190cab93d2010952070b87 2025-01-01 2024-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190d6293d2010952070b89 2025-01-01 2024-03-22 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190def93d2010952070b8b 2025-01-01 2024-07-20 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190eff93d2010952070b8d 2025-01-01 2024-08-23 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 68190fad93d2010952070b91 2025-01-01 2025-06-21 None
+['681785f093d20116d052b872', '681785f093d20116d052b875'] 681785f093d20116d052b875 2025-01-01 2025-05-23 None
+2025-05-11 14:17:00.462 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')
+[] 681785f093d20116d052b86f 2025-01-01 2024-12-31 None
+[] 681785f093d20116d052b870 2025-01-01 2025-03-13 None
+[] 68190eff93d2010952070b8d 2025-01-01 2025-04-04 None
+[] 681785f093d20116d052b872 2025-01-01 2024-08-24 None
+[] 681785f093d20116d052b872 2025-01-01 2025-04-05 None
+[] 681785f093d20116d052b873 2025-01-01 2025-02-14 None
+[] 681785f093d20116d052b874 2025-01-01 2025-01-18 None
+[] 681785f093d20116d052b875 2025-01-01 2024-05-01 None
+[] 681785f093d20116d052b876 2025-01-01 2024-07-05 None
+[] 681785f093d20116d052b877 2025-01-01 2024-08-09 None
+[] 681785f093d20116d052b878 2025-01-01 2024-07-27 None
+[] 68190cab93d2010952070b87 2025-01-01 2024-06-21 None
+[] 68190d6293d2010952070b89 2025-01-01 2024-03-22 None
+[] 68190def93d2010952070b8b 2025-01-01 2024-07-20 None
+[] 68190eff93d2010952070b8d 2025-01-01 2024-08-23 None
+[] 68190fad93d2010952070b91 2025-01-01 2025-06-21 None
+[] 681785f093d20116d052b875 2025-01-01 2025-05-23 None
+[] 681785f093d20116d052b86f 2025-01-01 2024-12-31 None
+[] 681785f093d20116d052b870 2025-01-01 2025-03-13 None
+[] 68190eff93d2010952070b8d 2025-01-01 2025-04-04 None
+[] 681785f093d20116d052b872 2025-01-01 2024-08-24 None
+[] 681785f093d20116d052b872 2025-01-01 2025-04-05 None
+[] 681785f093d20116d052b873 2025-01-01 2025-02-14 None
+[] 681785f093d20116d052b874 2025-01-01 2025-01-18 None
+[] 681785f093d20116d052b875 2025-01-01 2024-05-01 None
+[] 681785f093d20116d052b876 2025-01-01 2024-07-05 None
+[] 681785f093d20116d052b877 2025-01-01 2024-08-09 None
+[] 681785f093d20116d052b878 2025-01-01 2024-07-27 None
+[] 68190cab93d2010952070b87 2025-01-01 2024-06-21 None
+[] 68190d6293d2010952070b89 2025-01-01 2024-03-22 None
+[] 68190def93d2010952070b8b 2025-01-01 2024-07-20 None
+[] 68190eff93d2010952070b8d 2025-01-01 2024-08-23 None
+[] 68190fad93d2010952070b91 2025-01-01 2025-06-21 None
+[] 681785f093d20116d052b875 2025-01-01 2025-05-23 None
+2025-05-11 14:17:01.525 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column date with type object')

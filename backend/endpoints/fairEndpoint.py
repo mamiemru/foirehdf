@@ -1,6 +1,8 @@
 
+import datetime
 from typing import Dict, List
 
+import pandas
 from pydantic_core._pydantic_core import ValidationError
 
 from backend.dto.error_dto import ErrorResponse
@@ -12,7 +14,7 @@ from backend.models.fairModel import FairBaseDTO, FairDTO, FairStatus
 
 
 from backend.services.fairService import create_fair, create_hidden_fair, get_fair_detailed, get_fair, list_fair_months
-from backend.services.fairService import delete_fair, list_fair_for_gantt_chart, list_fair_locations
+from backend.services.fairService import delete_fair, list_fair_locations
 from backend.services.fairService import list_fairs_containing_ride_id, update_fair
 from backend.services.fairService import list_fairs
 
@@ -80,13 +82,15 @@ def list_fairs_endpoint() -> ResponseDto:
 
 def list_fair_sort_by_status_endpoint(search_fair_query: Dict=None) -> ResponseDto:
     fairs: List[FairDTO] = list_fairs(search_fair_query=search_fair_query)
+    pd_dict: List[Dict[str, str]] = list()
     response: Dict = {
         'fairs': {
             str(FairStatus.INCOMING): [],
             str(FairStatus.DONE): [],
             str(FairStatus.CURRENTLY_AVAILABLE): []
         },
-        'map': []
+        'map': [],
+        'gantt': None
     }
 
     for fair in fairs:
@@ -99,9 +103,23 @@ def list_fair_sort_by_status_endpoint(search_fair_query: Dict=None) -> ResponseD
                 {'color': color, 'lng': fair.location.lng, 'lat': fair.location.lat, 'size': size}
             )
             
+        pd_dict.append({
+            "task": fair.location.city,
+            "start": fair.start_date,
+            "finish": fair.end_date,
+            "resource": fair.location.city,
+            "color": '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc',
+            "date": fair.days_before_start_date if fair.fair_incoming else fair.days_before_end_date if fair.fair_available_today else "Fair Done",
+            "start_date": fair.start_date.strftime('%d %B %Y'),
+            "end_date": fair.end_date.strftime('%d %B %Y'),
+            "name": fair.name
+        })
+    
     for key, fair_list in response['fairs'].items():
         response['fairs'][key] = sorted(fair_list, key=lambda fair: fair.start_date, reverse=True)
 
+
+    response['gantt'] = pandas.DataFrame(pd_dict)
     return SuccessResponse(data=response)
 
 
@@ -128,9 +146,6 @@ def delete_fair_endpoint(fair_id: str) -> ResponseDto:
 
 def list_fairs_containing_ride_id_endpoint(ride_id: str) -> ResponseDto:
     return SuccessResponse(data=list_fairs_containing_ride_id(ride_id))
-
-def list_fair_for_gantt_chart_endpoint() -> ResponseDto:
-    return SuccessResponse(data=list_fair_for_gantt_chart())
 
 def list_fair_locations_endpoint() -> ResponseDto:
     return ListResponse(data=list_fair_locations())

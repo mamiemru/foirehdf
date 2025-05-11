@@ -8,7 +8,7 @@ from backend.dto.error_dto import ErrorResponse
 from backend.dto.response_dto import ResponseDto
 from backend.dto.success_dto import SuccessResponse
 
-from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_for_gantt_chart_endpoint, list_fair_locations_endpoint, list_fair_months_endpoint
+from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_locations_endpoint
 from backend.endpoints.fairEndpoint import list_fair_sort_by_status_endpoint
 
 from backend.models.fairModel import FairDTO, FairStatus
@@ -72,22 +72,17 @@ def display_fair(fair: FairDTO):
 @st.fragment
 def fair_list():
 
-    fairs_struct: Dict[str, List[FairDTO]] = {}
+    gantt_chart_pd = None
     data_map: List[Dict[str, str]] = []
+    fairs_struct: Dict[str, List[FairDTO]] = {}
     response: ResponseDto = list_fair_sort_by_status_endpoint(search_fair_query=st.session_state.search_fair_query)
     if isinstance(response, SuccessResponse):
         fairs_struct = response.data['fairs']
         data_map = response.data['map']
-        
-        
-    gantt_chart_pd = None
-    response: ResponseDto = list_fair_for_gantt_chart_endpoint()
-    if isinstance(response, SuccessResponse):
-        gantt_chart_pd = response.data
+        gantt_chart_pd = response.data['gantt']
+
         
     cities: List[Dict[str, str]] = list_fair_locations_endpoint().data
-    months: List[Dict[str, str]] = list_fair_months_endpoint().data
-    years: List[int] = list(range(2023, 2027, 1))
 
     colTitle, colAdd = st.columns([.8, .2])
     with colTitle:
@@ -103,50 +98,72 @@ def fair_list():
             _("FAIR_SEARCH_BY_CITY"), options=cities, default=st.session_state.search_fair_query.cities or None,
             format_func=lambda c: c['value']
         )
+        colDmin, colDmax = st.columns([.5, .5])
+        with colDmin:
+            st.session_state.search_fair_query.date_min = st.date_input(_("FAIR_SEARCH_BY_MIN_DATE"), value=st.session_state.search_fair_query.date_min or None)
+        with colDmax:
+            st.session_state.search_fair_query.date_max = st.date_input( _("FAIR_SEARCH_BY_MAX_DATE"), value=st.session_state.search_fair_query.date_max or None)
         
-        st.session_state.search_fair_query.months = st.multiselect(
-            _("FAIR_SEARCH_BY_MONTH"), options=months, default=st.session_state.search_fair_query.months or None,
-            format_func=lambda m: m['value']
-        )
-        
-        st.session_state.search_fair_query.years = st.multiselect(
-            _("FAIR_SEARCH_BY_YEAR"), options=years, default=st.session_state.search_fair_query.years or None
-        )
-        
-        if st.button(_("FAIR_SEARCH_BUTTON")):
-            st.rerun(scope="fragment")
+        colApply, colCancel = st.columns([.5, .5])
+        with colApply:
+            if st.button(_("FAIR_SEARCH_BUTTON"), type="primary", use_container_width=True):
+                st.rerun(scope="fragment")
+        with colCancel:
+            if st.button(_("FAIR_SEARCH_BUTTON_RESET"), use_container_width=True):
+                st.session_state.search_fair_query.clear()
+                st.rerun(scope="fragment")
     
-    with st.container(border=True):
-        chart = alt.Chart(gantt_chart_pd).mark_bar().encode(
-            x=alt.X('start', title=_("FAIR_DATES")),      
-            x2=alt.X2('finish'),
-            y=alt.Y('task', title=_("FAIR_LOCATIONS")),
-            color=alt.Color('color', scale=None),
-            tooltip=["name", "date"]
-        )
+    if data_map:
+        with st.container(border=True):
+            chart = alt.Chart(gantt_chart_pd).mark_bar().encode(
+                x=alt.X('start', title=_("FAIR_DATES")),      
+                x2=alt.X2('finish'),
+                y=alt.Y('task', title=_("CITY")),
+                color=alt.Color('color', scale=None),
+                tooltip=[
+                    {"field": "name", "title": _("FAIR_TITLE")},
+                    {"field": "start_date", "title": _("FAIR_FROM_DATE")},
+                    {"field": "end_date", "title": _("FAIR_UNTIL_DATE")},
+                    {"field": "date", "title": _("FAIR_FOR_DATE")}
+                ]
+            )
 
-        st.altair_chart(chart, use_container_width=True)
+            st.altair_chart(chart, use_container_width=True)
 
-    st.header(f":green[{_('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY')}]")
-    colCurrent, colMap = st.columns([.5, .5])
-    with colCurrent:
-        with st.container(height=500, border=False):
-            for fair in fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
-                display_fair(fair)
+        st.header(f":green[{_('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY')}]")
+        colCurrent, colMap = st.columns([.5, .5])
+        with colCurrent:
+            with st.container(height=500, border=False):
+                if fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
+                    for fair in fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
+                        display_fair(fair)
+                else:
+                    st.write(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
+        
+        with colMap:
+            st.map(data=data_map, latitude="lat", longitude="lng", size="size", color="color", zoom=7)
 
-    with colMap:
-        st.map(data=data_map, latitude="lat", longitude="lng", size="size", color="color", zoom=7)
+        colComming, colPast = st.columns([.5, .5])
+        with colComming:
+            st.header(f":orange[{_('FAIR_LIST_FUNFAIRS_COMING_SOON')}]")
+            if fairs_struct[FairStatus.INCOMING]:
+                for fair in fairs_struct[FairStatus.INCOMING]:
+                    display_fair(fair)
+            else:
+                st.write(_("FAIR_NO_FAIRS_COMMING_SOON"))
 
-    colComming, colPast = st.columns([.5, .5])
-    with colComming:
-        st.header(f":orange[{_('FAIR_LIST_FUNFAIRS_COMING_SOON')}]")
-        for fair in fairs_struct[FairStatus.INCOMING]:
-            display_fair(fair)
-
-    with colPast:
-        st.header(f":blue[{_('FAIR_LIST_FUNFAIRS_DONE')}]")
-        for fair in fairs_struct[FairStatus.DONE]:
-            display_fair(fair)
+        with colPast:
+            st.header(f":blue[{_('FAIR_LIST_FUNFAIRS_DONE')}]")
+            if fairs_struct[FairStatus.DONE]:
+                for fair in fairs_struct[FairStatus.DONE]:
+                    display_fair(fair)
+            else:
+                st.write(_("FAIR_NO_FAIRS_DONE"))
+    else:
+        if st.session_state.search_fair_query:
+            st.header(_("FAIR_NO_FAIRS_TO_DISPLAY_BY_SEARCH"))
+        else:
+            st.header(_("FAIR_NO_FAIRS_TO_DISPLAY"))
 
 st.session_state.search_fair_query = DotDict()
 

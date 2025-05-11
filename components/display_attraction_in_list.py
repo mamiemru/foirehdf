@@ -8,7 +8,7 @@ def display_ride_as_item_in_list(_, st, attraction):
                 <div style="display:flex; align-items:center; gap:15px; margin-bottom:10px;">
                     <h2 style="margin:0; font-size:24px; color:#FF8B17;">{attraction.name}</h2>
                 </div>
-                <div style="display:flex; align-items:center; padding:15px; box-shadow:2px 2px 10px rgba(0,0,0,0.1); margin-bottom:20px;">
+                <div style="display:flex; align-items:center; padding:15px; margin-bottom:20px;">
                     <div style="flex:2; padding-right:15px;">
                         <p style="font-size:14px; color:#555; margin:5px 0; display:flex; align-items:center; gap:5px;">
                             <span style="background-color:#3399ff; color:white; padding:3px 8px; border-radius:5px; font-weight:bold;">

@@ -199,7 +199,6 @@ def list_fairs(search_fair_query:Dict=None) -> List[FairDTO]:
     
     def search_query_func(record):
         date = datetime.datetime.fromtimestamp(record['start_date']).date()
-        print(cities, record.get('location_id'), date_min, date, date_max)
         if cities and record.get('location_id') not in cities:
             return False
         if date_min and date < date_min:

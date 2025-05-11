@@ -20,10 +20,10 @@ from backend.dto.success_dto import SuccessResponse
 from backend.dto.list_dto import ListResponse
 
 
-def list_attractions_endpoint() -> ResponseDto:
+def list_attractions_endpoint(search_ride_query: dict = None) -> ResponseDto:
 
     try:
-        rides: List[AttractionDTO] = list_attractions()
+        rides: List[AttractionDTO] = list_attractions(search_ride_query=search_ride_query)
         rides_count: int = len(rides)
     except Exception as e:
         return ErrorResponse(

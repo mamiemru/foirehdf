@@ -248,6 +248,30 @@ msgstr "Nom du fabricant"
 msgid "MANUFACTURER_LIST_SEARCH"
 msgstr "Chercher un fabricant"
 
+msgid "RIDES_LIST"
+msgstr "Liste des manèges"
+
+msgid "RIDES_SEARCH_TITLE"
+msgstr "Chercher / filtrer manèges"
+
+msgid "RIDES_NO_RIDES_TO_DISPLAY"
+msgstr "Aucun manège à afficher (Essayer de changer vos filtrers)"
+
+msgid "RIDES_NO_RIDES_TO_DISPLAY_BY_SEARCH"
+msgstr "Aucun manège à afficher"
+
+msgid "RIDES_SEARCH_BUTTON"
+msgstr "Appliquer les filtres"
+
+msgid "RIDES_SEARCH_BUTTON_RESET"
+msgstr "Re-initialiser les filtres"
+
+msgid "RIDES_SEARCH_BY_ATTRACTION_TYPE"
+msgstr "Filtrer par type de manège"
+
+msgid "RIDES_SEARCH_BY_MANUFACTURER"
+msgstr "Filtrer par fabricants"
+
 msgid "RIDE_ATTRACTION_TYPE"
 msgstr "Type de manège"
 

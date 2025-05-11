@@ -125,9 +125,19 @@ def list_attractions_names() -> List[str]:
     results = db.all()
     return [result['name'] for result in results ]
 
-def list_attractions() -> List[AttractionDTO]:
-    rides: List[Attraction] = [Attraction(**result) for result in db.all()]
-    return [attraction_to_dto(ride) for ride in rides]
+def list_attractions(search_ride_query: Dict=None) -> List[AttractionDTO]:
+    
+    attraction_type = search_ride_query.attraction_type[:]
+    manufacturers = [m.id for m in search_ride_query.manufacturers]
+    
+    def search_ride_query_funct(record):
+        if attraction_type and record['attraction_type'] not in attraction_type:
+            return False
+        if manufacturers and record['manufacturer_id'] not in manufacturers:
+            return False
+        return True
+    
+    return [attraction_to_dto(Attraction(**ride)) for ride in db.all() if search_ride_query_funct(ride)]
 
 def get_attraction_by_id(attraction_id: str) -> AttractionDTO:
     result = db.search(AttractionQuery.id == attraction_id)

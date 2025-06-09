@@ -2,29 +2,18 @@ from typing import Dict, List
 import streamlit as st
 
 from backend.dto.attraction_dto import AttractionImageDTO
-from backend.dto.error_dto import ErrorResponse
-from backend.dto.response_dto import ResponseDto
-from backend.dto.success_dto import SuccessResponse
 
-from backend.endpoints.attractionsEndpoint import list_attractions_names_and_id_endpoint
-from backend.endpoints.attractionsEndpoint import get_attraction_image_by_id_endpoint
-from backend.endpoints.fairEndpoint import get_fair_detailed_endpoint
-from backend.endpoints.fairEndpoint import update_fair_endpoint
-from backend.models.fairModel import FairDTO
+from backend.services.attractionService import list_attractions_names_and_id
+from backend.services.attractionService import list_attraction_images_to_dto
+from backend.services.fairService import get_fair_detailed
+from backend.services.fairService import update_fair
+from backend.dto.fair_dto import FairDTO
 
 
 def fair_edit():
     
-    response: ResponseDto = get_fair_detailed_endpoint(id=st.session_state.fair_id)
-    if isinstance(response, ErrorResponse):
-        st.switch_page("pages/fair_list.py")
-        
-    fair: FairDTO = response.data
-        
-    attractions_array: Dict[str, List[str]] = {}
-    response: ResponseDto = list_attractions_names_and_id_endpoint()
-    if isinstance(response, SuccessResponse):
-        attractions_array = response.data
+    fair: FairDTO = get_fair_detailed(id=st.session_state.fair_id)
+    attractions_array: Dict[str, List[str]] = list_attractions_names_and_id()
 
     st.title(_("FAIR_EDIT_FAIR"))
 
@@ -86,20 +75,19 @@ def fair_edit():
                 'walk_tour_video': walk_tour_video, 'official_ad_page': official_ad_page,
                 'facebook_event_page': facebook_event_page, 'city_event_page': city_event_page
             }
-            response: ResponseDto = update_fair_endpoint(updated_fair_dict=fair_form, id=fair.id)
-            if isinstance(response, SuccessResponse):
-                st.success(response.message, icon=":material/check_circle:")
+            try:
+                update_fair(updated_fair_dict=fair_form, id=fair.id)
+            except Exception as e:
+                st.error(e, icon=":material/close:")
+            else:
+                st.success("fair edited", icon=":material/check_circle:")
                 st.rerun()
-            elif isinstance(response, ErrorResponse):
-                    st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
     with col2:
         for attraction_id in [attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]:
-            response: ResponseDto = get_attraction_image_by_id_endpoint(attraction_id)
-            if isinstance(response, SuccessResponse):
-                image: AttractionImageDTO = response.data
-                if image:
-                    st.image(image.path, width=100)
+            image: AttractionImageDTO = list_attraction_images_to_dto(attraction_id=attraction_id)
+            if image:
+                st.image(image.path, width=100)
 
 
 if "fair_id" in st.session_state and st.session_state.fair_id:

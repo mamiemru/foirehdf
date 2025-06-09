@@ -1,17 +1,15 @@
-
+from datetime import datetime
 from typing import List, Dict
+from dateutil.relativedelta import relativedelta
 
 import altair as alt
 import streamlit as st
 
-from backend.dto.error_dto import ErrorResponse
-from backend.dto.response_dto import ResponseDto
-from backend.dto.success_dto import SuccessResponse
-
-from backend.endpoints.fairEndpoint import delete_fair_endpoint, list_fair_locations_endpoint
-from backend.endpoints.fairEndpoint import list_fair_sort_by_status_endpoint
-
-from backend.models.fairModel import FairDTO, FairStatus
+from backend.services.fairService import list_fair_locations
+from backend.services.fairService import delete_fair
+from backend.services.fairService import list_fair_sort_by_status
+from backend.models.fairModel import FairStatus
+from backend.dto.fair_dto import FairDTO
 from pages.form_input import DotDict
 
 
@@ -20,13 +18,8 @@ def delete_fair_dialog(fair_dto: FairDTO):
     st.subheader(_("FAIR_DELETE_A_FAIR"))
     st.write(f"{_('FAIR_ARE_YOU_SURE_TO_DELETE')} {fair_dto.name}")
     if st.button(_("DELETE")):
-        response: ResponseDto = delete_fair_endpoint(fair_dto.id)
-        if isinstance(response, SuccessResponse):
-            st.success(response.message, icon=":material/check_circle:")
-            st.rerun()
-        elif isinstance(response, ErrorResponse):
-            st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
-
+        delete_fair(fair_dto.id)
+        st.rerun()
 
 def display_fair(fair: FairDTO):
     with st.container(border=True):
@@ -62,7 +55,7 @@ def display_fair(fair: FairDTO):
 
         elif fair.fair_available_today:
             if fair.days_before_end_date:
-                date_str.append(f"**{_("FAIR_FOR_DATE")}**: {fair.days_before_end_date} {_("DAYS")}")
+                date_str.append(f"**{_("FAIR_DAYS_LEFT_UNTIL_END")}**: {fair.days_before_end_date} {_("DAYS")}")
             else:
                 date_str.append(f"**{_("FAIR_LAST_DAY")}**")
             
@@ -75,15 +68,13 @@ def fair_list():
     gantt_chart_pd = None
     data_map: List[Dict[str, str]] = []
     fairs_struct: Dict[str, List[FairDTO]] = {}
-    response: ResponseDto = list_fair_sort_by_status_endpoint(search_fair_query=st.session_state.search_fair_query)
-    if isinstance(response, SuccessResponse):
-        fairs_struct = response.data['fairs']
-        data_map = response.data['map']
-        gantt_chart_pd = response.data['gantt']
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)
+    fairs_struct = fairs_by_status['fairs']
+    data_map = fairs_by_status['map']
+    gantt_chart_pd = fairs_by_status['gantt']
 
         
-    cities: List[Dict[str, str]] = list_fair_locations_endpoint().data
-
+    cities: List[Dict[str, str]] = list_fair_locations()
     colTitle, colAdd = st.columns([.8, .2])
     with colTitle:
         st.title(_("FAIRS_LIST"))
@@ -124,7 +115,7 @@ def fair_list():
                     {"field": "name", "title": _("FAIR_TITLE")},
                     {"field": "start_date", "title": _("FAIR_FROM_DATE")},
                     {"field": "end_date", "title": _("FAIR_UNTIL_DATE")},
-                    {"field": "date", "title": _("FAIR_FOR_DATE")}
+                    {"field": "date", "title": _("FAIR_DAYS_BEFORE_THE_FAIR")}
                 ]
             )
 
@@ -147,7 +138,7 @@ def fair_list():
         with colComming:
             st.header(f":orange[{_('FAIR_LIST_FUNFAIRS_COMING_SOON')}]")
             if fairs_struct[FairStatus.INCOMING]:
-                for fair in fairs_struct[FairStatus.INCOMING]:
+                for fair in sorted(fairs_struct[FairStatus.INCOMING], key=lambda f: f.start_date):
                     display_fair(fair)
             else:
                 st.write(_("FAIR_NO_FAIRS_COMMING_SOON"))
@@ -166,5 +157,5 @@ def fair_list():
             st.header(_("FAIR_NO_FAIRS_TO_DISPLAY"))
 
 st.session_state.search_fair_query = DotDict()
-
+st.session_state.search_fair_query.date_min = (datetime.now() - relativedelta(months=2)).date()
 fair_list()

@@ -1,30 +1,16 @@
 from typing import Dict, List
 import streamlit as st
 
-from backend.dto.attraction_dto import AttractionImageDTO
-from backend.dto.error_dto import ErrorResponse
-from backend.dto.list_dto import ListResponse
-from backend.dto.response_dto import ResponseDto
-from backend.dto.success_dto import SuccessResponse
+from backend.services.attractionService import list_attractions_names_and_id
+from backend.services.fairService import create_fair, create_hidden_fair
+from backend.services.locationService import list_locations
 
-from backend.endpoints.attractionsEndpoint import list_attractions_names_and_id_endpoint
-from backend.endpoints.attractionsEndpoint import get_attraction_image_by_id_endpoint
-
-from backend.endpoints.fairEndpoint import create_fair_endpoint
-from backend.endpoints.locationEndpoint import list_locations_endpoint
 from backend.models.locationModel import LocationDTO
 
 def fair_create():
     
-    attractions_array: Dict[str, List[str]] = {}
-    response: ResponseDto = list_attractions_names_and_id_endpoint()
-    if isinstance(response, SuccessResponse):
-        attractions_array = response.data
-
-    locations: List[LocationDTO] = list()
-    response: ResponseDto = list_locations_endpoint()
-    if isinstance(response, ListResponse):
-        locations = response.data
+    attractions_array: Dict[str, List[str]] = list_attractions_names_and_id()
+    locations: List[LocationDTO] = list_locations()
     
     st.session_state.fair = dict()
 
@@ -96,20 +82,19 @@ def fair_create():
 
         submitted = st.button(_("SUBMIT"))
         if submitted:
-            st.session_state.fair['attractions'] = [ attractions_array['keys'][attractions_array['values'].index(x)] for x in st.session_state.fair['attractions']]
-            response: ResponseDto = create_fair_endpoint(st.session_state.fair , hidden_fair)
-            if isinstance(response, SuccessResponse):
-                st.success(response.message, icon=":material/check_circle:")
+            st.session_state.fair['attractions'] = [attractions_array['keys'][attractions_array['values'].index(x)] for x in st.session_state.fair['attractions']]
+            try:
+                if hidden_fair:
+                    create_hidden_fair(st.session_state.fair)
+                else:
+                    create_fair(st.session_state.fair)
+            except Exception as e:
+                st.error(e.message, icon=":material/close:")
+            else:
+                st.success("fair added", icon=":material/check_circle:")
                 st.rerun()
-            elif isinstance(response, ErrorResponse):
-                    st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
     with col2:
-        for attraction_id in [attractions_array['keys'][attractions_array['values'].index(x)] for x in st.session_state.fair['attractions']]:
-            response: ResponseDto = get_attraction_image_by_id_endpoint(attraction_id)
-            if isinstance(response, SuccessResponse):
-                image: AttractionImageDTO = response.data
-                if image:
-                    st.image(image.path, width=100)
+        pass
 
 fair_create()

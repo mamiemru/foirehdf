@@ -5,10 +5,10 @@ from bson import ObjectId
 
 import pandas
 from tinydb import TinyDB, Query
-from typing import Any, Dict, List, Optional
+from typing import Dict, List
 
-from backend.models.fairModel import Fair, FairBase, FairBaseDTO
-from backend.models.fairModel import FairDTO
+from backend.models.fairModel import Fair, FairBase, FairStatus
+from backend.dto.fair_dto import FairDTO, FairBaseDTO
 from backend.models.locationModel import LocationDTO, Location
 from backend.services.attractionService import get_attraction_by_id
 from backend.services.locationService import get_location_by_id, list_locations_cities, save_location, validate_location
@@ -207,8 +207,7 @@ def list_fairs(search_fair_query:Dict=None) -> List[FairDTO]:
             return False
         return True
 
-    f = [fair_to_dto(Fair(**result)) for result in db.all() if search_query_func(result)]
-    return f
+    return [fair_to_dto(Fair(**result)) for result in db.all() if search_query_func(result)]
 
 
 def get_fair(id: str) -> FairDTO:
@@ -216,7 +215,7 @@ def get_fair(id: str) -> FairDTO:
     if result:
         fair: Fair = Fair(**result)
         return fair_to_dto(fair)
-    return None
+    raise KeyError("Fair with id does not exists")
 
 
 def get_fair_detailed(id: str) -> FairDTO:
@@ -224,18 +223,18 @@ def get_fair_detailed(id: str) -> FairDTO:
     if result:
         fair: Fair = Fair(**result)
         return fair_to_dto_detailed(fair)
-    return None
+    raise KeyError("Fair with id does not exists")
 
 
 def delete_fair(id: str):
-    db.remove(FairQuery.id == id)
-    return f"Fair '{id}' has been deleted."
+    if db.remove(FairQuery.id == id):
+        return f"Fair '{id}' has been deleted."
+    raise KeyError("Fair with id does not exists")
 
 
 def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
     fairs: List[FairDTO] = [fair_to_dto(Fair(**fair)) for fair in db.search(FairQuery.attractions.any(ride_id))]
     hidden_fairs: List[FairBaseDTO] = [fair_base_to_dto(FairBase(**fair)) for fair in tinydb.table("hidden_fair").search(FairQuery.attractions.any(ride_id))]
-    ## fairs.extend(hidden_fairs)
     fairs.sort(key=lambda fair: fair.start_date, reverse=True)
     return fairs
 
@@ -243,15 +242,45 @@ def list_fairs_containing_ride_id(ride_id: str) -> List[FairDTO]:
 def list_fair_locations() -> List[Dict[str, str]]:
     return list_locations_cities()
 
-def list_fair_months() -> List[Dict[str, str]]:
-    english_months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ]
+
+def list_fair_sort_by_status(search_fair_query: Dict=None) -> Dict:
+    fairs: List[FairDTO] = list_fairs(search_fair_query=search_fair_query)
+    pd_dict: List[Dict[str, str]] = list()
+    response: Dict = {
+        'fairs': {
+            str(FairStatus.INCOMING): [],
+            str(FairStatus.DONE): [],
+            str(FairStatus.CURRENTLY_AVAILABLE): []
+        },
+        'map': [],
+        'gantt': None
+    }
+
+    for fair in fairs:
+        response['fairs'][fair.fair_status].append(fair)
+        
+        if fair.location.lng and fair.location.lat:
+            color = '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc'
+            size = 7 if fair.fair_available_today else 5 if fair.fair_incoming else 2
+            response['map'].append(
+                {'color': color, 'lng': fair.location.lng, 'lat': fair.location.lat, 'size': size}
+            )
+            
+        pd_dict.append({
+            "task": fair.location.city,
+            "start": fair.start_date,
+            "finish": fair.end_date,
+            "resource": fair.location.city,
+            "color": '#33cc33' if fair.fair_available_today else '#ff9900' if fair.fair_incoming else '#0066cc',
+            "date": fair.days_before_start_date if fair.fair_incoming else fair.days_before_end_date if fair.fair_available_today else "Fair Done",
+            "start_date": fair.start_date.strftime('%d %B %Y'),
+            "end_date": fair.end_date.strftime('%d %B %Y'),
+            "name": fair.name
+        })
     
-    french_months = [
-        "janvier", "février", "mars", "avril", "mai", "juin",
-        "juillet", "août", "septembre", "octobre", "novembre", "décembre"
-    ]
-    
-    return [{'key': en, 'value': fr} for en, fr in zip(english_months, french_months)]
+    for key, fair_list in response['fairs'].items():
+        response['fairs'][key] = sorted(fair_list, key=lambda fair: fair.start_date, reverse=True)
+
+
+    response['gantt'] = pandas.DataFrame(pd_dict)
+    return response

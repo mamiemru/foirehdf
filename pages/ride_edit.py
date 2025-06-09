@@ -3,11 +3,11 @@ import streamlit as st
 from typing import List
 
 from backend.dto.attraction_dto import AttractionDTO
-from backend.endpoints.attractionsEndpoint import update_attraction_endpoint
-from backend.endpoints.attractionsEndpoint import list_attractions_names_endpoint
-from backend.endpoints.attractionsEndpoint import get_attraction_by_id_endpoint
-from backend.endpoints.manufacturerEndpoint import create_manufacturer_endpoint
-from backend.endpoints.manufacturerEndpoint import list_manufacturer_names_endpoint
+from backend.services.attractionService import update_attraction
+from backend.services.attractionService import list_attractions_names
+from backend.services.attractionService import get_attraction_by_id
+from backend.services.manufacturerService import create_manufacturer
+from backend.services.manufacturerService import list_manufacturers_names
 
 from backend.models.attractionModel import AttractionType
 
@@ -23,21 +23,9 @@ class Datas:
     manufacturer_names: List[str]
     
     def __init__(self):
-        response: ResponseDto = get_attraction_by_id_endpoint(st.session_state.ride_id)
-        if isinstance(response, ErrorResponse):
-            st.switch_page("pages/ride_list.py")
-            
-        self.ride = response.data
-
-        self.rides_names: List[str] = list()
-        response: ResponseDto = list_attractions_names_endpoint()
-        if isinstance(response, ListResponse):
-            self.rides_names: List[str] = response.data
-
-        self.manufacturer_names: List[str] = list()
-        response: ResponseDto = list_manufacturer_names_endpoint()
-        if isinstance(response, ListResponse):
-            self.manufacturer_names: List[str] = response.data
+        self.ride: AttractionDTO = get_attraction_by_id(st.session_state.ride_id)
+        self.rides_names: List[str] = list_attractions_names()
+        self.manufacturer_names: List[str] = list_manufacturers_names()
 
 
 @st.dialog(_("RIDE_ADD_MANUFACTURER"))
@@ -45,12 +33,8 @@ def add_manufacturer_dialog():
 
     name = st.text_input(_("RIDE_NAME_OF_THE_MANUFACTURER"))
     if st.button(_("SUBMIT")):
-        response: ResponseDto = create_manufacturer_endpoint({"name": name})
-        if isinstance(response, SuccessResponse):
-            st.success(response.message, icon=":material/check_circle:")
-            st.rerun()
-        elif isinstance(response, ErrorResponse):
-            st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+        create_manufacturer({"name": name})
+        st.rerun()
 
 
 @st.fragment
@@ -168,12 +152,12 @@ def ride_edit():
                     'images_url': st.session_state.datas.ride.images_url
 
                 }
-                response: ResponseDto = update_attraction_endpoint(id=st.session_state.datas.ride.id, attraction_dict=attraction_form)
-                if isinstance(response, SuccessResponse):
-                    st.success(response.message, icon=":material/check_circle:")
+                try:
+                    update_attraction(id=st.session_state.datas.ride.id, attraction_dict=attraction_form)
+                except Exception as e:
+                    st.error(e, icon=":material/close:")
+                else:
                     st.page_link("pages/ride_list.py", label=_("RIDE_CHECK_YOUR_ATTRACTIONS"), icon=":material/celebration:")
-                elif isinstance(response, ErrorResponse):
-                    st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
 
     with colB:
         pass

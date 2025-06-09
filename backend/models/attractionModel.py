@@ -16,6 +16,7 @@ class AttractionType(StrEnum):
     ORBITER = "Orbiter"
     DROP_TOWER = "Drop Tower"
     TOP_SPIN = "Top Spin"
+    TOP_SCAN = "Top Scan"
     LOOP_FIGHTER = "Loop Fighter"
     INVERTED_RIDES = "Inverted Rides"
     SHAKE = "Shake"

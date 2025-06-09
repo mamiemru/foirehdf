@@ -2,17 +2,13 @@
 import streamlit as st
 from typing import List
 
-from backend.endpoints.attractionsEndpoint import create_attraction_endpoint
-from backend.endpoints.attractionsEndpoint import list_attractions_names_endpoint
-from backend.endpoints.manufacturerEndpoint import list_manufacturer_names_endpoint
-from backend.endpoints.manufacturerEndpoint import create_manufacturer_endpoint
+from backend.services.attractionService import create_attraction
+from backend.services.attractionService import list_attractions_names
+from backend.services.manufacturerService import list_manufacturers_names
+from backend.services.manufacturerService import create_manufacturer
 
 from backend.models.attractionModel import AttractionType
 
-from backend.dto.error_dto import ErrorResponse
-from backend.dto.response_dto import ResponseDto
-from backend.dto.success_dto import SuccessResponse
-from backend.dto.list_dto import ListResponse
 from pages.form_input import DotDict
 
 
@@ -25,33 +21,23 @@ class Datas:
         self.ride.images_url = []
         self.location = DotDict()
 
+
 @st.dialog(_("RIDE_ADD_MANUFACTURER"))
 def add_manufacturer_dialog():    
 
     name = st.text_input(_("RIDE_NAME_OF_THE_MANUFACTURER"))
     if st.button(_("RIDE_SUBMIT")):
-        response: ResponseDto = create_manufacturer_endpoint({"name": name})
-        if isinstance(response, SuccessResponse):
-            st.success(response.message, icon=":material/check_circle:")
-            st.rerun()
-        elif isinstance(response, ErrorResponse):
-            st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
+        create_manufacturer({"name": name})
+        st.rerun()
 
 
 @st.fragment
 def ride_create():
     st.header(_("RIDE_ADD_A_NEW_RIDE"))
 
-    rides_names: List[str] = list()
-    response: ResponseDto = list_attractions_names_endpoint()
-    if isinstance(response, ListResponse):
-        rides_names: List[str] = response.data
-
-    manufacturer_names: List[str] = list()
-    response: ResponseDto = list_manufacturer_names_endpoint()
-    if isinstance(response, ListResponse):
-        manufacturer_names: List[str] = response.data
-
+    rides_names: List[str] = list_attractions_names()
+    manufacturer_names: List[str] = list_manufacturers_names()
+    
     colA, colB = st.columns([.5, .5])
     with colA:
         with st.container(border=True):
@@ -165,13 +151,13 @@ def ride_create():
                     'news_page_url': st.session_state.datas.ride.news_page_url or None, 'videos_url': st.session_state.datas.ride.videos_url,
                     'images_url': st.session_state.datas.ride.images_url
                 }
-                response: ResponseDto = create_attraction_endpoint(attraction_form, None)
-                if isinstance(response, SuccessResponse):
-                    st.success(response.message, icon=":material/check_circle:")
+                try:
+                    create_attraction(attraction_form)
+                except Exception as e:
+                    st.error(e, icon=":material/close:")
+                else:
                     st.page_link("pages/ride_list.py", label=_("RIDE_CHECK_YOUR_ATTRACTIONS"), icon=":material/celebration:")
-                elif isinstance(response, ErrorResponse):
-                    st.error(f"{response.message}\n \n - {'\n - '.join([f'**{k}**: {v}' for k,v in response.errors.items()])})", icon=":material/close:")
-
+                    
     with colB:
         pass
 

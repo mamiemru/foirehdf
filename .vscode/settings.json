@@ -1,0 +1,18 @@
+{
+  "python.linting.enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.ruffEnabled": true,
+  "python.linting.ruffArgs": [
+    "--fix",          // Optional: auto-fix issues where possible
+    "--unsafe-fixes"  // Optional: allow potentially unsafe fixes
+  ],
+  "python.analysis.typeCheckingMode": "strict",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll": true
+  },
+  "python.formatting.provider": "none", // prevent conflict with Black if Ruff is used for formatting
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": false,
+  "python.linting.banditEnabled": false
+}

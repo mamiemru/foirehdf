@@ -26,6 +26,11 @@ def location_to_dto(location: Location) -> LocationDTO:
         lat=location.lat,
         lng=location.lng
     )
+    
+    
+def create_location(location_dict: Dict):
+    loc: Location = validate_location(location_dict)
+    return save_location(loc)
 
 
 def validate_location(location_dict: Dict):
@@ -55,6 +60,12 @@ def get_location_by_id(location_id: str) -> LocationDTO:
     result = db.get(Query().id == location_id)
     if result:
         return location_to_dto(Location(**result))
+    raise KeyError("Location with id does not exists")
+
+
+def delete_location(id: str) -> bool:
+    if db.remove(Query().id == id):
+        return "location has been deleted"
     raise KeyError("Location with id does not exists")
 
 

@@ -1,7 +1,5 @@
 import dataclasses
-
 from pathlib import Path
-from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -18,9 +16,9 @@ class AttractionDTO:
     manufacturer: str
     technical_name: str
     attraction_type: str
-    images: List[AttractionImageDTO]
-    owner: Optional[str]
-    videos_url: Optional[List[str]]
-    images_url: Optional[List[str]]
-    manufacturer_page_url: Optional[str]
-    news_page_url: Optional[str]
+    images: list[AttractionImageDTO]
+    owner: str | None
+    videos_url: list[str] | None
+    images_url: list[str] | None
+    manufacturer_page_url: str | None
+    news_page_url: str | None

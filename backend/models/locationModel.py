@@ -34,11 +34,6 @@ class Location(BaseModel):
             raise ValueError("Must not be empty or blank")
         return value.strip().title()
 
-    @field_validator('postal_code')
-    def validate_postal_code_format(cls, v):
-        if v and not any(char.isdigit() for char in v):
-            raise ValueError("Postal code must contain at least one number.")
-        return v
 
 @dataclasses.dataclass
 class LocationDTO:

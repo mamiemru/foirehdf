@@ -1,0 +1,5 @@
+.badge-custom { font-weight: bold; border-radius: 5px; padding: 3px 8px; color: white; }
+.badge-type { background-color: #3399ff; }
+.badge-manufacturer { background-color: #ff5733; }
+.badge-technical { background-color: #33cc33; color: white; }
+.badge-price { background-color: #ffcc00; color: black; }

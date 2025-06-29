@@ -27,6 +27,7 @@ create_ride = st.Page("pages/ride_create.py", title=_("APP_ADD_A_NEW_RIDE"), ico
 edit_ride = st.Page("pages/ride_edit.py", title=_("APP_EDIT_A_RIDE"), icon=":material/edit:")
 
 list_manufacturer = st.Page("pages/manufacturer_list.py", title=_("APP_LIST_MANUFACTURERS"), icon=":material/list:")
+list_location = st.Page("pages/location_list.py", title=_("APP_LIST_LOCATION"), icon=":material/list:")
 
 if 'admin' not in st.session_state:
     st.session_state.admin = False
@@ -34,6 +35,7 @@ if 'admin' not in st.session_state:
 fair: List = [list_fairs, view_fair]
 ride: List = [list_rides, view_ride]
 manu: List = [list_manufacturer]
+loc: List = [list_location]
 
 if st.session_state.admin:
     fair.append(create_fair)
@@ -45,7 +47,8 @@ pg = st.navigation(
     {
         _("APP_FAIRS"): fair,
         _("APP_RIDES"): ride,
-        _("APP_MANUFACTURERS"): manu
+        _("APP_MANUFACTURERS"): manu,
+        _("APP_LOCATIONS"): loc
     }
 )
 

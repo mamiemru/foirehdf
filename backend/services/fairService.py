@@ -41,11 +41,17 @@ def fair_base_to_dto(fair: FairBase) -> FairBaseDTO:
     end_date=_timestamp_to_date(fair.end_date)
 
     fair_dict: dict = fair.model_dump(mode="json")
-
+    
+    if fair.locations:
+        locations = [LocationDTO(loc) for loc in fair.locations]
+    else:
+        locations = [locationdto]
+        
     return FairBaseDTO(
         id=fair_dict['id'],
         name=fair_dict['name'],
         location=locationdto,
+        locations=locations,
         start_date=start_date,
         end_date=end_date,
         attractions=list(),
@@ -64,11 +70,17 @@ def fair_to_dto(fair: Fair) -> FairDTO:
     end_date=_timestamp_to_date(fair.end_date)
 
     fair_dict: dict = fair.model_dump(mode="json")
+    
+    if fair.locations:
+        locations = [LocationDTO(loc) for loc in fair.locations]
+    else:
+        locations = [locationdto]
 
     return FairDTO(
         id=fair_dict['id'],
         name=fair_dict['name'],
         location=locationdto,
+        locations=locations,
         start_date=start_date,
         end_date=end_date,
         sources=fair_dict['sources'],
@@ -95,34 +107,11 @@ def fair_to_dto_detailed(fair: Fair) -> FairDTO:
 
 
 def validate_fair(fair_dict: dict) -> Fair:
-    return Fair.model_validate(
-        {
-            'id': _create_id(),
-            'name': fair_dict['name'],
-            'location_id': fair_dict['location_id'],
-            'start_date': _date_to_timestamp(fair_dict['start_date']),
-            'end_date': _date_to_timestamp(fair_dict['end_date']),
-            'sources': fair_dict.get('sources', []),
-            'attractions': fair_dict['attractions'],
-            'official_ad_page': fair_dict['official_ad_page'] or None,
-            'city_event_page': fair_dict['city_event_page'] or None,
-            'facebook_event_page': fair_dict['facebook_event_page'] or None,
-            'walk_tour_video': fair_dict['walk_tour_video'] or None
-        }
-    )
+    return Fair.model_validate(fair_dict)
    
     
 def validate_fair_base(fair_dict: dict) -> FairBase:
-    return FairBase.model_validate(
-        {
-            'id': _create_id(),
-            'name': fair_dict['name'],
-            'location_id': fair_dict['location_id'],
-            'start_date': _date_to_timestamp(fair_dict['start_date']),
-            'end_date': _date_to_timestamp(fair_dict['end_date']),
-            'attractions': fair_dict['attractions'],
-        }
-    )
+    return FairBase.model_validate(fair_dict)
 
 
 def create_hidden_fair(fair_dict: dict) -> FairBaseDTO:
@@ -135,13 +124,6 @@ def create_hidden_fair(fair_dict: dict) -> FairBaseDTO:
 
 
 def create_fair(fair_dict: dict) -> FairDTO:
-    if fair_dict['location_id'] is None and fair_dict['location']:
-        location: Location = validate_location(fair_dict['location'])
-        save_location(location)
-        fair_dict['location_id'] = location.id
-    else:
-        fair_dict['location_id'] = fair_dict['location_id']
-    
     fair: Fair = validate_fair(fair_dict)
     save_fair(fair)
     return fair_to_dto(fair)
@@ -149,25 +131,12 @@ def create_fair(fair_dict: dict) -> FairDTO:
 
 def update_fair(updated_fair_dict: dict, id: str) -> FairDTO:
     fair: FairDTO = get_fair(id)
-    location: LocationDTO = get_location_by_id(fair.location.id)
-
     fair_dict: dict = asdict(fair)
-    location_dict: dict = asdict(location)
     
     fair_dict.update(updated_fair_dict)
-    fair_dict['location_id'] = location.id
-    location_dict.update(updated_fair_dict['location'])
-    location_dict['id'] = location.id
-    
-    updated_location: Location = validate_location(location_dict)
     updated_fair: Fair = validate_fair(fair_dict)
-    
-    updated_fair.location_id = fair.location.id
-    updated_location.id = fair.location.id
-
-    save_location(updated_location, update_id=fair.location.id)
+    updated_fair.location_id = fair.location.discard()
     save_fair(updated_fair, update_id=fair.id)
-
     return fair_to_dto(updated_fair)
 
 
@@ -248,9 +217,9 @@ def list_fair_sort_by_status(search_fair_query: Dict=None) -> Dict:
     pd_dict: List[Dict[str, str]] = list()
     response: Dict = {
         'fairs': {
-            str(FairStatus.INCOMING): [],
-            str(FairStatus.DONE): [],
-            str(FairStatus.CURRENTLY_AVAILABLE): []
+            str(FairStatus.INCOMING.value): [],
+            str(FairStatus.DONE.value): [],
+            str(FairStatus.CURRENTLY_AVAILABLE.value): []
         },
         'map': [],
         'gantt': None

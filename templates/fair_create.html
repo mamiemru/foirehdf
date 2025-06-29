@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{% if is_edit %}Edit{% else %}Create{% end %} Fair</h1>
+
+  <form method="POST">
+    <h3>Fair Info</h3>
+    Name: <input name="name" value="{{ fair.name }}"><br>
+    Start Date: <input type="date" name="start_date" value="{{ fair.start_date }}"><br>
+    End Date: <input type="date" name="end_date" value="{{ fair.end_date }}"><br>
+
+    <h3>Location</h3>
+    Street: <input name="street" value="{{ fair.location.street }}"><br>
+    Area: <input name="area" value="{{ fair.location.area }}"><br>
+    City: <input name="city" value="{{ fair.location.city }}"><br>
+    Postal Code: <input name="postal_code" value="{{ fair.location.postal_code }}"><br>
+    State: <input name="state" value="{{ fair.location.state }}"><br>
+    Country: <input name="country" value="{{ fair.location.country }}"><br>
+    Lat: <input name="lat" value="{{ fair.location.lat }}"><br>
+    Lng: <input name="lng" value="{{ fair.location.lng }}"><br>
+    <input type="hidden" name="location_id" value="{{ fair.location.id }}">
+
+    <h3>Attractions</h3>
+    <select name="attractions" multiple>
+      {% for known_rides in attractions_map %}
+        <option value="{{ known_rides['key'] }}">{{ known_rides['value'] }}</option>
+      {% end %}
+    </select>
+
+    <h3>Videos & Sources</h3>
+    Walk Tour Video: <input name="walk_tour_video" value="{{ fair.walk_tour_video }}"><br>
+    Official Ad Page: <input name="official_ad_page" value="{{ fair.official_ad_page }}"><br>
+    Facebook Event Page: <input name="facebook_event_page" value="{{ fair.facebook_event_page }}"><br>
+    City Event Page: <input name="city_event_page" value="{{ fair.city_event_page }}"><br>
+
+    <br><button type="submit">Submit</button>
+  </form>
+{% end %}

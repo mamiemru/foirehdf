@@ -12,6 +12,7 @@ class FairBaseDTO:
     id: str
     name: str
     location: LocationDTO
+    locations: List[LocationDTO]
     start_date: datetime
     end_date: datetime
     fair_status: str

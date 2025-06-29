@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('FAIRS_LIST') }}</h1>
+
+{% if admin %}
+  <a href="/fairs/create" class="btn btn-primary">{{ _('ADD') }}</a>
+{% end %}
+
+<form method="get">
+  <div>
+    <label>{{ _('FAIR_SEARCH_BY_CITY') }}</label>
+    <select name="cities" multiple>
+      {% for city in cities %}
+        <option value="{{ city }}" {% if city in search_query.cities %}selected{% end %}>
+          {{ city }}
+        </option>
+      {% end %}
+    </select>
+  </div>
+
+  <div>
+    <label>{{ _('FAIR_SEARCH_BY_MIN_DATE') }}</label>
+    <input type="date" name="date_min" value="{{ search_query.date_min }}">
+  </div>
+
+  <div>
+    <label>{{ _('FAIR_SEARCH_BY_MAX_DATE') }}</label>
+    <input type="date" name="date_max" value="{{ search_query.date_max }}">
+  </div>
+
+  <button type="submit">{{ _('FAIR_SEARCH_BUTTON') }}</button>
+  <a href="/fairs">{{ _('FAIR_SEARCH_BUTTON_RESET') }}</a>
+</form>
+
+<hr>
+
+{% if data_map %}
+  <h2>{{ _('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY') }}</h2>
+  <div class="fair-section">
+    {% for fair in fairs_struct['currently available'] %}
+      {% include "snippets/display_fair.html" %}
+    {% else %}
+      <p>{{ _('FAIR_NO_FAIRS_CURRENTLY_AVAILABLE') }}</p>
+    {% end %}
+  </div>
+
+  <h2>{{ _('FAIR_LIST_FUNFAIRS_COMING_SOON') }}</h2>
+  <div class="fair-section">
+    {% for fair in fairs_struct['incoming'] %}
+      {% include "snippets/display_fair.html" %}
+    {% else %}
+      <p>{{ _('FAIR_NO_FAIRS_COMMING_SOON') }}</p>
+    {% end %}
+  </div>
+
+  <h2>{{ _('FAIR_LIST_FUNFAIRS_DONE') }}</h2>
+  <div class="fair-section">
+    {% for fair in fairs_struct['done'] %}
+      {% include "snippets/display_fair.html" %}
+    {% else %}
+      <p>{{ _('FAIR_NO_FAIRS_DONE') }}</p>
+    {% end %}
+  </div>
+{% else %}
+  <h2>{{ _('FAIR_NO_FAIRS_TO_DISPLAY') }}</h2>
+{% end %}
+{% end %}

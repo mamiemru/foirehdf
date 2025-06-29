@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, HttpUrl, PositiveFloat
 from pydantic import field_validator, field_serializer
+from .locationModel import Location
 
 
 class FairStatus(enum.StrEnum):
@@ -25,6 +26,7 @@ class FairBase(BaseModel):
     id: str = Field(..., description="id")
     name: str = Field(..., description="Name of the fair", min_length=3)
     location_id: str = Field(..., description="id Location of the fair", min_length=3)
+    locations: List[Location] = Field(default_factory=list, description="list of locations")
     start_date: PositiveFloat = Field(..., description="Start timestamp of the fair")
     end_date: PositiveFloat = Field(..., description="End timestamp of the fair")
     attractions: List[str] = Field(..., description="List of ids of attractions at the fair")

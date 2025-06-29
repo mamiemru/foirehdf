@@ -7,6 +7,9 @@ from backend.services.locationService import list_locations
 
 from backend.models.locationModel import LocationDTO
 
+st.session_state.add_location = False
+
+@st.fragment()
 def fair_create():
     
     attractions_array: Dict[str, List[str]] = list_attractions_names_and_id()
@@ -45,12 +48,13 @@ def fair_create():
             if selected_location:
                 st.session_state.fair['location_id'] = ids[options.index(selected_location)]
                 st.session_state.fair['location'].clear()
+                st.session_state.add_location = False
                 
         with colLocA:
             if st.button(f"{_("FAIR_CREATE_LOCATION")}"):
-                st.session_state.fair['location_id'] = None
+                st.session_state.add_location = True
         
-        if st.session_state.fair.get('location_id', True) is None:
+        if st.session_state.add_location:
             colA, colB = st.columns([.5, .5])
             with colA:
                 st.session_state.fair['location']['street'] = st.text_input(_("STREET"))

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ _('RIDE_UPDATE_A_NEW_RIDE') if is_edit else _('RIDE_CREATE_A_NEW_RIDE') }}</h2>
+
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_NAME') }}*</label>
+    <input type="text" name="name" class="form-control" required value="{{ ride.name if ride else '' }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_DESCRIPTION') }}</label>
+    <textarea name="description" class="form-control">{{ ride.description if ride else '' }}</textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_TICKET_PRICE') }}</label>
+    <input type="number" step="0.01" name="ticket_price" class="form-control" value="{{ ride.ticket_price if ride else '' }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_MANUFACTURER') }}</label>
+    <select class="form-select" name="manufacturer">
+      {% for name in manufacturers %}
+        <option value="{{ name }}" {% if ride and ride.manufacturer == name %}selected{% end %}>{{ name }}</option>
+      {% end %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_TECHNICAL_NAME') }}</label>
+    <input type="text" name="technical_name" class="form-control" value="{{ ride.technical_name if ride else '' }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_ATTRACTION_TYPE') }}</label>
+    <select name="attraction_type" class="form-select">
+      {% for at in attraction_types %}
+        <option value="{{ at.name }}" {% if ride and ride.attraction_type.name == at.name %}selected{% end %}>{{ at.name }}</option>
+      {% end %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_MANUFACTURER_PAGE') }}</label>
+    <input type="url" name="manufacturer_page_url" class="form-control" value="{{ ride.manufacturer_page_url if ride else '' }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_FAMILY_OWNER') }}</label>
+    <input type="text" name="owner" class="form-control" value="{{ ride.owner if ride else '' }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_OFFICIAL_NEWS_PAGE_OF_THE_RIDE') }}</label>
+    <input type="url" name="news_page_url" class="form-control" value="{{ ride.news_page_url if ride else '' }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_VIDEOS') }}</label>
+    {% for video in ride.videos_url if ride else [] %}
+      <input type="url" name="videos_url" class="form-control mb-1" value="{{ video }}">
+    {% end %}
+    <input type="url" name="videos_url" class="form-control" placeholder="{{ _('RIDE_ENTER_A_VIDEO_URL_E_G_YOUTUBE_MP4_LINK') }}">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('RIDE_IMAGES') }}</label>
+    {% for image in ride.images_url if ride else [] %}
+      <input type="url" name="images_url" class="form-control mb-1" value="{{ image }}">
+    {% end %}
+    <input type="url" name="images_url" class="form-control" placeholder="{{ _('RIDE_ENTER_A_IMAGE_URL') }}">
+  </div>
+
+  <button type="submit" class="btn btn-primary">{{ _('SUBMIT') }}</button>
+</form>
+
+{% end %}

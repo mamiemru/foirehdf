@@ -1,19 +1,18 @@
-from typing import Dict, List
+
 import streamlit as st
 
-from backend.dto.attraction_dto import AttractionImageDTO
+from backend.models.fairModel import Fair
+from backend.services.attractionService import (
+    get_attraction_by_id,
+    list_attractions_names_and_id,
+)
+from backend.services.fair_service import get_fair, update_fair
 
-from backend.services.attractionService import list_attractions_names_and_id
-from backend.services.attractionService import list_attraction_images_to_dto
-from backend.services.fairService import get_fair_detailed
-from backend.services.fairService import update_fair
-from backend.dto.fair_dto import FairDTO
 
+def fair_edit() -> None:
 
-def fair_edit():
-    
-    fair: FairDTO = get_fair_detailed(id=st.session_state.fair_id)
-    attractions_array: Dict[str, List[str]] = list_attractions_names_and_id()
+    fair: Fair = get_fair(fair_id=st.session_state.fair_id)
+    attractions_array: dict[str, list[str]] = list_attractions_names_and_id()
 
     st.title(_("FAIR_EDIT_FAIR"))
 
@@ -30,29 +29,26 @@ def fair_edit():
 
         st.divider()
         st.header(_("LOCATION"))
-        colA, colB = st.columns([.5, .5])
-        with colA:
-            street = st.text_input(_("STREET"), value=fair.location.street)
-            area = st.text_input(_("AREA"), value=fair.location.area)
-            lat = st.text_input(_("LATITUDE"), value=fair.location.lat)
-            lng = st.text_input(_("LONGITUDE"), value=fair.location.lng)
-        with colB:
-            city = st.text_input(_("CITY"), value=fair.location.city)
-            postal_code = st.text_input(_("POSTAL_CODE"), value=fair.location.postal_code)
-            state = st.text_input(_("STATE"), value=fair.location.state)
-            country = st.text_input(_("COUNTRY"), value=fair.location.country)
+        for location in fair.locations:
+            st.write(location)
 
         st.divider()
-        
-        selected_attractions_array: List[str] = [
-            attractions_array['values'][attractions_array['keys'].index(attraction.id)] for attraction in fair.attractions
-        ]
-        
+
+
+        selected_attractions_array: list[str] = []
+        for attraction_id in fair.attractions:
+            attraction = get_attraction_by_id(attraction_id=attraction_id)
+            for array in attractions_array:
+                if str(array["key"]) == str(attraction.id):
+                    selected_attractions_array.append(array)
+                    continue
+
         st.header(_("FAIR_RIDES_IN_THE_FAIR"))
         attractions = st.multiselect(
             _("FAIR_SELECT_RIDE_MESSAGE"),
-            attractions_array['values'],
-            selected_attractions_array,
+            format_func=lambda a: a["value"],
+            options=attractions_array,
+            default=selected_attractions_array,
         )
         walk_tour_video = st.text_input(_("FAIR_WALKTOUR_VIDEO"), value=fair.walk_tour_video)
 
@@ -65,15 +61,11 @@ def fair_edit():
 
         submitted = st.button(_("SUBMIT"))
         if submitted:
-            attractions = [ attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]
             fair_form: dict = {
-                'name': name, 'start_date': start_date, 'end_date': end_date, 'attractions': attractions,
-                'location': {
-                    'street': street, 'area': area, 'city': city, 'postal_code': postal_code,
-                    'state': state, 'country': country, 'lat': lat, 'lng': lng, 'id': fair.location.id
-                },
-                'walk_tour_video': walk_tour_video, 'official_ad_page': official_ad_page,
-                'facebook_event_page': facebook_event_page, 'city_event_page': city_event_page
+                "name": name, "start_date": start_date, "end_date": end_date, "attractions": [a["key"] for a in attractions],
+                "locations": fair.locations,
+                "walk_tour_video": walk_tour_video or None, "official_ad_page": official_ad_page or None,
+                "facebook_event_page": facebook_event_page or None, "city_event_page": city_event_page or None,
             }
             try:
                 update_fair(updated_fair_dict=fair_form, id=fair.id)
@@ -84,10 +76,7 @@ def fair_edit():
                 st.rerun()
 
     with col2:
-        for attraction_id in [attractions_array['keys'][attractions_array['values'].index(x)] for x in attractions]:
-            image: AttractionImageDTO = list_attraction_images_to_dto(attraction_id=attraction_id)
-            if image:
-                st.image(image.path, width=100)
+        pass
 
 
 if "fair_id" in st.session_state and st.session_state.fair_id:

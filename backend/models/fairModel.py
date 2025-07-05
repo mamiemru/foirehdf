@@ -1,49 +1,73 @@
 
 import enum
-import time
-from datetime import datetime
+from datetime import date, datetime
+from typing import Annotated
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, HttpUrl, PositiveFloat
-from pydantic import field_validator, field_serializer
-from .locationModel import Location
+from bson.objectid import ObjectId
+from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, HttpUrl
+
+from .location_model import LocationBase
 
 
 class FairStatus(enum.StrEnum):
+    """
+    Describe the status of a fair.
+
+    Args:
+        enum (_type_): _description_
+
+    """
+
     INCOMING = "incoming"
     CURRENTLY_AVAILABLE = "currently available"
     DONE = "done"
 
-    
-class FairBase(BaseModel):
-    """ 
-    A fair base is a fair with the strict minimal of datas to make something usefull,
-    They are also stored in different table unlike regular fair, fairBase are not displayed
-    in the list of fair, there only purpose is to keep track of rides when outside the 62-59 (postal code)
-    No one know in the future i would include belgium or 02 (postal code)
-    """
-    
-    id: str = Field(..., description="id")
-    name: str = Field(..., description="Name of the fair", min_length=3)
-    location_id: str = Field(..., description="id Location of the fair", min_length=3)
-    locations: List[Location] = Field(default_factory=list, description="list of locations")
-    start_date: PositiveFloat = Field(..., description="Start timestamp of the fair")
-    end_date: PositiveFloat = Field(..., description="End timestamp of the fair")
-    attractions: List[str] = Field(..., description="List of ids of attractions at the fair")
-    
-    @field_validator("id","name", 'location_id', mode="before")
-    def non_empty_string(cls, value: str) -> str:
-        if not value or not value.strip():
-            raise ValueError("Must not be empty or blank")
-        return value.strip()
-
-    @field_validator('start_date', 'end_date', mode="before")
-    def non_empty_float(cls, value: float) -> float:
-        if not value or not isinstance(value, float):
-            raise ValueError("Must be a valid field")
+def timestamp_to_datetime(value: float | str | date | datetime) -> datetime:
+    if isinstance(value, datetime):
         return value
+    if isinstance(value, date):
+        # Convert date (which has no time) to datetime
+        return datetime.combine(value, datetime.min.time())
+    if isinstance(value, str):
+        try:
+            value = float(value)
+        except ValueError:
+            raise TypeError(f"Invalid timestamp string: {value!r}")
+    if isinstance(value, (int, float)):
+        if value <= 0:
+            raise ValueError("Timestamp must be positive")
+        return datetime.fromtimestamp(value)
+    raise TypeError(f"Invalid type for timestamp: {type(value).__name__}")
+
+TimestampDatetime = Annotated[
+    datetime,
+    BeforeValidator(timestamp_to_datetime),
+]
+
+class FairBase(BaseModel):
+    """
+    A fair base is a fair with the strict minimal of datas to make something usefull.
+
+    They are also stored in different table unlike regular fair,
+    fairBase are not displayed in the list of fair, there only purpose is to keep track
+    of rides when outside the 62-59 (postal code).
+    No one know in the future i would include belgium or 02 (postal code).
+    """
+
+    model_config = ConfigDict(
+        json_encoders={datetime: lambda v: v.timestamp()},
+    )
+
+    id: str = Field(default_factory=lambda:str(ObjectId()), description="id")
+    name: str = Field(..., description="Name of the fair", min_length=3)
+    locations: list[LocationBase] = Field(default_factory=list, description="locations")
+    start_date: TimestampDatetime = Field(..., description="Start timestamp of the fair")
+    end_date: TimestampDatetime = Field(..., description="End timestamp of the fair")
+    attractions: list[str] = Field(..., description="List of ids of attractions")
+
     @property
     def fair_status(self) -> FairStatus:
+        """Tell what is the status of a fair right now."""
         if self.fair_available_today:
             return FairStatus.CURRENTLY_AVAILABLE
         if self.fair_incoming:
@@ -51,53 +75,41 @@ class FairBase(BaseModel):
         return FairStatus.DONE
 
     @property
-    def fair_available_today(self):
-        return self.start_date < time.time() < self.end_date
+    def fair_available_today(self) -> bool:
+        """Tell if a fair is available right now."""
+        return self.start_date < datetime.now() < self.end_date
 
     @property
-    def fair_incoming(self):
-        return time.time() < self.start_date
+    def fair_incoming(self) -> bool:
+        """Tell if a fair is comming soon."""
+        return datetime.now() < self.start_date
 
     @property
-    def fair_done(self):
-        return self.end_date < time.time()
+    def fair_done(self) -> bool:
+        """Tell if a fair is done."""
+        return self.end_date < datetime.now()
 
     @property
-    def days_before_start_date(self):
+    def days_before_start_date(self) -> int | None:
+        """Tell how many days to wait before a fair open from right now. else None."""
         if self.fair_incoming:
-            return (datetime.fromtimestamp(self.start_date) - datetime.now()).days
+            return ((self.start_date - datetime.now()).days)+1
         return None
 
     @property
-    def days_before_end_date(self):
+    def days_before_end_date(self) -> int | None:
+        """Tell how many days the fair will stay available from right now, else None."""
         if self.fair_available_today:
-            return (datetime.fromtimestamp(self.end_date) - datetime.now()).days
+            return (self.end_date - datetime.now()).days
         return None
 
 
 class Fair(FairBase):
-    city_event_page: Optional[HttpUrl] = Field(default=None, descriptio="city event page")
-    official_ad_page: Optional[HttpUrl] = Field(default=None, descriptio="official_ad_page")
-    walk_tour_video: Optional[HttpUrl] = Field(default=None, descriptio="walk_tour_video")
-    facebook_event_page: Optional[HttpUrl] = Field(default=None, descriptio="facebook_event_page")
-    sources: List[HttpUrl] = Field(default=[], description="Useful sources of the event")
+    """Describe a Fair with sources."""
 
-    @field_serializer("sources")
-    def serialize_urls(urls: List[str]):
-        return [str(url) if url else None for url in urls]
-
-    @field_serializer("official_ad_page","city_event_page", "walk_tour_video", "facebook_event_page")
-    def serialize_url(url: str):
-        return str(url) if url else None
-
-    @field_validator("official_ad_page","city_event_page", "walk_tour_video", "facebook_event_page")
-    def validate_optional_url(cls, url: str) -> HttpUrl | None:
-        if url:
-            if isinstance(url, HttpUrl):
-                return url
-            return HttpUrl(url)
-        return None
-
-
-    
-
+    city_event_page: HttpUrl | None = Field(default=None, description="city event page")
+    official_ad_page: HttpUrl | None = Field(default=None, description="official_ad_page")
+    walk_tour_video: HttpUrl | None = Field(default=None, description="walk_tour_video")
+    facebook_event_page: HttpUrl | None = Field(default=None, description="facebook_event_page")
+    sources: list[HttpUrl] = Field(default_factory=list, description="Useful sources of the event")
+    images: list[str] = Field(default_factory=list)

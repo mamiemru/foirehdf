@@ -2,43 +2,45 @@
 
 import streamlit as st
 
-from backend.services.fairService import get_fair_detailed
+from backend.models.fairModel import Fair
+from backend.services.attractionService import get_attraction_by_id
+from backend.services.fair_service import get_fair
 from components.display_attraction_in_list import display_ride_as_item_in_list
 
-from backend.dto.fair_dto import FairDTO
 
 def fair_view():
 
-    fair: FairDTO = get_fair_detailed(id=st.session_state.fair_id)
+    fair: Fair = get_fair(fair_id=st.session_state.fair_id)
 
     cola1, cola2 = st.columns([.8, .2])
     with cola1:
         st.title(fair.name)
     with cola2:
-        if getattr(st.session_state, 'admin', False):
+        if getattr(st.session_state, "admin", False):
             if st.button("", key="edit_fair", icon=":material/edit:"):
                 st.session_state.fair_id = fair.id
                 st.switch_page("pages/fair_edit.py")
-            
+
     col1, col2 = st.columns([2, 1])
     with col1:
         cola, colb = st.columns([2, 1])
         with cola:
             st.header(f":material/location_on: {_('LOCATIONS')}")
+            location = fair.locations[0]
             st.write(
                 ", ".join([
                     text for text in
                     [
-                        fair.location.street or "", fair.location.area or "", fair.location.city,
-                        fair.location.postal_code, fair.location.state, fair.location.country
+                        location.street or "", location.area or "", location.city,
+                        location.postal_code, location.state, location.country,
                     ] if text
-                ]
-                )
+                ],
+                ),
             )
-            if fair.location.lat and fair.location.lng:
+            if location.lat and location.lng:
                 st.map(
-                    data=[{'lat': fair.location.lat, 'lng': fair.location.lng}], height=250,
-                    latitude="lat", longitude="lng", size=15, color='#ffff00', zoom=8
+                    data=[{"lat": location.lat, "lng": location.lng}], height=250,
+                    latitude="lat", longitude="lng", size=15, color="#ffff00", zoom=8,
                 )
         with colb:
             st.header(":material/calendar_month: "+ _("DATES"))
@@ -54,13 +56,13 @@ def fair_view():
                     st.write(f"**{_("FAIR_FOR_DATE")}**: {fair.days_before_end_date} {_("DAYS")}")
                 else:
                     st.write(f"**{_("FAIR_LAST_DAY")}**")
-                
+
 
     with col2:
         if fair.official_ad_page:
             st.image(fair.official_ad_page)
-        if fair.image:
-            st.image(fair.image)
+        for image in fair.images:
+            st.image(image)
 
     st.divider()
     st.subheader(f":material/link: {_('FAIR_VIEW_SOURCES_AND_USEFUL_LINKS')}")
@@ -83,8 +85,9 @@ def fair_view():
     st.markdown(markdown_table)
 
     st.divider()
-        
-    for attraction in fair.attractions:
+
+    for attraction_id in fair.attractions:
+        attraction = get_attraction_by_id(attraction_id=attraction_id)
         if attraction:
             display_ride_as_item_in_list(_, st, attraction)
 

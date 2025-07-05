@@ -1,11 +1,13 @@
 
 
+from typing import Any
+
 from bson import ObjectId
 from tinydb import Query, TinyDB
 
 from backend.dto.attraction_dto import AttractionDTO, AttractionImageDTO
-from backend.models.attractionModel import Attraction, AttractionType
-from backend.models.manufacturerModel import Manufacturer
+from backend.models.attraction_model import Attraction, AttractionType
+from backend.models.manufacturer_model import Manufacturer
 from backend.services.manufacturerService import (
     exists_manufacturer_by_name,
     get_manufacturer,
@@ -33,7 +35,7 @@ def attraction_to_dto(attraction: Attraction) -> AttractionDTO:
     manufacturer: Manufacturer = get_manufacturer(attraction.manufacturer_id)
     images: list[AttractionImageDTO] = list_attraction_images_to_dto(attraction.id)
 
-    attraction_dict: dict = attraction.model_dump(mode="json")
+    attraction_dict = attraction.model_dump(mode="json")
 
     return AttractionDTO(
         id=attraction_dict["id"],
@@ -83,7 +85,7 @@ def create_attraction(attraction_dict: dict[str, str | dict[str, str]]) -> Attra
     raise KeyError(msg)
 
 
-def update_attraction(id: str, attraction_dict: dict) -> AttractionDTO:
+def update_attraction(id: str, attraction_dict: dict[str, Any]) -> AttractionDTO:
     """
     Update a ride from its id.
 
@@ -103,9 +105,12 @@ def update_attraction(id: str, attraction_dict: dict) -> AttractionDTO:
         msg = "Attraction not found"
         raise KeyError(msg)
 
-    manufacturer_name: str = attraction_dict.get("manufacturer")
-    manufacturer: Manufacturer | None = exists_manufacturer_by_name(manufacturer_name)
+    manufacturer_name: str | None = attraction_dict.get("manufacturer")
+    if not manufacturer_name:
+        msg = "No manufacturer"
+        raise KeyError(msg)
 
+    manufacturer: Manufacturer | None = exists_manufacturer_by_name(manufacturer_name)
     if not manufacturer:
         msg = f"No manufacturer found with name '{manufacturer_name}'"
         raise KeyError(msg)
@@ -170,7 +175,21 @@ def get_attraction_by_id(attraction_id: str) -> AttractionDTO:
     raise KeyError("Attraction with id does not exists")
 
 
-def delete_attraction(id: str):
-    if db.remove(AttractionQuery.id == id):
-        return f"Attraction '{id}' has been deleted."
-    raise KeyError("Attraction with id does not exists")
+def delete_attraction(ride_id: str) -> str:
+    """
+    Delete a ride from the db.
+
+    Args:
+        ride_id (str): id of the ride to delete
+
+    Raises:
+        KeyError: the ride does not exists
+
+    Returns:
+        str: success message
+
+    """
+    if db.remove(AttractionQuery.id == ride_id):
+        return f"Attraction '{ride_id}' has been deleted."
+    msg = "Attraction with id does not exists"
+    raise KeyError(msg)

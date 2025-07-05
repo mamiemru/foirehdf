@@ -1,12 +1,10 @@
 
 
-from typing import List
 import streamlit as st
 
 from backend.dto.attraction_dto import AttractionDTO
-
 from backend.services.attractionService import get_attraction_by_id
-from backend.services.fairService import list_fairs_containing_ride_id
+from backend.services.fair_service import list_fairs_containing_ride_id
 
 
 def ride_view(ride: AttractionDTO):
@@ -20,7 +18,7 @@ def ride_view(ride: AttractionDTO):
             <div style="display:flex; align-items:center; gap:15px; margin-bottom:10px;">
                 <h2 style="margin:0; font-size:48px; color:#FF8B17;">{ride.name}</h2>
             </div>
-            """, unsafe_allow_html=True
+            """, unsafe_allow_html=True,
         )
 
         st.markdown(f"**{_('RIDE_DESCRIPTION')}:** {ride.description}")
@@ -36,32 +34,32 @@ def ride_view(ride: AttractionDTO):
             st.markdown(f"**{_('RIDE_NEWS_PAGE')}:** [Link]({ride.news_page_url})")
 
     with right_col:
-        if getattr(st.session_state, 'admin', False):
+        if getattr(st.session_state, "admin", False):
             if st.button("", key="edit_fair", icon=":material/edit:"):
                 st.session_state.ride_id = ride.id
                 st.switch_page("pages/ride_edit.py")
-    
+
         for image in ride.images:
             st.image(image.path, use_container_width=True)
 
     st.divider()
-    
+
     st.header(_("RIDE_WAS_INSTALLED_IN_FAIRS"))
     for fair in list_fairs_containing_ride_id(st.session_state.ride_id):
         location: str = ", ".join([
             text for text in
             [
-                fair.location.street or "", fair.location.area or "", fair.location.city,
-                fair.location.postal_code, fair.location.state
+                fair.locations[0].street or "", fair.locations[0].area or "", fair.locations[0].city,
+                fair.locations[0].postal_code, fair.locations[0].state,
             ] if text
         ])
         dates: str = ",".join([
-            f"**{_("FAIR_FROM_DATE")}**: {fair.start_date.strftime('%d %B %Y')}", 
-            f"**{_("FAIR_UNTIL_DATE")}**: {fair.end_date.strftime('%d %B %Y')}"
+            f"**{_("FAIR_FROM_DATE")}**: {fair.start_date.strftime('%d %B %Y')}",
+            f"**{_("FAIR_UNTIL_DATE")}**: {fair.end_date.strftime('%d %B %Y')}",
         ])
         st.write(f"{fair.name} {location} {dates}")
 
-        
+
     st.divider()
 
     colA, colB = st.columns([.8, .2])
@@ -69,7 +67,7 @@ def ride_view(ride: AttractionDTO):
         st.header(_("RIDE_LIST_OF_VIDEOS"))
     with colB:
         n_split = st.number_input(
-            _("SHOW_VIDEOS_PER_ROWS_OF"), min_value=1, max_value=5, value=3
+            _("SHOW_VIDEOS_PER_ROWS_OF"), min_value=1, max_value=5, value=3,
         )
     if ride.videos_url:
         for cursor in range(0, len(ride.videos_url), n_split):

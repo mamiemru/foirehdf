@@ -6064,3 +6064,1758 @@ Traceback (most recent call last):
   File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
   File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
 pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-06-30 12:38:13.039 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-06-30 20:50:12.152 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-06-30 20:52:00.952 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-01 17:36:19.807 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-01 17:36:37.249 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-01 17:38:01.187 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-01 17:38:07.745 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-01 17:39:09.664 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-01 17:39:14.153 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-02 16:06:31.147 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-02 16:06:33.921 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:34:27.324 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:35:11.309 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:38:06.262 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:39:17.372 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:39:20.525 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:42:40.579 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-04 15:42:44.742 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-04 15:43:09.435 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-04 15:44:02.405 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:46:15.448 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:49:57.598 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-04 15:50:01.583 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 90, in fair_edit
+    st.image(image.path, width=100)
+             ^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'path'
+2025-07-04 15:50:04.133 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:50:41.294 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 8, in <module>
+    from backend.services.fairService import list_fair_locations
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 9, in <module>
+    from backend.dto.fair_dto import FairBaseDTO, FairDTO
+  File "/home/ubuntu/foirehdf/backend/dto/fair_dto.py", line 7, in <module>
+    from backend.models.location_model import LocationDTO
+ImportError: cannot import name 'LocationDTO' from 'backend.models.location_model' (/home/ubuntu/foirehdf/backend/models/location_model.py)
+2025-07-04 15:50:51.234 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 8, in <module>
+    from backend.services.fairService import list_fair_locations
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 9, in <module>
+    from backend.dto.fair_dto import FairBaseDTO, FairDTO
+  File "/home/ubuntu/foirehdf/backend/dto/fair_dto.py", line 7, in <module>
+    from backend.models.location_model import LocationDTO
+ImportError: cannot import name 'LocationDTO' from 'backend.models.location_model' (/home/ubuntu/foirehdf/backend/models/location_model.py)
+2025-07-04 15:51:28.469 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 8, in <module>
+    from backend.services.fairService import list_fair_locations
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 11, in <module>
+    from backend.models.location_model import Location, LocationDTO
+ImportError: cannot import name 'LocationDTO' from 'backend.models.location_model' (/home/ubuntu/foirehdf/backend/models/location_model.py)
+2025-07-04 15:53:01.326 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 8, in <module>
+    from backend.services.fairService import list_fair_locations
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 12, in <module>
+    from backend.services.attractionService import get_attraction_by_id
+  File "/home/ubuntu/foirehdf/backend/services/attractionService.py", line 86, in <module>
+    def update_attraction(id: str, attraction_dict: dict[str, Any]) -> AttractionDTO:
+                                                              ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+2025-07-04 15:53:19.887 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 8, in <module>
+    from backend.services.fairService import list_fair_locations
+  File "/home/ubuntu/foirehdf/backend/services/fairService.py", line 13, in <module>
+    from backend.services.locationService import (
+  File "/home/ubuntu/foirehdf/backend/services/locationService.py", line 7, in <module>
+    from tinydb import Query, Table, TinyDB
+ImportError: cannot import name 'Table' from 'tinydb' (/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/tinydb/__init__.py). Did you mean: 'table'?
+2025-07-04 15:53:37.966 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:55:53.843 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:56:04.549 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:56:07.518 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:56:09.906 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:56:15.343 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:56:42.056 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:56:58.735 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:59:08.080 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:59:09.964 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:59:13.704 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 15:59:17.846 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 94, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 48, in fair_edit
+    attractions_array['values'][attractions_array['keys'].index(attraction.id)] for attraction in fair.attractions
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+2025-07-04 15:59:57.301 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:00:01.510 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:00:03.288 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:00:04.945 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 95, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 49, in fair_edit
+    attractions_array["values"][attractions_array["keys"].index(attraction.id)] for attraction in fair.attractions
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+2025-07-04 16:02:19.237 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:02:22.209 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:02:24.550 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 95, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 50, in fair_edit
+    attractions_array["values"][attractions_array["keys"].index(attraction.id)] for attraction in fair.attractions
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+2025-07-04 16:04:22.096 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:04:25.097 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:04:27.665 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 98, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 59, in fair_edit
+    attractions_array["values"],
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+2025-07-04 16:05:21.117 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:05:25.539 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:05:27.556 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 293, in run
+    code = ctx.pages_manager.get_page_script_byte_code(str(self._page))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/pages_manager.py", line 162, in get_page_script_byte_code
+    return self._script_cache.get_bytecode(script_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_cache.py", line 72, in get_bytecode
+    filebody = magic.add_magic(filebody, script_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/magic.py", line 46, in add_magic
+    tree = ast.parse(code, script_path, "exec")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ast.py", line 52, in parse
+    return compile(source, filename, mode, flags,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 59
+    format_func=lamda a: a['value'],
+                ^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2025-07-04 16:05:49.377 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:05:52.524 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:06:26.784 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:06:29.491 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:06:32.002 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:06:33.256 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:07:23.835 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:07:25.966 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key -844929908661403690-1590827198789279560-3366556232734487699
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88b
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+key 681785f093d20116d052b88a
+2025-07-04 16:07:36.274 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:07:38.147 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:08:27.878 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:08:29.780 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:08:32.201 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 99, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 57, in fair_edit
+    attractions = st.multiselect(
+                  ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/multiselect.py", line 230, in multiselect
+    return self._multiselect(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/multiselect.py", line 278, in _multiselect
+    default_values = get_default_indices(indexable_options, default)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/options_selector_utils.py", line 91, in get_default_indices
+    default_indices = check_and_convert_to_indices(indexable_options, default)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/elements/lib/options_selector_utils.py", line 74, in check_and_convert_to_indices
+    raise StreamlitAPIException(
+streamlit.errors.StreamlitAPIException: The default value 'AttractionDTO(id='-844929908661403690-1590827198789279560-3366556232734487699', name='Gravity fou', description='', ticket_price=5.0, manufacturer='Funlight', technical_name='EXTREME - AUSTRALIA', attraction_type='Pendulum', images=[AttractionImageDTO(id='-844929908661403690-1590827198789279560-3366556232734487699-0', path='https://i.ytimg.com/vi/JxuABNhGcHE/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGFYgRihlMA8=&rs=AOn4CLCs8elvGMdTT36iCIzUAVjBf7wdsQ')], owner='Mallard & fils', videos_url=['https://www.youtube.com/watch?v=Tk3R_PK8VLQ'], images_url=['https://i.ytimg.com/vi/JxuABNhGcHE/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGFYgRihlMA8=&rs=AOn4CLCs8elvGMdTT36iCIzUAVjBf7wdsQ'], manufacturer_page_url='https://www.funlight.cz/en/product/extreme-australia', news_page_url='https://www.facebook.com/p/Man%C3%A8ge-Gravity-Mallard-Fils-61564017673723/')' is not part of the options. Please make sure that every default values also exists in the options.
+2025-07-04 16:08:57.670 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:09:00.238 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:09:04.997 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 99, in <module>
+    fair_edit()
+  File "/home/ubuntu/foirehdf/pages/fair_edit.py", line 92, in fair_edit
+    for attraction_id in [attractions_array["keys"][attractions_array["values"].index(x)] for x in attractions]:
+                          ~~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+2025-07-04 16:09:34.750 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 16:09:36.274 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 17:47:34.712 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 17:47:37.746 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 17:47:41.211 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 18:48:25.852 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 20:06:07.844 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 20:06:36.983 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-04 21:21:51.712 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:01:57.973 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:02:05.998 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:02:12.873 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:02:15.437 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:03:49.654 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:04:02.448 Serialization of dataframe to Arrow table was unsuccessful. Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/dataframe_util.py", line 822, in convert_pandas_df_to_arrow_bytes
+    table = pa.Table.from_pandas(df)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/table.pxi", line 4751, in pyarrow.lib.Table.from_pandas
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 639, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 626, in convert_column
+    raise e
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pyarrow/pandas_compat.py", line 620, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pyarrow/array.pxi", line 362, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 87, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowInvalid: ("Could not convert 'Fair Done' with type str: tried to convert to int64", 'Conversion failed for column date with type object')
+2025-07-05 10:04:09.080 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_create.py", line 4, in <module>
+    from backend.models.location_model import LocationDTO
+ImportError: cannot import name 'LocationDTO' from 'backend.models.location_model' (/home/ubuntu/foirehdf/backend/models/location_model.py)
+2025-07-05 10:04:35.822 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fair_service.py", line 140, in list_fair_sort_by_status
+    if fair.location.lng and fair.location.lat:
+       ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pydantic/main.py", line 994, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'Fair' object has no attribute 'location'. Did you mean: 'locations'?
+2025-07-05 10:04:38.473 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fair_service.py", line 140, in list_fair_sort_by_status
+    if fair.location.lng and fair.location.lat:
+       ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pydantic/main.py", line 994, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'Fair' object has no attribute 'location'. Did you mean: 'locations'?
+2025-07-05 10:04:39.630 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fair_service.py", line 140, in list_fair_sort_by_status
+    if fair.location.lng and fair.location.lat:
+       ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pydantic/main.py", line 994, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'Fair' object has no attribute 'location'. Did you mean: 'locations'?
+2025-07-05 10:04:41.480 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 121, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 640, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/app.py", line 68, in <module>
+    pg.run()
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/navigation/page.py", line 297, in run
+    exec(code, module.__dict__)
+  File "/home/ubuntu/foirehdf/pages/fair_view.py", line 6, in <module>
+    from backend.services.attractionService import get_attraction_by_id
+  File "/home/ubuntu/foirehdf/backend/services/attractionService.py", line 9, in <module>
+    from backend.models.attraction_model import Attraction, AttractionType
+  File "/home/ubuntu/foirehdf/backend/models/attraction_model.py", line 9, in <module>
+    class AttractionType(StrEnum):
+  File "/home/ubuntu/foirehdf/backend/models/attraction_model.py", line 31, in AttractionType
+    def from_value(value: str) -> AttractionType | None:
+                                  ^^^^^^^^^^^^^^
+NameError: name 'AttractionType' is not defined
+2025-07-05 10:04:42.114 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fair_service.py", line 140, in list_fair_sort_by_status
+    if fair.location.lng and fair.location.lat:
+       ^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pydantic/main.py", line 994, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'Fair' object has no attribute 'location'. Did you mean: 'locations'?
+2025-07-05 10:18:13.007 Uncaught app execution
+Traceback (most recent call last):
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/streamlit/runtime/fragment.py", line 245, in wrapped_fragment
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/pages/fair_list.py", line 71, in fair_list
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fair_service.py", line 119, in list_fair_sort_by_status
+    fairs: list[Fair] = list_fairs(search_fair_query=search_fair_query)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/backend/services/fair_service.py", line 91, in list_fairs
+    return [Fair(**result) for result in db.all() if search_query_func(result)]
+            ^^^^^^^^^^^^^^
+  File "/home/ubuntu/foirehdf/.venv/lib/python3.12/site-packages/pydantic/main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Fair
+locations.0.id
+  Field required [type=missing, input_value={'street': '', 'area': "l...lng': 2.281510541484153}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+  Stopping...

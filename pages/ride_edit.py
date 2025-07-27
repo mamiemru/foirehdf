@@ -2,27 +2,27 @@
 
 import streamlit as st
 
-from backend.dto.attraction_dto import AttractionDTO
-from backend.models.attraction_model import AttractionType
-from backend.services.attractionService import (
-    get_attraction_by_id,
-    list_attractions_names,
-    update_attraction,
-)
-from backend.services.manufacturerService import (
+from backend.models.ride_model import Ride, RideType
+from backend.services.manufacturer_service import (
     create_manufacturer,
     list_manufacturers_names,
 )
+from backend.services.ride_service import (
+    get_ride_by_id,
+    list_rides_names,
+    update_ride,
+)
+from pages.const import _
 
 
 class Datas:
-    ride: AttractionDTO
+    ride: Ride
     rides_names: list[str]
     manufacturer_names: list[str]
 
     def __init__(self):
-        self.ride: AttractionDTO = get_attraction_by_id(st.session_state.ride_id)
-        self.rides_names: list[str] = list_attractions_names()
+        self.ride: Ride = get_ride_by_id(st.session_state.ride_id)
+        self.rides_names: list[str] = list_rides_names()
         self.manufacturer_names: list[str] = list_manufacturers_names()
 
 
@@ -65,9 +65,9 @@ def ride_edit():
             st.session_state.datas.technical_name = st.text_input(
                 _("RIDE_TECHNICAL_NAME"), placeholder=_("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"), value=st.session_state.datas.ride.technical_name,
             )
-            attraction_type_options = list(AttractionType)
-            st.session_state.datas.attraction_type = st.selectbox(
-                _("RIDE_ATTRACTION_TYPE"), options=attraction_type_options, placeholder=_("RIDE_THE_TYPE_OF_THE_RIDE"), index=attraction_type_options.index(st.session_state.datas.ride.attraction_type),
+            ride_type_options = list(RideType)
+            st.session_state.datas.ride_type = st.selectbox(
+                _("RIDE_ATTRACTION_TYPE"), options=ride_type_options, placeholder=_("RIDE_THE_TYPE_OF_THE_RIDE"), index=ride_type_options.index(st.session_state.datas.ride.ride_type),
             )
             st.session_state.datas.manufacturer_page_url = st.text_input(
                 _("RIDE_MANUFACTURER_PAGE"), help=_("RIDE_A_LINK_TO_THE_PRODUCT"),
@@ -107,7 +107,7 @@ def ride_edit():
                 if st.session_state.datas.ride.videos_url:
                     for i, video_url in enumerate(st.session_state.datas.ride.videos_url):
                         with cols_video:
-                            st.video(video_url)
+                            st.video(str(video_url))
                         with cols_video_del:
                             if st.button("", key=f"delete_video_{i}", icon=":material/delete:"):
                                 st.session_state.datas.ride.videos_url.pop(i)
@@ -133,7 +133,7 @@ def ride_edit():
                 if st.session_state.datas.ride.images_url:
                     for i, image_url in enumerate(st.session_state.datas.ride.images_url):
                         with cols_image:
-                            st.image(image_url)
+                            st.image(str(image_url))
                         with cols_image_del:
                             if st.button("", key=f"delete_image_{i}", icon=":material/delete:"):
                                 st.session_state.datas.ride.images_url.pop(i)
@@ -141,17 +141,17 @@ def ride_edit():
             st.divider()
             submitted = st.button(_("SUBMIT"))
             if submitted:
-                attraction_form: dict = {
+                ride_form: dict = {
                     "name": st.session_state.datas.name, "description": st.session_state.datas.description,
                     "ticket_price": st.session_state.datas.ticket_price, "manufacturer": st.session_state.datas.manufacturer,
-                    "technical_name": st.session_state.datas.technical_name, "attraction_type": st.session_state.datas.attraction_type,
+                    "technical_name": st.session_state.datas.technical_name, "ride_type": st.session_state.datas.ride_type,
                     "manufacturer_page_url": st.session_state.datas.manufacturer_page_url, "owner": st.session_state.datas.owner,
                     "news_page_url": st.session_state.datas.news_page_url, "videos_url": st.session_state.datas.ride.videos_url,
                     "images_url": st.session_state.datas.ride.images_url,
 
                 }
                 try:
-                    update_attraction(id=st.session_state.datas.ride.id, attraction_dict=attraction_form)
+                    update_ride(id=st.session_state.datas.ride.id, ride_dict=ride_form)
                 except Exception as e:
                     st.error(e, icon=":material/close:")
                 else:

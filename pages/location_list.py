@@ -2,16 +2,17 @@
 import streamlit as st
 
 from backend.models.location_model import Location
-from backend.services.locationService import (
+from backend.services.location_service import (
     create_location,
     delete_location,
     list_locations,
 )
+from pages.const import _
 
 st.title(_("LOCATION_LIST_LOCATION_MANAGEMENT"))
 
 @st.dialog(_("LOCATION_LIST_ADD_LOCATION"))
-def add_location_dialog():
+def add_location_dialog() -> None:
     location = dict()
     colA, colB = st.columns([.5, .5])
     with colA:
@@ -35,7 +36,7 @@ def add_location_dialog():
 
 
 @st.dialog(_("LOCATION_LIST_DELETE_LOCATION"))
-def delete_location_dialog(location: Location):
+def delete_location_dialog(location: Location) -> None:
     st.subheader(_("LOCATION_LIST_DELETE_A_LOCATION"))
     st.write(f"{_('LOCATION_LIST_ARE_YOU_SURE_TO_DELETE')} {location.name}")
     if st.button(_("DELETE")):
@@ -43,31 +44,24 @@ def delete_location_dialog(location: Location):
         st.rerun()
 
 
-def location_list():
+def location_list() -> None:
 
     locations_list: list[Location] = list_locations()
     col_search, col_add = st.columns([0.9, 0.1])
 
-    with col_search:
-        search_location = st.text_input(_("LOCATION_SEARCH"), label_visibility="collapsed")
-        if search_location:
-            st.rerun()
 
     with col_add:
-        if getattr(st.session_state, "admin", False):
-            if st.button("", icon=":material/add:"):
-                add_location_dialog()
+        if getattr(st.session_state, "admin", False) and st.button("", icon=":material/add:"):
+            add_location_dialog()
 
-
-    title, view = st.columns([9, 1])
+    col_location, col_delete = st.columns([0.9, 0.1], vertical_alignment="top" )
     for index, location in enumerate(locations_list):
-            with title:
-                st.write(", ".join([text for text in[
-                    location.street or "", location.area or "", location.city,location.postal_code, location.state, location.country,
-                ] if text]))
-            with view:
-                if getattr(st.session_state, "admin", False):
-                    if st.button("", key=f"del_location_{index}", icon=":material/delete:"):
-                        delete_location_dialog(location)
+        with col_location:
+            st.write(", ".join([text for text in[
+                location.street or "", location.area or "", location.city,location.postal_code, location.state, location.country,
+            ] if text]))
+        with col_delete:
+            if getattr(st.session_state, "admin", False) and st.button("", key=f"del_location_{index}", icon=":material/delete:"):
+                delete_location_dialog(location)
 
 location_list()

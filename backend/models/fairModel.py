@@ -1,15 +1,15 @@
 
-import enum
 from datetime import date, datetime
+from enum import StrEnum
 from typing import Annotated
 
 from bson.objectid import ObjectId
-from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, HttpUrl, field_validator
 
 from .location_model import LocationBase
 
 
-class FairStatus(enum.StrEnum):
+class FairStatus(StrEnum):
     """
     Describe the status of a fair.
 
@@ -23,6 +23,20 @@ class FairStatus(enum.StrEnum):
     DONE = "done"
 
 def timestamp_to_datetime(value: float | str | date | datetime) -> datetime:
+    """
+    Parse any date format int datetime.
+
+    Args:
+        value (float | str | date | datetime): the date to parse
+
+    Raises:
+        ValueError: the date content is wrong
+        TypeError: the date format is not supported
+
+    Returns:
+        datetime: the parsed date in datetime
+
+    """
     if isinstance(value, datetime):
         return value
     if isinstance(value, date):
@@ -32,12 +46,15 @@ def timestamp_to_datetime(value: float | str | date | datetime) -> datetime:
         try:
             value = float(value)
         except ValueError:
-            raise TypeError(f"Invalid timestamp string: {value!r}")
+            msg = f"Invalid timestamp string: {value!r}"
+            raise TypeError(msg)
     if isinstance(value, (int, float)):
         if value <= 0:
-            raise ValueError("Timestamp must be positive")
+            msg = "Timestamp must be positive"
+            raise ValueError(msg)
         return datetime.fromtimestamp(value)
-    raise TypeError(f"Invalid type for timestamp: {type(value).__name__}")
+    msg = f"Invalid type for timestamp: {type(value).__name__}"
+    raise TypeError(msg)
 
 TimestampDatetime = Annotated[
     datetime,
@@ -58,15 +75,15 @@ class FairBase(BaseModel):
         json_encoders={datetime: lambda v: v.timestamp()},
     )
 
-    id: str = Field(default_factory=lambda:str(ObjectId()), description="id")
-    name: str = Field(..., description="Name of the fair", min_length=3)
-    locations: list[LocationBase] = Field(default_factory=list, description="locations")
+    id: Annotated[str, Field(default_factory=lambda:str(ObjectId()), description="id")]
+    name: Annotated[str, Field(..., description="Name of the fair", min_length=3)]
+    locations: Annotated[list[LocationBase], Field(default_factory=list, description="locations")]
     start_date: TimestampDatetime = Field(..., description="Start timestamp of the fair")
     end_date: TimestampDatetime = Field(..., description="End timestamp of the fair")
-    attractions: list[str] = Field(..., description="List of ids of attractions")
+    rides: Annotated[list[str], Field(default_factory=list, description="List of ids of rides")]
 
     @property
-    def fair_status(self) -> FairStatus:
+    def fair_status(self) -> FairStatus | str:
         """Tell what is the status of a fair right now."""
         if self.fair_available_today:
             return FairStatus.CURRENTLY_AVAILABLE
@@ -107,9 +124,14 @@ class FairBase(BaseModel):
 class Fair(FairBase):
     """Describe a Fair with sources."""
 
-    city_event_page: HttpUrl | None = Field(default=None, description="city event page")
-    official_ad_page: HttpUrl | None = Field(default=None, description="official_ad_page")
-    walk_tour_video: HttpUrl | None = Field(default=None, description="walk_tour_video")
-    facebook_event_page: HttpUrl | None = Field(default=None, description="facebook_event_page")
-    sources: list[HttpUrl] = Field(default_factory=list, description="Useful sources of the event")
-    images: list[str] = Field(default_factory=list)
+    city_event_page: Annotated[HttpUrl | None, Field(default=None, description="city event page")]
+    official_ad_page: Annotated[HttpUrl | None, Field(default=None, description="official_ad_page")]
+    walk_tour_video: Annotated[HttpUrl | None, Field(default=None, description="walk_tour_video")]
+    facebook_event_page: Annotated[HttpUrl | None, Field(default=None, description="facebook_event_page")]
+    sources: Annotated[list[HttpUrl], Field(default_factory=list, description="Useful sources of the event")]
+    images: Annotated[list[str], Field(default_factory=list)]
+
+    @field_validator("city_event_page", "official_ad_page", "walk_tour_video", "facebook_event_page")
+    def valide_optional_url(v) -> HttpUrl | None:
+        """Make sure the value is a valid url otherwise None."""
+        return HttpUrl(v) if v else None

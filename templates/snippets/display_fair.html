@@ -1,9 +1,9 @@
 <div class="fair-card">
   <h3>{{ fair.name }}</h3>
   <p><strong>{{ _('LOCATIONS') }}</strong>:
-    {{ fair.location.street }},
-    {{ fair.location.city }},
-    {{ fair.location.state }}
+    {% for location in fair.locations %}
+      {{ location }}
+    {% end %}
   </p>
 
   <p><strong>{{ _('DATES') }}</strong>:

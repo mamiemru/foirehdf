@@ -99,7 +99,7 @@ def delete_fair(id: str) -> str:
 
 
 def list_fairs_containing_ride_id(ride_id: str) -> list[Fair]:
-    fairs: list[Fair] = [Fair(**fair) for fair in db.search(FairQuery.attractions.any(ride_id))]
+    fairs: list[Fair] = [Fair(**fair) for fair in db.search(FairQuery.rides.any(ride_id))]
     # hidden fairs aren't Fair objects — but type declared says return Fair
     # you could optionally change return type to list[Union[Fair, FairBase]]
     fairs.sort(key=lambda fair: fair.start_date, reverse=True)

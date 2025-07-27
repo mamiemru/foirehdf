@@ -3,7 +3,6 @@
 
 from typing import TYPE_CHECKING, Any
 
-from bson import ObjectId
 from tinydb import Query, TinyDB
 
 from backend.models.location_model import Location
@@ -44,7 +43,6 @@ def validate_location(location_dict: dict[str, str | None]) -> Location:
     """
     return Location.model_validate(
         {
-            "id": str(ObjectId()),
             "street": location_dict["street"], "area": location_dict["area"],
             "city": location_dict["city"], "postal_code": location_dict["postal_code"],
             "state": location_dict["state"], "country": location_dict["country"],
@@ -135,8 +133,15 @@ def list_locations() -> list[Location]:
 
     """
     documents: list[Document] = db.all()
-    return [Location(**dict(doc)) for doc in documents]
+    return [Location.model_validate(doc) for doc in documents]
 
 
 def list_locations_cities() -> list[dict[str, str]]:
+    """
+    List all possible cities.
+
+    Returns:
+        list[dict[str, str]]: list of city with location guid
+
+    """
     return [{"key": location["id"], "value": location["city"]} for location in db.all()]

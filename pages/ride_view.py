@@ -2,12 +2,14 @@
 
 import streamlit as st
 
-from backend.dto.attraction_dto import AttractionDTO
-from backend.services.attractionService import get_attraction_by_id
+from backend.models.ride_model import Ride
 from backend.services.fair_service import list_fairs_containing_ride_id
+from backend.services.ride_service import get_ride_by_id
+from components.image_loader import fetch_cached_image
+from pages.const import _
 
 
-def ride_view(ride: AttractionDTO):
+def ride_view(ride: Ride):
 
     left_col, right_col = st.columns([.7, .3])
 
@@ -21,11 +23,13 @@ def ride_view(ride: AttractionDTO):
             """, unsafe_allow_html=True,
         )
 
-        st.markdown(f"**{_('RIDE_DESCRIPTION')}:** {ride.description}")
+        if ride.description:
+            st.markdown(ride.description)
+
         st.markdown(f"**{_('RIDE_TICKET_PRICE')}:** €{ride.ticket_price}")
         st.markdown(f"**{_('RIDE_MANUFACTURER')}:** {ride.manufacturer}")
         st.markdown(f"**{_('RIDE_TECHNICAL_NAME')}:** {ride.technical_name}")
-        st.markdown(f"**{_('RIDE_ATTRACTION_TYPE')}:** {ride.attraction_type}")
+        st.markdown(f"**{_('RIDE_ATTRACTION_TYPE')}:** {ride.ride_type}")
         if ride.owner:
             st.markdown(f"**{_('RIDE_OWNER')}:** {ride.owner}")
         if ride.manufacturer_page_url:
@@ -39,8 +43,10 @@ def ride_view(ride: AttractionDTO):
                 st.session_state.ride_id = ride.id
                 st.switch_page("pages/ride_edit.py")
 
-        for image in ride.images:
-            st.image(image.path, use_container_width=True)
+        if ride.images_url:
+            image = fetch_cached_image(ride.images_url[0])
+            if image:
+                st.image(image, use_container_width=True)
 
     st.divider()
 
@@ -74,11 +80,28 @@ def ride_view(ride: AttractionDTO):
             for i, col in enumerate(st.columns(n_split)):
                 with col:
                     if cursor+i < len(ride.videos_url):
-                        st.video(ride.videos_url[cursor+i])
+                        st.video(str(ride.videos_url[cursor+i]))
+
+    st.divider()
+    colA, colB = st.columns([.8, .2])
+    with colA:
+        st.header(_("RIDE_LIST_OF_IMAGES"))
+    with colB:
+        nn_split = st.number_input(
+            _("SHOW_IMAGES_PER_ROWS_OF"), min_value=1, max_value=5, value=3,
+        )
+    if ride.images_url:
+        for cursor in range(0, len(ride.images_url), nn_split):
+            for i, col in enumerate(st.columns(nn_split)):
+                with col:
+                    if cursor+i < len(ride.images_url):
+                        image = fetch_cached_image(ride.images_url[cursor+i])
+                        if image:
+                            st.image(image)
 
 
 if "ride_id" in st.session_state and st.session_state.ride_id:
-    ride = get_attraction_by_id(st.session_state.ride_id)
+    ride = get_ride_by_id(st.session_state.ride_id)
     ride_view(ride)
 else:
     st.switch_page("pages/ride_list.py")

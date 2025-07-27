@@ -104,8 +104,8 @@
 <hr>
 
 <h2>{{ _('FAIR_LIST_OF_ATTRACTIONS') }}</h2>
-<div class="fair-attractions">
-  {% for ride in fair.attractions %}
+<div class="fair-rides">
+  {% for ride in fair.rides %}
     {% if ride %}
       {% include "snippets/ride_item.html" %}
     {% end %}

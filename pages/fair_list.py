@@ -9,19 +9,23 @@ from backend.services.fair_service import (
     delete_fair,
     list_fair_sort_by_status,
 )
-from backend.services.locationService import list_locations_cities
+from backend.services.location_service import list_locations_cities
+from pages.const import _
 from pages.form_input import DotDict
 
 
 @st.dialog("delete fair")
-def delete_fair_dialog(fair_dto: Fair):
+def delete_fair_dialog(fair_dto: Fair) -> None:
+    """Display a popup to ask confirmation to delete a fair."""
     st.subheader(_("FAIR_DELETE_A_FAIR"))
     st.write(f"{_('FAIR_ARE_YOU_SURE_TO_DELETE')} {fair_dto.name}")
     if st.button(_("DELETE")):
         delete_fair(fair_dto.id)
         st.rerun()
 
-def display_fair(fair: Fair):
+
+def display_fair(fair: Fair) -> None:
+    """Display a box quickly describing a fair."""
     with st.container(border=True):
         col1, col2 = st.columns([2, 1])
         with col1:
@@ -67,7 +71,7 @@ def display_fair(fair: Fair):
 
 @st.fragment
 def fair_list() -> None:
-
+    """List all fitlered fairs."""
     gantt_chart_pd = None
     data_map: list[dict[str, str]] = []
     fairs_struct: dict[str, list[Fair]] = {}
@@ -75,15 +79,13 @@ def fair_list() -> None:
     fairs_struct = fairs_by_status["fairs"]
     data_map = fairs_by_status["map"]
     gantt_chart_pd = fairs_by_status["gantt"]
-
-
     cities: list[dict[str, str]] = list_locations_cities()
+
     col_title, col_add = st.columns([.8, .2])
     with col_title:
         st.title(body=_("FAIRS_LIST"))
     with col_add:
-        if getattr(st.session_state, "admin", False):
-            if st.button("", icon=":material/add:"):
+        if getattr(st.session_state, "admin", False) and st.button("", icon=":material/add:"):
                 st.switch_page("pages/fair_create.py")
 
     with st.expander(_("FAIR_SEARCH_TITLE"), expanded=False, icon=":material/search:"):
@@ -92,17 +94,17 @@ def fair_list() -> None:
             _("FAIR_SEARCH_BY_CITY"), options=cities, default=st.session_state.search_fair_query.cities or None,
             format_func=lambda c: c["value"],
         )
-        colDmin, colDmax = st.columns([.5, .5])
-        with colDmin:
+        col_d_min, col_d_max = st.columns([.5, .5])
+        with col_d_min:
             st.session_state.search_fair_query.date_min = st.date_input(_("FAIR_SEARCH_BY_MIN_DATE"), value=st.session_state.search_fair_query.date_min or None)
-        with colDmax:
+        with col_d_max:
             st.session_state.search_fair_query.date_max = st.date_input( _("FAIR_SEARCH_BY_MAX_DATE"), value=st.session_state.search_fair_query.date_max or None)
 
-        colApply, colCancel = st.columns([.5, .5])
-        with colApply:
+        col_apply, col_cancel = st.columns([.5, .5])
+        with col_apply:
             if st.button(_("FAIR_SEARCH_BUTTON"), type="primary", use_container_width=True):
                 st.rerun(scope="fragment")
-        with colCancel:
+        with col_cancel:
             if st.button(_("FAIR_SEARCH_BUTTON_RESET"), use_container_width=True):
                 st.session_state.search_fair_query.clear()
                 st.rerun(scope="fragment")
@@ -125,20 +127,19 @@ def fair_list() -> None:
             st.altair_chart(chart, use_container_width=True)
 
         st.header(f":green[{_('FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY')}]")
-        colCurrent, colMap = st.columns([.5, .5])
-        with colCurrent:
-            with st.container(height=500, border=False):
-                if fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
-                    for fair in fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
-                        display_fair(fair)
-                else:
-                    st.write(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
+        col_current, col_map = st.columns([.5, .5])
+        with col_current, st.container(height=500, border=False):
+            if fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
+                for fair in fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
+                    display_fair(fair)
+            else:
+                st.write(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
 
-        with colMap:
+        with col_map:
             st.map(data=data_map, latitude="lat", longitude="lng", size="size", color="color", zoom=7)
 
-        colComming, colPast = st.columns([.5, .5])
-        with colComming:
+        col_comming, col_past = st.columns([.5, .5])
+        with col_comming:
             st.header(f":orange[{_('FAIR_LIST_FUNFAIRS_COMING_SOON')}]")
             if fairs_struct[FairStatus.INCOMING]:
                 for fair in sorted(fairs_struct[FairStatus.INCOMING], key=lambda f: f.start_date):
@@ -146,7 +147,7 @@ def fair_list() -> None:
             else:
                 st.write(_("FAIR_NO_FAIRS_COMMING_SOON"))
 
-        with colPast:
+        with col_past:
             st.header(f":blue[{_('FAIR_LIST_FUNFAIRS_DONE')}]")
             if fairs_struct[FairStatus.DONE]:
                 for fair in fairs_struct[FairStatus.DONE]:

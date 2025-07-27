@@ -8,14 +8,7 @@ import tornado.ioloop
 import tornado.web
 from tornado.web import Application, RequestHandler
 
-from backend.models.attraction_model import AttractionType
-from backend.services.attractionService import (
-    create_attraction,
-    get_attraction_by_id,
-    list_attractions,
-    list_attractions_names_and_id,
-    update_attraction,
-)
+from backend.models.ride_model import RideType
 from backend.services.fair_service import (
     create_fair,
     get_fair,
@@ -23,17 +16,24 @@ from backend.services.fair_service import (
     list_fairs_containing_ride_id,
     update_fair,
 )
-from backend.services.locationService import (
+from backend.services.location_service import (
     create_location,
     delete_location,
     list_locations,
     list_locations_cities,
 )
-from backend.services.manufacturerService import (
+from backend.services.manufacturer_service import (
     create_manufacturer,
     delete_manufacturer,
     list_manufacturers,
     list_manufacturers_names,
+)
+from backend.services.ride_service import (
+    create_ride,
+    get_ride_by_id,
+    list_rides,
+    list_rides_names_and_id,
+    update_ride,
 )
 from pages.form_input import DotDict
 
@@ -56,17 +56,17 @@ class RootRedirectHandler(tornado.web.RequestHandler):
 class RideListHandler(BaseHandler):
     def get(self):
         search_query = SimpleNamespace(
-            attraction_type=self.get_argument("attraction_type", ""),
+            ride_type=self.get_argument("ride_type", ""),
             manufacturers=self.get_argument("manufacturers", ""),
         )
-        rides = list_attractions(search_query)
+        rides = list_rides(search_query)
         manufacturers = list_manufacturers()
         rides.reverse()
         self.render_template("ride_list.html", _=_, rides=rides, manufacturers=manufacturers, search_query=search_query)
 
 class RideViewHandler(BaseHandler):
     def get(self, ride_id):
-        ride = get_attraction_by_id(attraction_id=ride_id)
+        ride = get_ride_by_id(ride_id=ride_id)
         if not ride:
             self.redirect("/rides")
 
@@ -123,15 +123,12 @@ class FairViewHandler(tornado.web.RequestHandler):
         )
 
 class FairFormHandler(tornado.web.RequestHandler):
-    def get(self, fair_id=None):
-        is_edit = fair_id is not None
-        fair = get_fair(fair_id) if is_edit else DotDict()
-        attractions_map = list_attractions_names_and_id()
-        self.render("fair_create.html", fair=fair, is_edit=is_edit, attractions_map=attractions_map)
+    def get(self):
+        fair = DotDict()
+        rides_map = list_rides_names_and_id()
+        self.render("fair_create.html", fair=fair, rides_map=rides_map)
 
     def post(self, fair_id=None):
-        is_edit = fair_id is not None
-
         form = self.request.arguments
         # Map form fields
         fair_data = {
@@ -142,7 +139,7 @@ class FairFormHandler(tornado.web.RequestHandler):
             "official_ad_page": self.get_argument("official_ad_page", ""),
             "facebook_event_page": self.get_argument("facebook_event_page", ""),
             "city_event_page": self.get_argument("city_event_page", ""),
-            "attractions": self.get_arguments("attractions"),  # multi-select
+            "rides": self.get_arguments("rides"),  # multi-select
             "location": {
                 "street": self.get_argument("street"),
                 "area": self.get_argument("area"),
@@ -156,10 +153,44 @@ class FairFormHandler(tornado.web.RequestHandler):
         }
 
         try:
-            if is_edit:
-                update_fair(fair_data, id=fair_id)
-            else:
-                create_fair(fair_data)
+            create_fair(fair_data)
+            self.redirect("/fairs")
+        except Exception as e:
+            self.write(f"Error: {e!s}")
+
+
+class FairEditFormHandler(tornado.web.RequestHandler):
+    def get(self, fair_id):
+        fair = get_fair(fair_id)
+        rides_map = list_rides_names_and_id()
+        self.render("fair_edit.html", fair=fair, rides_map=rides_map)
+
+    def post(self, fair_id=None):
+        form = self.request.arguments
+        # Map form fields
+        fair_data = {
+            "name": self.get_argument("name"),
+            "start_date": self.get_argument("start_date"),
+            "end_date": self.get_argument("end_date"),
+            "walk_tour_video": self.get_argument("walk_tour_video", ""),
+            "official_ad_page": self.get_argument("official_ad_page", ""),
+            "facebook_event_page": self.get_argument("facebook_event_page", ""),
+            "city_event_page": self.get_argument("city_event_page", ""),
+            "rides": self.get_arguments("rides"),  # multi-select
+            "location": {
+                "street": self.get_argument("street"),
+                "area": self.get_argument("area"),
+                "city": self.get_argument("city"),
+                "postal_code": self.get_argument("postal_code"),
+                "state": self.get_argument("state"),
+                "country": self.get_argument("country"),
+                "lat": self.get_argument("lat"),
+                "lng": self.get_argument("lng"),
+            },
+        }
+
+        try:
+            update_fair(fair_data, id=fair_id)
             self.redirect("/fairs")
         except Exception as e:
             self.write(f"Error: {e!s}")
@@ -192,16 +223,16 @@ class ManufacturerListHandler(tornado.web.RequestHandler):
 class RideFormHandler(tornado.web.RequestHandler):
     def get(self, ride_id=None):
         manufacturers = list_manufacturers_names()
-        attraction_types = list(AttractionType)
+        ride_types = list(RideType)
 
         ride = None
         if ride_id:
-            ride = get_attraction_by_id(ride_id)
+            ride = get_ride_by_id(ride_id)
 
         self.render("ride_create.html",
                     ride=ride,
                     manufacturers=manufacturers,
-                    attraction_types=attraction_types,
+                    ride_types=ride_types,
                     is_edit=ride is not None,
                     _=gettext.gettext)
 
@@ -212,7 +243,7 @@ class RideFormHandler(tornado.web.RequestHandler):
             "ticket_price": float(self.get_body_argument("ticket_price", 0)),
             "manufacturer": self.get_body_argument("manufacturer"),
             "technical_name": self.get_body_argument("technical_name", ""),
-            "attraction_type": self.get_body_argument("attraction_type"),
+            "ride_type": self.get_body_argument("ride_type"),
             "manufacturer_page_url": self.get_body_argument("manufacturer_page_url", ""),
             "owner": self.get_body_argument("owner", ""),
             "news_page_url": self.get_body_argument("news_page_url", ""),
@@ -222,9 +253,9 @@ class RideFormHandler(tornado.web.RequestHandler):
 
         try:
             if ride_id:
-                update_attraction(id=ride_id, attraction_dict=data)
+                update_ride(id=ride_id, ride_dict=data)
             else:
-                create_attraction(data)
+                create_ride(data)
         except Exception as e:
             self.set_status(400)
             self.write(str(e))
@@ -288,7 +319,7 @@ def make_app():
         (r"/locations/delete/([a-zA-Z0-9\-]+)", LocationDeleteHandler),
     ],
         template_path="templates",
-        static_path="static",
+        static_path="statics",
         debug=True,
     )
 

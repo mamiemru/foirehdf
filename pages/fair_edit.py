@@ -2,17 +2,17 @@
 import streamlit as st
 
 from backend.models.fairModel import Fair
-from backend.services.attractionService import (
-    get_attraction_by_id,
-    list_attractions_names_and_id,
-)
 from backend.services.fair_service import get_fair, update_fair
+from backend.services.ride_service import (
+    list_rides,
+)
+from pages.const import _
 
 
 def fair_edit() -> None:
 
     fair: Fair = get_fair(fair_id=st.session_state.fair_id)
-    attractions_array: dict[str, list[str]] = list_attractions_names_and_id()
+    rides_array: dict[str, list[str]] = list_rides()
 
     st.title(_("FAIR_EDIT_FAIR"))
 
@@ -35,20 +35,19 @@ def fair_edit() -> None:
         st.divider()
 
 
-        selected_attractions_array: list[str] = []
-        for attraction_id in fair.attractions:
-            attraction = get_attraction_by_id(attraction_id=attraction_id)
-            for array in attractions_array:
-                if str(array["key"]) == str(attraction.id):
-                    selected_attractions_array.append(array)
+        selected_rides_array: list[str] = []
+        for ride in fair.rides:
+            for sride in rides_array:
+                if str(sride.id) == str(ride):
+                    selected_rides_array.append(sride)
                     continue
 
         st.header(_("FAIR_RIDES_IN_THE_FAIR"))
-        attractions = st.multiselect(
+        rides = st.multiselect(
             _("FAIR_SELECT_RIDE_MESSAGE"),
-            format_func=lambda a: a["value"],
-            options=attractions_array,
-            default=selected_attractions_array,
+            format_func=lambda a: f"{a.name} ({a.manufacturer})",
+            options=rides_array,
+            default=selected_rides_array,
         )
         walk_tour_video = st.text_input(_("FAIR_WALKTOUR_VIDEO"), value=fair.walk_tour_video)
 
@@ -62,7 +61,7 @@ def fair_edit() -> None:
         submitted = st.button(_("SUBMIT"))
         if submitted:
             fair_form: dict = {
-                "name": name, "start_date": start_date, "end_date": end_date, "attractions": [a["key"] for a in attractions],
+                "name": name, "start_date": start_date, "end_date": end_date, "rides": [a.id for a in rides],
                 "locations": fair.locations,
                 "walk_tour_video": walk_tour_video or None, "official_ad_page": official_ad_page or None,
                 "facebook_event_page": facebook_event_page or None, "city_event_page": city_event_page or None,

@@ -1,14 +1,14 @@
-import locale
-import gettext
 import builtins
+import gettext
+import locale
 from pathlib import Path
-from typing import List
+
 import streamlit as st
 
-locale.setlocale(locale.LC_ALL, 'fr_FR.UTF-8')
+locale.setlocale(locale.LC_ALL, "fr_FR.UTF-8")
 
-locale_path = Path(__file__).parent / 'locales' 
-language = gettext.translation('messages', localedir=locale_path, languages=['fr'])
+locale_path = Path(__file__).parent / "locales"
+language = gettext.translation("messages", localedir=locale_path, languages=["fr"])
 language.install()
 
 builtins._ = language.gettext
@@ -29,13 +29,13 @@ edit_ride = st.Page("pages/ride_edit.py", title=_("APP_EDIT_A_RIDE"), icon=":mat
 list_manufacturer = st.Page("pages/manufacturer_list.py", title=_("APP_LIST_MANUFACTURERS"), icon=":material/list:")
 list_location = st.Page("pages/location_list.py", title=_("APP_LIST_LOCATION"), icon=":material/list:")
 
-if 'admin' not in st.session_state:
-    st.session_state.admin = False
+if "admin" not in st.session_state:
+    st.session_state.admin = True
 
-fair: List = [list_fairs, view_fair]
-ride: List = [list_rides, view_ride]
-manu: List = [list_manufacturer]
-loc: List = [list_location]
+fair: list = [list_fairs, view_fair]
+ride: list = [list_rides, view_ride]
+manu: list = [list_manufacturer]
+loc: list = [list_location]
 
 if st.session_state.admin:
     fair.append(create_fair)
@@ -48,8 +48,8 @@ pg = st.navigation(
         _("APP_FAIRS"): fair,
         _("APP_RIDES"): ride,
         _("APP_MANUFACTURERS"): manu,
-        _("APP_LOCATIONS"): loc
-    }
+        _("APP_LOCATIONS"): loc,
+    },
 )
 
 st.set_page_config(layout="wide", page_icon=icon)
@@ -57,17 +57,17 @@ st.set_page_config(layout="wide", page_icon=icon)
 with st.sidebar:
     st.write("""
         Ce site n’a en aucun cas vocation à faire de la promotion ou du classement.
-        Il s'agit d'une base de données dédiée aux attractions d’intensité moyenne, forte et extrême.
+        Il s'agit d'une base de données dédiée aux rides d’intensité moyenne, forte et extrême.
         Mon objectif est de centraliser des informations sur certains manèges présents lors des foires dans les Hauts-de-France (proche de Lille), 
         car je trouve que, même avec Internet, certaines informations restent difficiles à trouver.
         Je ne stock aucune images ou vidéos, toutes les ressources vienent d'ailleurs (page crédits à faire).
     """)
-    
-    
+
+
 
 pg.run()
 
 
 st.sidebar.toggle(
-    "admin", key="admin", value=st.session_state.admin
+    "admin", key="admin", value=st.session_state.admin,
 )

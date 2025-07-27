@@ -2,12 +2,13 @@
 
 import streamlit as st
 
-from backend.models.attraction_model import AttractionType
-from backend.services.attractionService import create_attraction, list_attractions_names
-from backend.services.manufacturerService import (
+from backend.models.ride_model import RideType
+from backend.services.manufacturer_service import (
     create_manufacturer,
     list_manufacturers_names,
 )
+from backend.services.ride_service import create_ride, list_rides_names
+from pages.const import _
 from pages.form_input import DotDict
 
 
@@ -22,8 +23,8 @@ class Datas:
 
 
 @st.dialog(_("RIDE_ADD_MANUFACTURER"))
-def add_manufacturer_dialog():
-
+def add_manufacturer_dialog() -> None:
+    """Open a dialog to create a new manufacturer."""
     name = st.text_input(_("RIDE_NAME_OF_THE_MANUFACTURER"))
     if st.button(_("RIDE_SUBMIT")):
         create_manufacturer({"name": name})
@@ -31,10 +32,10 @@ def add_manufacturer_dialog():
 
 
 @st.fragment
-def ride_create():
+def ride_create() -> None:
     st.header(_("RIDE_ADD_A_NEW_RIDE"))
 
-    rides_names: list[str] = list_attractions_names()
+    rides_names: list[str] = list_rides_names()
     manufacturer_names: list[str] = list_manufacturers_names()
 
     colA, colB = st.columns([.5, .5])
@@ -53,6 +54,7 @@ def ride_create():
             st.divider()
             st.header(_("RIDE_MANUFACTURER_INFORMATION"))
 
+
             manufacturer_col, add_col = st.columns([.9, .1])
             with manufacturer_col:
                 st.session_state.datas.ride.manufacturer = st.selectbox(
@@ -64,14 +66,16 @@ def ride_create():
                     add_manufacturer_dialog()
 
             st.session_state.datas.ride.technical_name = st.text_input(
-                _("RIDE_TECHNICAL_NAME"), placeholder=_("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"),
+                _("RIDE_TECHNICAL_NAME"), placeholder=_("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"), value=st.session_state.datas.ride.technical_name,
             )
-            st.session_state.datas.ride.attraction_type = st.selectbox(
-                _("RIDE_ATTRACTION_TYPE"), options=list(AttractionType), placeholder=_("RIDE_THE_TYPE_OF_THE_RIDE"), format_func=lambda a: a.value,
+            st.session_state.datas.ride.ride_type = st.selectbox(
+                _("RIDE_ATTRACTION_TYPE"), options=list(RideType), placeholder=_("RIDE_THE_TYPE_OF_THE_RIDE"),
+                format_func=lambda a: a.value, index=st.session_state.ride_type_index,
             )
             st.session_state.datas.ride.manufacturer_page_url = st.text_input(
                 _("RIDE_MANUFACTURER_PAGE"), help=_("RIDE_A_LINK_TO_THE_PRODUCT"),
                 placeholder=_("RIDE_ENTER_THE_URL_PAGE_OF_THE_MANUFACTURER_RIDE"),
+                value=st.session_state.datas.ride.manufacturer_page_url,
             )
 
             st.divider()
@@ -142,16 +146,16 @@ def ride_create():
             st.divider()
             submitted = st.button(_("SUBMIT"))
             if submitted:
-                attraction_form: dict = {
+                ride_form: dict = {
                     "name": st.session_state.datas.ride.name, "description": st.session_state.datas.ride.description,
                     "ticket_price": st.session_state.datas.ride.ticket_price, "manufacturer": st.session_state.datas.ride.manufacturer,
-                    "technical_name": st.session_state.datas.ride.technical_name, "attraction_type": st.session_state.datas.ride.attraction_type,
+                    "technical_name": st.session_state.datas.ride.technical_name, "ride_type": st.session_state.datas.ride.ride_type,
                     "manufacturer_page_url": st.session_state.datas.ride.manufacturer_page_url or None, "owner": st.session_state.datas.ride.owner,
                     "news_page_url": st.session_state.datas.ride.news_page_url or None, "videos_url": st.session_state.datas.ride.videos_url,
                     "images_url": st.session_state.datas.ride.images_url,
                 }
                 try:
-                    create_attraction(attraction_form)
+                    create_ride(ride_form)
                 except Exception as e:
                     st.error(e, icon=":material/close:")
                 else:
@@ -162,4 +166,5 @@ def ride_create():
 
 
 st.session_state.datas = Datas()
+st.session_state.ride_type_index = None
 ride_create()

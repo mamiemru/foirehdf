@@ -16,7 +16,7 @@ def create_manufacturer(manufacturer: Manufacturer) -> Manufacturer:
         manufacturer (Manufacturer): The Manufacturer instance to insert.
 
     Returns:
-        Optional[ManufacturerDto]: DTO of the created manufacturer if successful, else None.
+        Optional[Manufacturer]: the created manufacturer if successful, else None.
 
     """
     if db.insert(manufacturer.model_dump(mode="json")):
@@ -41,12 +41,12 @@ def list_manufacturers() -> list[Manufacturer]:
     Return a list of all manufacturers as DTOs.
 
     Returns:
-        List[ManufacturerDto]: A list of manufacturer DTOs.
+        List[Manufacturer]: A list of manufacturers.
 
     """
     return [
-        Manufacturer(**doc)
-        for doc in db.all()
+        Manufacturer.model_validate(manufacturer)
+        for manufacturer in db.all()
     ]
 
 
@@ -64,9 +64,9 @@ def exists_manufacturer_by_name(manufacturer_name: str) -> Manufacturer:
         KeyError: If no manufacturer with the given name exists.
 
     """
-    result = db.get(query.name == manufacturer_name)
-    if result:
-        return Manufacturer(**result)
+    manufacturer_dict = db.get(query.name == manufacturer_name)
+    if manufacturer_dict:
+        return Manufacturer.model_validate(manufacturer_dict)
     msg = "Manufacturer with name does not exist"
     raise KeyError(msg)
 
@@ -85,9 +85,9 @@ def get_manufacturer(manufacturer_id: str) -> Manufacturer:
         KeyError: If no manufacturer with the given ID exists.
 
     """
-    result = db.get(query.id == manufacturer_id)
-    if result:
-        return Manufacturer(**result)
+    manufacturer_dict = db.get(query.id == manufacturer_id)
+    if manufacturer_dict:
+        return Manufacturer.model_validate(manufacturer_dict)
     msg = "Manufacturer with id does not exist"
     raise KeyError(msg)
 
@@ -106,7 +106,10 @@ def delete_manufacturer(manufacturer_id: str) -> bool:
         KeyError: If no manufacturer with the given ID exists.
 
     """
-    if db.remove(query.id == manufacturer_id):
-        return True
-    msg = "Manufacturer with id does not exist"
-    raise KeyError(msg)
+    manufacturer_to_delete = db.get(query.id == manufacturer_id)
+    if not manufacturer_to_delete:
+        msg = "Manufacturer with id does not exist"
+        raise KeyError(msg)
+
+    return bool(db.remove(query.id == manufacturer_id))
+

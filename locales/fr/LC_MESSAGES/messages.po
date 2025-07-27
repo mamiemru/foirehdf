@@ -99,7 +99,7 @@ msgid "FAIR_RIDES_IN_THE_FAIR"
 msgstr "manèges présent dans la foire"
 
 msgid "FAIR_SELECT_RIDE_MESSAGE"
-msgstr "Sélectionnez les attractions présentes dans la foire"
+msgstr "Sélectionnez les rides présentes dans la foire"
 
 msgid "FAIR_SOURCES"
 msgstr "Sources"
@@ -406,6 +406,9 @@ msgstr "Addresse de la foire"
 
 msgid "FAIR_NAME"
 msgstr "Nom de la foire"
+
+msgid "RIDE_LIST_OF_IMAGES"
+msgstr "Images"
 
 msgid "RIDE_LIST_OF_VIDEOS"
 msgstr "Vidéos"

@@ -72,7 +72,6 @@ def display_fair(fair: Fair) -> None:
 @st.fragment
 def fair_list() -> None:
     """List all fitlered fairs."""
-    gantt_chart_pd = None
     data_map: list[dict[str, str]] = []
     fairs_struct: dict[str, list[Fair]] = {}
     fairs_by_status = list_fair_sort_by_status(search_fair_query=st.session_state.search_fair_query)

@@ -148,12 +148,12 @@ def list_fair_sort_by_status(search_fair_query: Any | None = None) -> dict[str, 
                 "start": fair.start_date,
                 "finish": fair.end_date,
                 "resource": location.city,
-                "color": (
-                    "#33cc33"
+                "status": (
+                    FairStatus.CURRENTLY_AVAILABLE
                     if fair.fair_available_today
-                    else "#ff9900"
+                    else FairStatus.INCOMING
                     if fair.fair_incoming
-                    else "#0066cc"
+                    else FairStatus.DONE
                 ),
                 "date": (
                     fair.days_before_start_date

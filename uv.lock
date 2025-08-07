@@ -1092,6 +1092,19 @@ wheels = [
 ]
 
 [[package]]
+name = "plotly"
+version = "6.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "narwhals" },
+    { name = "packaging" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6e/5c/0efc297df362b88b74957a230af61cd6929f531f72f48063e8408702ffba/plotly-6.2.0.tar.gz", hash = "sha256:9dfa23c328000f16c928beb68927444c1ab9eae837d1fe648dbcda5360c7953d", size = 6801941, upload_time = "2025-06-26T16:20:45.765Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ed/20/f2b7ac96a91cc5f70d81320adad24cc41bf52013508d649b1481db225780/plotly-6.2.0-py3-none-any.whl", hash = "sha256:32c444d4c940887219cb80738317040363deefdfee4f354498cc0b6dab8978bd", size = 9635469, upload_time = "2025-06-26T16:20:40.76Z" },
+]
+
+[[package]]
 name = "polib"
 version = "1.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1387,6 +1400,7 @@ dependencies = [
     { name = "jinja2" },
     { name = "mypy" },
     { name = "nicegui" },
+    { name = "plotly" },
     { name = "polib" },
     { name = "pydantic" },
     { name = "python-gettext" },
@@ -1407,6 +1421,7 @@ requires-dist = [
     { name = "jinja2", specifier = ">=3.1.6" },
     { name = "mypy", specifier = ">=1.16.1" },
     { name = "nicegui", specifier = ">=2.20.0" },
+    { name = "plotly", specifier = ">=6.2.0" },
     { name = "polib", specifier = ">=1.2.0" },
     { name = "pydantic", specifier = ">=2.11.3" },
     { name = "python-gettext", specifier = ">=5.0" },

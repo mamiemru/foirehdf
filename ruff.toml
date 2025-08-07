@@ -9,3 +9,4 @@ ignore = ["D203", "D212"] # optional: e.g., conflicting docstring rules
 [format]
 quote-style = "double"
 indent-style = "space"
+line-ending = "auto"

@@ -10,6 +10,7 @@ dependencies = [
     "jinja2>=3.1.6",
     "mypy>=1.16.1",
     "nicegui>=2.20.0",
+    "plotly>=6.2.0",
     "polib>=1.2.0",
     "pydantic>=2.11.3",
     "python-gettext>=5.0",

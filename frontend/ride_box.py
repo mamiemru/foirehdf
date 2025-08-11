@@ -49,7 +49,7 @@ def display_ride_as_item_in_list(_, ride: Ride) -> None:
 
             with ui.grid(columns=2).classes("gap-2 flex-wrap"):
                 ui.label(ride.ride_type).classes("bg-blue-500 text-white text-sm px-2 py-1 rounded font-semibold")
-                ui.label(ride.manufacturer).classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
+                ui.label(ride.manufacturer or "_").classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
                 ui.label(ride.technical_name or "_").classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")
                 ui.label(f"{ride.ticket_price:.2f} €").classes("bg-yellow-300 text-black text-sm px-2 py-1 rounded font-semibold")
 

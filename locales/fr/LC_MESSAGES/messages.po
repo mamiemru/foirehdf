@@ -150,7 +150,7 @@ msgid "FAIR_LIST_FUNFAIRS_DONE"
 msgstr "Foires terminées"
 
 msgid "FAIR_INFORMATION"
-msgstr "Information de la foire"
+msgstr "Informations de la foire"
 
 msgid "FAIR_SEARCH"
 msgstr "Chercher une foire"

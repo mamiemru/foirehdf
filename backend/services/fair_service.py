@@ -7,7 +7,8 @@ from typing import Any
 import pandas as pd
 from tinydb import Query, TinyDB
 
-from backend.models.fairModel import Fair, FairBase, FairStatus
+from backend.models.fair_model import Fair, FairBase, FairStatus, SearchFairQuery
+from backend.services.location_service import get_location_by_id
 
 tinydb: TinyDB = TinyDB("fair_db.json")
 db = tinydb.table("fair")
@@ -24,6 +25,7 @@ def create_hidden_fair(fair_dict: dict[str, Any]) -> FairBase:
 
 
 def create_fair(fair_dict: dict[str, Any]) -> Fair:
+    fair_dict["locations"] = [get_location_by_id(loc) for loc in fair_dict["locations"]]
     fair: Fair = Fair.model_validate(fair_dict)
     save_fair(fair)
     return fair
@@ -57,28 +59,26 @@ def save_hidden_fair(fair: FairBase, update_id: str | None = None) -> bool:
     return bool(success)
 
 
-def list_fairs(search_fair_query: Any | None = None) -> list[Fair]:
+def list_fairs(search_fair_query: SearchFairQuery) -> list[Fair]:
     """
     List fairs, using search_query.
 
     Args:
-        search_fair_query (Any | None, optional): _description_. Defaults to None.
+        search_fair_query (SearchFairQuery): filter search. Defaults to None.
 
     Returns:
         list[Fair]: list of filtered fairs
 
     """
-    cities: list[str] = [obj["key"] for obj in search_fair_query.cities] if search_fair_query and search_fair_query.cities else []
-    date_min: date | None = search_fair_query.date_min if search_fair_query else None
-    date_max: date | None = search_fair_query.date_max if search_fair_query else None
 
     def search_query_func(record: dict[str, Any]) -> bool:
         date = datetime.fromtimestamp(record["start_date"], tz=None).date()
-        if cities and record.get("location_id") not in cities:
+        city = record["locations"][0]["city"]
+        if search_fair_query.cities and city not in search_fair_query.cities:
             return False
-        if date_min and date < date_min:
+        if search_fair_query.date_min and date < search_fair_query.date_min:
             return False
-        return not (date_max and date > date_max)
+        return not (search_fair_query.date_max and date > search_fair_query.date_max)
 
     return [Fair.model_validate(result) for result in db.all() if search_query_func(result)]
 
@@ -107,7 +107,7 @@ def list_fairs_containing_ride_id(ride_id: str) -> list[Fair]:
 
 
 
-def list_fair_sort_by_status(search_fair_query: Any | None = None) -> dict[str, Any]:
+def list_fair_sort_by_status(search_fair_query: SearchFairQuery) -> dict[str, Any]:
     fairs: list[Fair] = list_fairs(search_fair_query=search_fair_query)
     pd_dict: list[dict[str, Any]] = []
 

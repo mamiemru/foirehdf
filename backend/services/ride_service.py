@@ -5,7 +5,7 @@ from typing import Any
 from bson import ObjectId
 from tinydb import Query, TinyDB
 
-from backend.models.ride_model import Ride, RideType
+from backend.models.ride_model import Ride, SearchRideQuery
 
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("ride")
@@ -16,24 +16,9 @@ def _create_id() -> str:
     return str(ObjectId())
 
 
-def create_ride(ride_dict: dict[str, str | dict[str, str]]) -> Ride:
+def create_ride(ride_dict: dict[str, Any]) -> Ride:
     """Create an ride."""
-    ride_payload: dict = {
-        "id": _create_id(),
-        "name": ride_dict["name"],
-        "description": ride_dict["description"],
-        "ticket_price": ride_dict["ticket_price"],
-        "manufacturer": ride_dict["manufacturer"],
-        "technical_name": ride_dict["technical_name"],
-        "ride_type": RideType.from_value(ride_dict["ride_type"]),
-        "manufacturer_page_url": ride_dict.get("manufacturer_page_url"),
-        "owner": ride_dict["owner"],
-        "news_page_url": ride_dict.get("news_page_url"),
-        "videos_url": ride_dict.get("videos_url"),
-        "images_url": ride_dict.get("images_url"),
-    }
-
-    validated_ride = Ride.model_validate(ride_payload)
+    validated_ride = Ride.model_validate(ride_dict)
     if db.insert(validated_ride.model_dump(mode="json")):
         return validated_ride
     msg = "Failed to save new ride"
@@ -60,22 +45,7 @@ def update_ride(id: str, ride_dict: dict[str, Any]) -> Ride:
         msg = "Ride not found"
         raise KeyError(msg)
 
-    ride_payload = {
-        "id": _create_id(),
-        "name": ride_dict["name"],
-        "description": ride_dict["description"],
-        "ticket_price": ride_dict["ticket_price"],
-        "manufacturer": ride_dict.get("manufacturer"),
-        "technical_name": ride_dict["technical_name"],
-        "ride_type": RideType.from_value(ride_dict["ride_type"]),
-        "manufacturer_page_url": ride_dict.get("manufacturer_page_url"),
-        "owner": ride_dict["owner"],
-        "news_page_url": ride_dict.get("news_page_url"),
-        "videos_url": ride_dict.get("videos_url"),
-        "images_url": ride_dict.get("images_url"),
-    }
-
-    validated_ride = Ride.model_validate(ride_payload)
+    validated_ride = Ride.model_validate(ride_dict)
 
     q = Query()
     success = db.update(validated_ride.model_dump(mode="json"), q.id == id)
@@ -85,30 +55,25 @@ def update_ride(id: str, ride_dict: dict[str, Any]) -> Ride:
     raise KeyError(msg)
 
 
-def list_rides_names_and_id() -> list[dict[str, str]]:
-    result: list = list()
-    for row in db.all():
-        manufacturer = row["manufacturer"]
-        result.append({"key": row["id"], "value": f"{row['name']} ({manufacturer})"})
-    return result
+def list_rides_names_and_id() -> dict[str, str]:
+    """Return a dict of ride ids and explicite name."""
+    return {row["id"]: f"""{row['name']} ({row["manufacturer"]})""" for row in db.all()}
 
 
 def list_rides_names() -> list[str]:
     return [result["name"] for result in db.all()]
 
 
-def list_rides(search_ride_query: dict | None = None) -> list[Ride]:
+def list_rides(search_ride_query: SearchRideQuery) -> list[Ride]:
     """List rides according the search_query."""
+    print(search_ride_query)
     if not search_ride_query:
         return [Ride(**ride) for ride in db.all()]
 
-    ride_type = search_ride_query.ride_type[:]
-    manufacturers = [m.name for m in search_ride_query.manufacturers]
-
-    def search_ride_query_funct(record) -> bool:
-        if ride_type and record["ride_type"] not in ride_type:
+    def search_ride_query_funct(record: dict[str, str]) -> bool:
+        if search_ride_query.ride_type and record["ride_type"] not in search_ride_query.ride_type:
             return False
-        return not (manufacturers and record["manufacturer"] not in manufacturers)
+        return not (search_ride_query.manufacturers and record["manufacturer"] not in search_ride_query.manufacturers)
 
     return [Ride(**ride) for ride in db.all() if search_ride_query_funct(ride)]
 

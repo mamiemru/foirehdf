@@ -3,7 +3,7 @@ from datetime import datetime
 
 from nicegui import ui
 
-from backend.models.fairModel import Fair
+from backend.models.fair_model import Fair
 
 
 def format_date(dt: datetime) -> str:

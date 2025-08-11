@@ -3,7 +3,7 @@
 import streamlit as st
 from pydantic import HttpUrl
 
-from backend.models.fairModel import Fair
+from backend.models.fair_model import Fair
 from backend.models.location_model import LocationBase
 from backend.services.fair_service import get_fair
 from backend.services.ride_service import get_ride_by_id

@@ -136,12 +136,12 @@ def list_locations() -> list[Location]:
     return [Location.model_validate(doc) for doc in documents]
 
 
-def list_locations_cities() -> list[dict[str, str]]:
+def list_locations_cities() -> list[str]:
     """
     List all possible cities.
 
     Returns:
-        list[dict[str, str]]: list of city with location guid
+        list[str]: list of city names
 
     """
-    return [{"key": location["id"], "value": location["city"]} for location in db.all()]
+    return list({location["city"] for location in db.all()})

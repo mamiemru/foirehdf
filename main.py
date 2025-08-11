@@ -1,13 +1,18 @@
 from collections.abc import Callable
 from functools import wraps
+from typing import Annotated
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.staticfiles import StaticFiles
 from nicegui import ui
 
+from backend.models.fair_model import SearchFairQuery
+from backend.models.ride_model import SearchRideQuery
 from backend.services.ride_service import get_ride_by_id
+from frontend.fair_create import fair_create
 from frontend.fair_list import fair_list
 from frontend.fair_view import fair_view
+from frontend.ride_create import ride_create
 from frontend.ride_list import ride_list
 from frontend.ride_view import ride_view
 
@@ -48,8 +53,13 @@ def with_sidebar(func: Callable) -> Callable:
 
 @ui.page("/fair_list")
 @with_sidebar
-def route_fair_list():
-    fair_list()
+def route_fair_list(search_fair_query: Annotated[SearchFairQuery, Query()]) -> None:
+    fair_list(search_fair_query=search_fair_query)
+
+@ui.page("/fair_create")
+@with_sidebar
+def route_fair_create():
+    fair_create()
 
 @ui.page("/fair_view/{fair_id}")
 @with_sidebar
@@ -58,8 +68,13 @@ def route_fair_view(fair_id: str):
 
 @ui.page("/ride_list")
 @with_sidebar
-def route_ride_list() -> None:
-    ride_list()
+def route_ride_list(search_ride_query: Annotated[SearchRideQuery, Query()]) -> None:
+    ride_list(search_ride_query=search_ride_query)
+
+@ui.page("/ride_create")
+@with_sidebar
+def route_ride_create() -> None:
+    ride_create()
 
 @ui.page("/ride_view/{ride_id}")
 @with_sidebar

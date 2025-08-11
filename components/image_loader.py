@@ -2,12 +2,10 @@ from io import BytesIO
 from pathlib import Path
 
 import requests
-import streamlit as st
 from PIL import Image
 from pydantic import HttpUrl
 
 
-@st.cache_data(show_spinner=False)
 def _fetch_cached_image(url: str) -> Image.Image | None:
     """Fetch and cache an image from a URL."""
     response = requests.get(str(url), timeout=10)

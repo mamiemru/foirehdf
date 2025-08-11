@@ -1,10 +1,11 @@
 
 
+from datetime import datetime
+
 from nicegui import ui
 from pydantic import HttpUrl
 
-from backend.models.fairModel import Fair
-from backend.models.location_model import LocationBase
+from backend.models.fair_model import Fair
 from backend.services.fair_service import get_fair
 from backend.services.ride_service import get_ride_by_id
 from components.fair_timeline import fair_timeline
@@ -13,16 +14,19 @@ from frontend.ride_box import display_ride_as_item_in_list
 from pages.const import _
 
 
-def icon_text(icon_name: str, text: str):
+def icon_text(icon_name: str, text: str) -> None:
+    """Display a text with an icon prepend."""
     with ui.row().classes("items-center gap-2"):
         ui.icon(icon_name)
         ui.label(text)
 
 def get_markdown_link_table_row(td: str, url: HttpUrl) -> str:
+    """Return a markdown row with url and title."""
     return f"| {_(td)} | [{url}]({url}) |\n"
 
 
 def get_markdown_link_table(fair: Fair) -> str:
+    """Return a markdown list of urls."""
     markdown_table = f"| {_('FAIR_URL_TYPE')} | {_('FAIR_URL')} |\n"
     markdown_table += "|------|------|\n"
 
@@ -40,15 +44,8 @@ def get_markdown_link_table(fair: Fair) -> str:
     return markdown_table
 
 
-def location_to_str(location: LocationBase) -> str:
-    return ", ".join([text for text in [
-        location.street or "", location.area or "", location.city,
-        location.postal_code, location.state, location.country,
-    ] if text])
-
-
-
 def fair_view(fair_id: str) -> None:
+    """Display all information about a fair."""
     fair: Fair = get_fair(fair_id=fair_id)
 
     # Header
@@ -63,9 +60,9 @@ def fair_view(fair_id: str) -> None:
             lfmap = ui.leaflet(center=(50.5, 2), zoom=8, options=options).classes("w-full h-[500px]")
             lfmap.marker(latlng=(location.lat, location.lng), options={"color": "red","autoPanOnFocus": True})
         icon_text("location_on", _("LOCATIONS"))
-        ui.label(location_to_str(location)).classes("mb-2")
+        ui.label(fair.first_location_str()).classes("mb-2")
 
-    with ui.row().classes("flex-wrap"):
+    with ui.row().classes("w-full flex-wrap"):
         with ui.column().classes("w-full md:w-8/12"):
 
             fair_timeline(fair)
@@ -86,44 +83,34 @@ def fair_view(fair_id: str) -> None:
 
             ui.separator()
 
-            with ui.grid(columns=3).classes("w-full flex-wrap justify-center"):
+            with ui.grid(columns=2).classes("w-full flex-wrap justify-center"):
                 for ride_id in fair.rides:
                     ride = get_ride_by_id(ride_id=ride_id)
                     if ride:
                         display_ride_as_item_in_list(_, ride)
 
 
+        date_today = datetime.today()
+        timeline_in_the_past = lambda d: "blue" if d < date_today else "grey"
         with ui.column().classes("w-full md:w-3/12"), ui.timeline(side="right"):
-            ui.timeline_entry("Rodja and Falko start working on NiceGUI.",
-                            title="Initial commit",
-                            subtitle="May 07, 2021")
-            ui.timeline_entry("The first PyPI package is released.",
-                            title="Release of 0.1",
-                            subtitle="May 14, 2021")
-            ui.timeline_entry("Large parts are rewritten to remove JustPy "
-                            "and to upgrade to Vue 3 and Quasar 2.",
-                            title="Release of 1.0",
-                            subtitle="December 15, 2022",
-                            icon="rocket")
-            ui.timeline_entry("Rodja and Falko start working on NiceGUI.",
-                            title="Initial commit",
-                            subtitle="May 07, 2021")
-            ui.timeline_entry("The first PyPI package is released.",
-                            title="Release of 0.1",
-                            subtitle="May 14, 2021")
-            ui.timeline_entry("Large parts are rewritten to remove JustPy "
-                            "and to upgrade to Vue 3 and Quasar 2.",
-                            title="Release of 1.0",
-                            subtitle="December 15, 2022",
-                            icon="rocket")
-            ui.timeline_entry("Rodja and Falko start working on NiceGUI.",
-                            title="Initial commit",
-                            subtitle="May 07, 2021")
-            ui.timeline_entry("The first PyPI package is released.",
-                            title="Release of 0.1",
-                            subtitle="May 14, 2021")
-            ui.timeline_entry("Large parts are rewritten to remove JustPy "
-                            "and to upgrade to Vue 3 and Quasar 2.",
-                            title="Release of 1.0",
-                            subtitle="December 15, 2022",
-                            icon="rocket")
+            ui.timeline_entry(
+                title="Fin de la foire.",
+                subtitle=fair.end_date.strftime("%d %B"),
+                icon="rocket",
+                color=timeline_in_the_past(fair.end_date),
+            )
+            if fair.timeline:
+                for item in fair.timeline.line:
+                    ui.timeline_entry(
+                        (item.type, item.description),
+                        title=item.title,
+                        subtitle=item.date.strftime("%d %B"),
+                        icon="rocket",
+                        color=timeline_in_the_past(item.date),
+                    )
+            ui.timeline_entry(
+                title="Début de la foire",
+                subtitle=fair.start_date.strftime("%d %B"),
+                icon="rocket",
+                color=timeline_in_the_past(fair.start_date),
+            )

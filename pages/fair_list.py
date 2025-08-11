@@ -4,7 +4,7 @@ import altair as alt
 import streamlit as st
 from dateutil.relativedelta import relativedelta
 
-from backend.models.fairModel import Fair, FairStatus
+from backend.models.fair_model import Fair, FairStatus
 from backend.services.fair_service import (
     delete_fair,
     list_fair_sort_by_status,

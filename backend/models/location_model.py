@@ -18,8 +18,12 @@ class LocationBase(BaseModel):
     lat: Annotated[float | None, Field(None,description="Latitude value between -90 and 90.")]
     lng: Annotated[float | None, Field(None, description="Longitude value between -180 and 180.")]
 
+    def location_to_str(self) -> str:
+        """Return a location in string."""
+        return f"""{self.street or ""} {self.area or ""} {self.city} {self.postal_code}, {self.state} {self.country}"""
 
 class Location(LocationBase):
     """Describe a location with its id."""
 
     id: Annotated[str, Field(..., description="id")]
+

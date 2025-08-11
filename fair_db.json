@@ -316,7 +316,7 @@
                 {
                     "street": null,
                     "area": "Esplanade de l'Éperon",
-                    "city": "Boulogne-sur-Mer",
+                    "city": "Boulogne-Sur-Mer",
                     "postal_code": "62200",
                     "state": "Pas de calais",
                     "country": "France",
@@ -335,7 +335,7 @@
             "city_event_page": null,
             "official_ad_page": "https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-6/487220303_1072275738277620_2473676409134839510_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=bVEU3MwisHEQ7kNvwH8xm_I&_nc_oc=AdkNVpaG54OcL0N7I9-rUX91-4HwqD7DEIzIjJyGqzGIc08WYobPrcnw9TuF1UjqNFNdSdpuqxFrY3LnPKJPTjW5&_nc_zt=23&_nc_ht=scontent-cdg4-1.xx&_nc_gid=eJK8xizDwCCR2BmQh91W5w&oh=00_AfGseqdF9jtkmobJ606tAK2Sk_2zLn2czxFzPtj4QDhZVA&oe=681C3653",
             "walk_tour_video": "https://www.youtube.com/watch?v=LskwNio59yc",
-            "facebook_event_page": "https://www.facebook.com/p/La-foire-de-boulogne-sur-mer-100064856104569/?locale=fr_FR",
+            "facebook_event_page": "https://www.facebook.com/p/La-foire-de-Boulogne-Sur-Mer-100064856104569/?locale=fr_FR",
             "sources": []
         },
         "12": {
@@ -566,7 +566,7 @@
             "rides": [
                 "681785f093d20116d052b879",
                 "681785f093d20116d052b87c",
-                "1199417334997425509-8085980767343175280-0"
+                "6867f61593a2096cb7bf2680"
             ],
             "city_event_page": null,
             "official_ad_page": null,
@@ -685,15 +685,49 @@
                 "681785f093d20116d052b894",
                 "681785f093d20116d052b87b",
                 "6867f81993d2016cb7bf2684",
-                "681785f093d20116d052b87c",
                 "6866e89523d2016db7bf2684",
-                "681785f093d20116d052b883"
+                "681785f093d20116d052b883",
+                "681785f093d20116d052b12a"
             ],
             "city_event_page": null,
             "official_ad_page": null,
             "walk_tour_video": null,
             "facebook_event_page": "https://www.facebook.com/profile.php?id=100089471462831",
-            "sources": []
+            "sources": [],
+            "timeline": {
+                "line": [
+                    {
+                        "title": "Mega Extreme",
+                        "type": "ride_leaving",
+                        "date": 1754232025
+                    },
+                    {
+                        "title": "Sky surf",
+                        "type": "ride_leaving",
+                        "date": 1754232025
+                    },
+                    {
+                        "title": "Air one maxxx",
+                        "type": "ride_leaving",
+                        "date": 1754836825
+                    },
+                    {
+                        "title": "Cyber one",
+                        "type": "ride_leaving",
+                        "date": 1754232025
+                    },
+                    {
+                        "title": "Shake off",
+                        "type": "ride_leaving",
+                        "date": 1754836825
+                    },
+                    {
+                        "title": "Mega Extreme",
+                        "type": "ride_available",
+                        "date": 1753195225
+                    }
+                ]
+            }
         },
         "25": {
             "id": "68768e7493d201d540843689",
@@ -729,7 +763,7 @@
                 {
                     "street": null,
                     "area": "Esplanade de l'Éperon",
-                    "city": "Boulogne-sur-Mer",
+                    "city": "Boulogne-Sur-Mer",
                     "postal_code": "62200",
                     "state": "Pas de calais",
                     "country": "France",
@@ -769,12 +803,45 @@
             "start_date": 1755043200,
             "end_date": 1756080000,
             "rides": [
-                "681785f093d20116d052b887"
+                "681785f093d20116d052b887",
+                "681785f093d20116d052b87f",
+                "681785f093d20116d052b883",
+                "681785f093d20116d052b12a"
             ],
             "city_event_page": null,
             "official_ad_page": null,
             "walk_tour_video": null,
             "facebook_event_page": "https://www.facebook.com/fete15Aout/",
+            "sources": [],
+            "images": []
+        },
+        "28": {
+            "id": "6898625693d201bddf76af1f",
+            "name": "Fête Foraine De Grenay 5 De Loos ",
+            "locations": [
+                {
+                    "street": "Bd de la Plaine",
+                    "area": "",
+                    "city": "Grenay",
+                    "postal_code": "62160",
+                    "state": "Pas De Calais",
+                    "country": "France",
+                    "lat": 50.4481757738301,
+                    "lng": 2.7551899993110327
+                }
+            ],
+            "start_date": 1754697600,
+            "end_date": 1755734400,
+            "rides": [
+                "6816a89595d2016db8bf2684",
+                "681785f093d20116d052b894",
+                "6867f81993d2016cb7bf2684",
+                "6867f61593a2096cb7bf2680"
+            ],
+            "city_event_page": null,
+            "official_ad_page": null,
+            "walk_tour_video": null,
+            "facebook_event_page": "https://www.facebook.com/p/F%C3%AAte-Foraine-De-Grenay-5-De-Loos-100057134152653/",
             "sources": [],
             "images": []
         }
@@ -872,7 +939,7 @@
             "id": "681785f093d20116d052b878",
             "street": null,
             "area": "Esplanade de l'Éperon",
-            "city": "Boulogne-sur-Mer",
+            "city": "Boulogne-Sur-Mer",
             "postal_code": "62200",
             "state": "Pas de calais",
             "country": "France",
@@ -1054,6 +1121,17 @@
             "country": "France",
             "lat": 50.96075482163744,
             "lng": 1.846669705669112
+        },
+        "27": {
+            "id": "681781f294d20116d052b879",
+            "street": "Bd de la Plaine",
+            "area": "Parking du Bassin Ouest",
+            "city": "Grenay",
+            "postal_code": "62160",
+            "state": "Pas De Calais",
+            "country": "France",
+            "lat": 50.4481757738301,
+            "lng": 2.7551899993110327
         }
     },
     "manufacturer_ride": {
@@ -1306,6 +1384,14 @@
             "technical_name": "Extreme",
             "ride_type": "Pendulum",
             "manufacturer_page_url": "https://www.funlight.cz/fr/produit/01-extreme"
+        },
+        "36": {
+            "id": "686a396c93d2011968c9d111",
+            "description": null,
+            "manufacturer": "Akrides",
+            "technical_name": "Techno power",
+            "ride_type": "Flat ride",
+            "manufacturer_page_url": null
         }
     },
     "ride": {
@@ -1883,7 +1969,7 @@
             "news_page_url": "https://www.facebook.com/p/Man%C3%A8ge-Gravity-Mallard-Fils-61564017673723/"
         },
         "31": {
-            "id": "1199417334997425509-8085980767343175280-0",
+            "id": "6867f61593a2096cb7bf2680",
             "name": "Terminator",
             "owner": null,
             "description": null,
@@ -1893,6 +1979,20 @@
             "ride_type": "Top Spin",
             "images_url": [],
             "videos_url": [],
+            "manufacturer_page_url": null,
+            "news_page_url": null
+        },
+        "32": {
+            "id": "681785f093d20116d052b12a",
+            "name": "Techno power (Deliere)",
+            "description": "",
+            "ticket_price": 5,
+            "manufacturer": "Akrides",
+            "technical_name": "Techno power",
+            "ride_type": "Flat ride",
+            "owner": "Deliere",
+            "videos_url": [],
+            "images_url": [],
             "manufacturer_page_url": null,
             "news_page_url": null
         },
@@ -2043,6 +2143,11 @@
         "15": {
             "id": "681785f093d20116d052b8a3",
             "name": "Do not know",
+            "website_url": null
+        },
+        "16": {
+            "id": "681785f093d20116d012c8f9",
+            "name": "Akrides",
             "website_url": null
         }
     }

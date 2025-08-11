@@ -1,31 +1,14 @@
-from datetime import datetime
 
 import plotly.express as px
-from dateutil.relativedelta import relativedelta
-from nicegui import ui
+from nicegui import app, ui
 
-from backend.models.fairModel import Fair, FairStatus
+from backend.models.fair_model import Fair, FairStatus, SearchFairQuery
 from backend.services.fair_service import (
     list_fair_sort_by_status,
 )
 from backend.services.location_service import list_locations_cities
 from components.fair_timeline import fair_timeline
 from pages.const import _
-from pages.form_input import DotDict
-
-search_fair_query = DotDict()
-
-def reset_search_fair_query() -> None:
-    """Reset search fair query."""
-    search_fair_query.date_min = (datetime.now() - relativedelta(months=1)).date()
-    search_fair_query.date_max = (datetime.now() + relativedelta(months=6)).date()
-    search_fair_query.cities = []
-
-reset_search_fair_query()
-
-def view_fair(fair_id: int) -> None:
-    """Simulate navigation to fair details page."""
-    ui.navigate.to(f"/fair_view/{fair_id}")
 
 
 def display_fair_item(fair: Fair) -> None:
@@ -41,82 +24,41 @@ def display_fair_item(fair: Fair) -> None:
         with ui.row().classes("items-center justify-between"):
             ui.label(fair.name).classes("text-xl font-semibold")
 
-            ui.button(_("FAIR_VIEW_FAIR"), icon="visibility", on_click=lambda: view_fair(fair.id)).props("unelevated color=primary")
+            ui.button(_("FAIR_VIEW_FAIR"), icon="visibility",
+                on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}"),
+            ).props("unelevated color=primary")
 
         # Locations
         ui.label(f"📍 {_('LOCATIONS')}").classes("mt-2 font-medium")
-        for location in fair.locations:
-            address_parts = [
-                location.street or "",
-                location.area or "",
-                location.city,
-                location.postal_code,
-                location.state,
-                location.country,
-            ]
-            address = ", ".join([part for part in address_parts if part])
-            ui.label(address).classes("text-sm text-gray-600")
+        for location in fair.locations_str():
+            ui.label(location).classes("text-sm text-gray-600")
 
         # Dates
         fair_timeline(fair, draw_bars=False)
 
-
-def fair_list() -> None:  # type: ignore  # noqa: PGH003
-    """
-    List all fairs, apply filters if provided.
-
-    Args:
-        ui (niceguid): niceguidhandler
-
-    """
-    gantt_chart_pd = None
-    fairs_struct: dict[str, list[Fair]] = {}
-    fairs_by_status = list_fair_sort_by_status(search_fair_query=search_fair_query)
+@ui.refreshable
+def display_fairs() -> None:
+    """Display filtered fairs, need decorators to be dynamic."""
+    fairs_by_status = list_fair_sort_by_status(search_fair_query=app.storage.client["search_fair_query"])
     fairs_struct = fairs_by_status["fairs"]
     data_map = fairs_by_status["map"]
     gantt_chart_pd = fairs_by_status["gantt"]
-    cities: list[dict[str, str]] = list_locations_cities()
-
-    with ui.row().classes("w-full items-center justify-between"):
-        ui.label(_("FAIRS_LIST")).style("color: #6E93D6; font-size: 200%; font-weight: 300").classes("w-3/5")
-        ui.button("Add fair", icon="add", on_click=lambda: ui.notify("You clicked me!")).classes("w-1/5")
-
-    with ui.expansion(_("FAIR_SEARCH_TITLE"), icon="search").classes("w-full"):
-        ui.select(cities, multiple=True, value=search_fair_query.cities, label=_("FAIR_SEARCH_BY_CITY")).classes("w-64").props("use-chips").bind_value(search_fair_query, "cities")
-
-        with ui.row().classes("w-full"):
-            with ui.input(_("FAIR_SEARCH_BY_MIN_DATE")).bind_value(search_fair_query, "date_min") as date_input_min:
-                with ui.menu() as menu:
-                    ui.date().bind_value(date_input_min)
-                with date_input_min.add_slot("append"):
-                    ui.icon("edit_calendar").on("click", menu.open).classes("cursor-pointer")
-
-            with ui.input(_("FAIR_SEARCH_BY_MAX_DATE")).bind_value(search_fair_query, "date_max") as date_input_max:
-                with ui.menu() as menu:
-                    ui.date().bind_value(date_input_max)
-                with date_input_max.add_slot("append"):
-                    ui.icon("edit_calendar").on("click", menu.open).classes("cursor-pointer")
-
-        with ui.row().classes("w-full"):
-            ui.button(_("FAIR_SEARCH_BUTTON"), icon="search", on_click=lambda: fairs_by_status.update(list_fair_sort_by_status(search_fair_query=search_fair_query)))
-            ui.button(_("FAIR_SEARCH_BUTTON_RESET"), icon="close", on_click=reset_search_fair_query)
-
-    ui.label().bind_text_from(search_fair_query)
 
     color_map = {
         FairStatus.CURRENTLY_AVAILABLE: "#33cc33",
         FairStatus.INCOMING: "#ff9900",
         FairStatus.DONE: "#0066cc",
     }
-    fig = px.timeline(
-        gantt_chart_pd,x_start="start",x_end="finish",y="task",color="status",
-        hover_data={"name": True,"start_date": True,"end_date": True,"date": True},
-        color_discrete_map=color_map,
-    )
-    fig.update_yaxes(title_text=_("CITY"), autorange="reversed")
-    fig.update_xaxes(title_text=_("FAIR_DATES"))
-    fig.update_layout(coloraxis_showscale=False)
-    ui.plotly(fig).classes("w-full")
+    if not gantt_chart_pd.empty:
+        fig = px.timeline(
+            gantt_chart_pd,x_start="start",x_end="finish",y="task",color="status",
+            hover_data={"name": True,"start_date": True,"end_date": True,"date": True},
+            color_discrete_map=color_map,
+        )
+        fig.update_yaxes(title_text=_("CITY"), autorange="reversed")
+        fig.update_xaxes(title_text=_("FAIR_DATES"))
+        fig.update_layout(coloraxis_showscale=False)
+        ui.plotly(fig).classes("w-full")
 
     ui.label(_("FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY")).classes("mb-4 text-h3")
     with ui.row().classes("w-full flex-wrap align-center space-between"):
@@ -149,3 +91,49 @@ def fair_list() -> None:  # type: ignore  # noqa: PGH003
             display_fair_item(fair)
     else:
         ui.label(_("FAIR_NO_FAIRS_DONE"))
+
+def refresh_fairs_list(search_fair_query: SearchFairQuery) -> None:
+    """Refresh the page in one function call."""
+    app.storage.client["search_fair_query"] = search_fair_query
+    display_fairs.refresh()
+
+def reset_fairs_list(search_fair_query: SearchFairQuery) -> None:
+    """Reset filter and refresh the page in one function call."""
+    search_fair_query.reset()
+    app.storage.client["search_fair_query"] = search_fair_query
+    display_fairs.refresh()
+
+def display_search_expansion(search_fair_query: SearchFairQuery) -> None:
+    """Display search expansion information."""
+    cities: list[str] = list_locations_cities()
+    cities.sort(key=lambda c: c)
+    with ui.expansion(_("FAIR_SEARCH_TITLE"), icon="search").classes("w-full"):
+        ui.select(cities, multiple=True, label=_("FAIR_SEARCH_BY_CITY")).bind_value(search_fair_query, "cities").classes("w-1/3").props("use-chips")
+
+        with ui.row().classes("w-full"):
+            with ui.input(_("FAIR_SEARCH_BY_MIN_DATE")).bind_value(search_fair_query, "date_min") as date_input_min:
+                with ui.menu() as menu:
+                    ui.date().bind_value(date_input_min)
+                with date_input_min.add_slot("append"):
+                    ui.icon("edit_calendar").on("click", menu.open).classes("cursor-pointer")
+
+            with ui.input(_("FAIR_SEARCH_BY_MAX_DATE")).bind_value(search_fair_query, "date_max") as date_input_max:
+                with ui.menu() as menu:
+                    ui.date().bind_value(date_input_max)
+                with date_input_max.add_slot("append"):
+                    ui.icon("edit_calendar").on("click", menu.open).classes("cursor-pointer")
+
+        with ui.row().classes("w-full"):
+            ui.button(_("FAIR_SEARCH_BUTTON"), icon="search", on_click=lambda: refresh_fairs_list(search_fair_query))
+            ui.button(_("FAIR_SEARCH_BUTTON_RESET"), icon="close", on_click=lambda: reset_fairs_list(search_fair_query))
+
+def fair_list(search_fair_query: SearchFairQuery) -> None:
+    """List all fairs, apply filters if provided."""
+    app.storage.client["search_fair_query"] = search_fair_query
+    with ui.row().classes("w-full items-center justify-between"):
+        ui.label(_("FAIRS_LIST")).style("color: #6E93D6; font-size: 200%; font-weight: 300").classes("w-3/5")
+        ui.button("Add fair", icon="add", on_click=lambda: ui.navigate.to("/fair_create")).classes("w-1/5")
+
+    display_search_expansion(search_fair_query=search_fair_query)
+    refresh_fairs_list(search_fair_query=search_fair_query)
+    display_fairs()

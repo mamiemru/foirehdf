@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-from backend.models.fairModel import Fair
+from backend.models.fair_model import Fair
 from backend.services.fair_service import get_fair, update_fair
 from backend.services.ride_service import (
     list_rides,

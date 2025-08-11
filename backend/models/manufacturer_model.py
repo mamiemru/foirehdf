@@ -1,12 +1,13 @@
 """Class describing a manufacturer."""
-from typing import Annotated
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
+
+from backend.models.annotated import URL_VALIDATION
 
 
 class Manufacturer(BaseModel):
     """Represente a manuacturer class."""
 
-    id: Annotated[str, Field(..., description="id")]
-    name: Annotated[str, Field(..., description="Name of the manufacturer", min_length=3)]
-    website_url: Annotated[HttpUrl | None, Field(default=None, description="manufacturer site")]
+    id: str = Field(..., description="id")
+    name: str = Field(..., description="Name of the manufacturer", min_length=3)
+    website_url: URL_VALIDATION = Field(default=None, description="manufacturer site")

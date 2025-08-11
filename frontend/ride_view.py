@@ -1,22 +1,17 @@
 
 from nicegui import ui
 
-from backend.models.fairModel import Fair
+from backend.models.fair_model import Fair
 from backend.models.ride_model import Ride
 from backend.services.fair_service import list_fairs_containing_ride_id
 from components.image_loader import fetch_cached_image
 from pages.const import _
 
 
-def display_fair(fair: Fair):
-    location = ", ".join([
-        text for text in [
-            fair.locations[0].street or "", fair.locations[0].area or "", fair.locations[0].city,
-            fair.locations[0].postal_code, fair.locations[0].state,
-        ] if text
-    ])
+def display_fair(fair: Fair) -> None:
+    """Display an entry to a fair which had the concerned ride."""
     ui.label(f"🎡 {fair.name}").classes("text-xl font-bold")
-    ui.label(location).classes("text-gray-700")
+    ui.label(fair.first_location_str()).classes("text-gray-700")
     ui.label(f'Du {fair.start_date.strftime("%d %B %Y")} au {fair.end_date.strftime("%d %B %Y")}').classes("text-gray-700")
 
 

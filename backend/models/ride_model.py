@@ -3,7 +3,9 @@
 from enum import StrEnum
 
 from bson.objectid import ObjectId
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
+
+from backend.models.annotated import URL_VALIDATION, URLS_VALIDATION
 
 
 class RideType(StrEnum):
@@ -28,14 +30,6 @@ class RideType(StrEnum):
     BOOSTER = "Booster"
     ROUND_UP = "Round up"
 
-    @staticmethod
-    def from_value(value: str) ->  None:
-        """"Get the enum from its value."""
-        for e in RideType._value2member_map_:
-            if e.value == value:
-                return e
-        return None
-
 class ManufacturerRide(BaseModel):
     """A ride from the manufacturer, its the kinds of information you have when browsing manufacturer's rides."""
 
@@ -43,7 +37,7 @@ class ManufacturerRide(BaseModel):
     manufacturer: str | None = Field(default=None, description="Manufacturer name of the ride")
     technical_name: str | None = Field(default=None, description="Technical name of the ride")
     ride_type: RideType | None = Field(default=None, description="Type of the ride (e.g., roller coaster, carousel)")
-    manufacturer_page_url: HttpUrl | None = Field(default=None, description="page of the manufacturer")
+    manufacturer_page_url: URL_VALIDATION = Field(default=None, description="page of the manufacturer")
     description: str | None = Field(default=None, description="Short description of the ride")
 
 class Ride(ManufacturerRide):
@@ -53,6 +47,18 @@ class Ride(ManufacturerRide):
     name: str = Field(..., description="Name of the ride")
     owner: str | None = Field(default=None, description="Family owner name")
     ticket_price: float | None = Field(default=None, description="Additional ticket price for the ride, if any", ge=.0)
-    images_url: list[HttpUrl] = Field(default_factory=list, description="some images")
-    videos_url: list[HttpUrl] = Field(default_factory=list, description="some videos")
-    news_page_url: HttpUrl | None = Field( default=None, description="official or fan page of the ride" )
+    images_url: URLS_VALIDATION = Field(default_factory=list, description="some images")
+    videos_url: URLS_VALIDATION = Field(default_factory=list, description="some videos")
+    news_page_url: URL_VALIDATION = Field( default=None, description="official or fan page of the ride" )
+
+
+class SearchRideQuery(BaseModel):
+    """Search fair query params to search filter through fairs."""
+
+    ride_type: list[str] = Field(default_factory=list)
+    manufacturers: list[str] = Field(default_factory=list)
+
+    def reset(self) -> None:
+        """Reset search query filters to default."""
+        self.ride_type.clear()
+        self.manufacturers.clear()

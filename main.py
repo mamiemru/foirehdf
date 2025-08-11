@@ -31,7 +31,7 @@ def with_sidebar(func: Callable) -> Callable:
     def wrapper(*args, **kwargs) -> None:
 
         drawer = ui.left_drawer(top_corner=True, bottom_corner=True).classes("fixed top-0 left-0 z-50 w-64 bg-lightwhite shadow-lg h-full")
-        with ui.header().classes("bg-red shadow p-2"):
+        with ui.header().classes("bg-white shadow p-2"):
             ui.button(icon="menu", on_click=lambda: drawer.toggle()).props("flat dense round")
 
         with drawer:
@@ -45,8 +45,8 @@ def with_sidebar(func: Callable) -> Callable:
         with ui.column().classes("w-full p-4"):
             func(*args, **kwargs)
 
-        with ui.footer().classes("w-full p-4"):
-            ui.label("My Footer").classes("text-lg")
+        #with ui.footer().classes("bg-white w-full p-4"):
+        #    ui.label("My Footer").classes("text-lg")
 
     return wrapper
 
@@ -90,9 +90,11 @@ def main_page():
 
 ui.run_with(
     app=app,
+)
+ui.run(
     title=app.title,
     favicon="statics/logo.png",
     dark=False,
     language="fr",
+    storage_secret="todochangethistoarealkeywaitthisisakey",
 )
-ui.run()

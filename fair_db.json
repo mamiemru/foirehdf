@@ -817,7 +817,7 @@
         },
         "28": {
             "id": "6898625693d201bddf76af1f",
-            "name": "Fête Foraine De Grenay 5 De Loos ",
+            "name": "Fête Foraine De Grenay 5 De Loos",
             "locations": [
                 {
                     "street": "Bd de la Plaine",
@@ -1528,8 +1528,6 @@
                 "https://www.youtube.com/watch?v=17KQEbziXOE"
             ],
             "images_url": [
-                "http://localhost:5000/image/385aa09b-e0ff-491b-91e1-516dffcc8083",
-                "http://localhost:5000/image/6c0508e2-1c88-4ed1-af7e-dd9a5b3993b4",
                 "https://i.ytimg.com/vi/17KQEbziXOE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB_cHJJ3LdSEsGe8jp8OFiW5g3eEQ"
             ],
             "manufacturer_page_url": "https://www.funlight.cz/en/product/extreme-australia",
@@ -2042,7 +2040,7 @@
             "technical_name": "Inversion 12",
             "ride_type": "Pendulum",
             "images_url": [
-                "https://i.ytimg.com/vi/pdKwfr1kdwU/sddefault.jpg?sqp=-oaymwEmCIAFEOAD8quKqQMa8AEB-AH-DoACuAiKAgwIABABGH8gOihKMA8=&rs=AOn4CLAaTXGgZpOX3lLlp4cBJlJVPrvtgw"
+                "https://i.ytimg.com/vi/9_ZgFsqWBTM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCEY7ODXljiDdO-7PA3wLPbMy6VqA"
             ],
             "videos_url": [
                 "https://www.youtube.com/watch?v=OeSflPudWb4"

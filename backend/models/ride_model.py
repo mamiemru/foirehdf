@@ -1,9 +1,10 @@
 """Describe a ride."""
 
 from enum import StrEnum
+from typing import Annotated
 
 from bson.objectid import ObjectId
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StringConstraints
 
 from backend.models.annotated import URL_VALIDATION, URLS_VALIDATION
 
@@ -44,7 +45,7 @@ class Ride(ManufacturerRide):
     """Describe a ride owned by a fraiground worker, the minimal is the name."""
 
     id: str = Field(default_factory=lambda:str(ObjectId()))
-    name: str = Field(..., description="Name of the ride")
+    name: Annotated[str, StringConstraints(min_length=1)] = Field(..., description="Name of the ride")
     owner: str | None = Field(default=None, description="Family owner name")
     ticket_price: float | None = Field(default=None, description="Additional ticket price for the ride, if any", ge=.0)
     images_url: URLS_VALIDATION = Field(default_factory=list, description="some images")

@@ -2,7 +2,6 @@
 
 from typing import Any
 
-from bson import ObjectId
 from tinydb import Query, TinyDB
 
 from backend.models.ride_model import Ride, SearchRideQuery
@@ -10,11 +9,6 @@ from backend.models.ride_model import Ride, SearchRideQuery
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("ride")
 RideQuery = Query()
-
-
-def _create_id() -> str:
-    return str(ObjectId())
-
 
 def create_ride(ride_dict: dict[str, Any]) -> Ride:
     """Create an ride."""
@@ -66,7 +60,6 @@ def list_rides_names() -> list[str]:
 
 def list_rides(search_ride_query: SearchRideQuery) -> list[Ride]:
     """List rides according the search_query."""
-    print(search_ride_query)
     if not search_ride_query:
         return [Ride(**ride) for ride in db.all()]
 

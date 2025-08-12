@@ -4,11 +4,15 @@ from typing import Any
 
 from tinydb import Query, TinyDB
 
-from backend.models.ride_model import Ride, SearchRideQuery
+from backend.models.ride_model import Ride, RideType, SearchRideQuery
 
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("ride")
 RideQuery = Query()
+
+def list_ride_types() -> list[str]:
+    """Return a sorted list of ride type."""
+    return sorted(RideType)
 
 def create_ride(ride_dict: dict[str, Any]) -> Ride:
     """Create an ride."""

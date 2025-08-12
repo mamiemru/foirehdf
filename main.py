@@ -46,7 +46,7 @@ def with_sidebar(func: Callable) -> Callable:
             func(*args, **kwargs)
 
         #with ui.footer().classes("bg-white w-full p-4"):
-        #    ui.label("My Footer").classes("text-lg")
+        #       ui.label("My Footer").classes("text-lg")
 
     return wrapper
 

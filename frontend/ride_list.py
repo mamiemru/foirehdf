@@ -1,9 +1,9 @@
 
 from nicegui import app, ui
 
-from backend.models.ride_model import RideType, SearchRideQuery
+from backend.models.ride_model import SearchRideQuery
 from backend.services.manufacturer_service import list_manufacturers
-from backend.services.ride_service import list_rides
+from backend.services.ride_service import list_ride_types, list_rides
 from frontend.ride_box import display_ride_as_item_in_list
 from pages.const import _
 
@@ -43,7 +43,7 @@ def ride_list(search_ride_query: SearchRideQuery) -> None:
 
 
     with ui.expansion(_("RIDES_SEARCH_TITLE"), icon="search").classes("w-full justify-center"):
-        ui.select([a.value for a in RideType], with_input=True, multiple=True, label=_("RIDES_SEARCH_BY_ATTRACTION_TYPE")).classes("w-full").props("use-chips").bind_value(search_ride_query, "ride_type")
+        ui.select(list_ride_types(), with_input=True, multiple=True, label=_("RIDES_SEARCH_BY_ATTRACTION_TYPE")).classes("w-full").props("use-chips").bind_value(search_ride_query, "ride_type")
         ui.select(manufacturer_names, with_input=True, multiple=True, label=_("RIDES_SEARCH_BY_MANUFACTURER")).classes("w-full").props("use-chips").bind_value(search_ride_query, "manufacturers")
 
         with ui.row().classes("w-full"):

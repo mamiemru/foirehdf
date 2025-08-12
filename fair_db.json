@@ -1140,7 +1140,7 @@
             "description": "New Dance est un manège festif et entraînant qui fait virevolter les passagers au rythme de la musique. Avec ses mouvements circulaires et son ambiance dynamique, il apporte une touche de gaieté et d’énergie à toutes les fêtes foraines.",
             "manufacturer": "Sobema",
             "technical_name": "Break dance",
-            "ride_type": "Flat ride",
+            "ride_type": "Break",
             "manufacturer_page_url": null
         },
         "2": {
@@ -1212,7 +1212,7 @@
             "description": null,
             "manufacturer": "Sobema",
             "technical_name": "Break dance",
-            "ride_type": "Flat ride",
+            "ride_type": "Break",
             "manufacturer_page_url": null
         },
         "11": {
@@ -1402,7 +1402,7 @@
             "ticket_price": 5,
             "manufacturer": "Sobema",
             "technical_name": "Break dance ",
-            "ride_type": "Flat ride",
+            "ride_type": "Break",
             "owner": "Bolot & Baille",
             "videos_url": [
                 "https://www.youtube.com/watch?v=ksK9DbeIhRM",
@@ -1578,7 +1578,7 @@
             "ticket_price": 5,
             "manufacturer": "Sobema",
             "technical_name": "Break dance",
-            "ride_type": "Inverted Rides",
+            "ride_type": "Break",
             "owner": "Bigolet",
             "videos_url": [
                 "https://www.youtube.com/watch?v=0FH83rYFIdM",
@@ -1843,7 +1843,7 @@
             "ticket_price": 5,
             "manufacturer": null,
             "technical_name": null,
-            "ride_type": "Inverted Rides",
+            "ride_type": "Break",
             "images_url": [
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKXm6s61FsJYqS0JhwNjvRc3LJHPvhxuzcEA&s"
             ],

@@ -4,7 +4,7 @@ from enum import StrEnum
 from typing import Annotated
 
 from bson.objectid import ObjectId
-from matplotlib.dates import relativedelta
+from dateutil.relativedelta import relativedelta
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
 from backend.models.annotated import DATETIME_VALIDATION, URL_VALIDATION, URLS_VALIDATION

@@ -30,6 +30,7 @@ class RideType(StrEnum):
     SHAKE = "Shake"
     BOOSTER = "Booster"
     ROUND_UP = "Round up"
+    BREAK = "Break"
 
 class ManufacturerRide(BaseModel):
     """A ride from the manufacturer, its the kinds of information you have when browsing manufacturer's rides."""

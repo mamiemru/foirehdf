@@ -3,3 +3,6 @@ secrets.txt
 __pycache__/
 *.pyc
 nohup.out
+.venv
+.mypy_cache
+.vscode

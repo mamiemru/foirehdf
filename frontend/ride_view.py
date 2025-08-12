@@ -50,7 +50,6 @@ def ride_view(ride: Ride) -> None:
 
     ui.separator()
 
-    # --- Section: Fairs where ride was installed ---
     ui.label(_("RIDE_WAS_INSTALLED_IN_FAIRS")).classes("text-2xl font-semibold mb-2")
 
     with ui.grid(columns=3):

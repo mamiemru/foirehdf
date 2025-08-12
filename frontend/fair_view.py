@@ -6,6 +6,7 @@ from nicegui import ui
 from pydantic import HttpUrl
 
 from backend.models.fair_model import Fair
+from backend.models.timeline_model import TimelineItemType
 from backend.services.fair_service import get_fair
 from backend.services.ride_service import get_ride_by_id
 from components.fair_timeline import fair_timeline
@@ -79,7 +80,7 @@ def fair_view(fair_id: str) -> None:
 
             ui.separator()
             icon_text("map", _("FAIR_VIEW_SOURCES_AND_USEFUL_LINKS"))
-            ui.markdown(get_markdown_link_table(fair)).classes("mb-4")
+            ui.markdown(get_markdown_link_table(fair)).classes("mb-4 w-full")
 
             ui.separator()
 
@@ -91,26 +92,37 @@ def fair_view(fair_id: str) -> None:
 
 
         date_today = datetime.today()
-        timeline_in_the_past = lambda d: "blue" if d < date_today else "grey"
+        def timeline_in_the_past(d: datetime) -> str:
+            """Return blue if the event is in comming, grey otherwise."""
+            return "grey" if d < date_today else "blue"
+
+        def timeline_item_icon(t: TimelineItemType | None) -> str:
+            """Return the right icon according to the timeline item."""
+            if t == TimelineItemType.RIDE_AVAILABLE:
+                return "add"
+            if t == TimelineItemType.RIDE_LEAVING:
+                return "remove"
+            return "rocket"
+
         with ui.column().classes("w-full md:w-3/12"), ui.timeline(side="right"):
             ui.timeline_entry(
                 title="Fin de la foire.",
                 subtitle=fair.end_date.strftime("%d %B"),
-                icon="rocket",
+                icon="close",
                 color=timeline_in_the_past(fair.end_date),
             )
             if fair.timeline:
                 for item in fair.timeline.line:
                     ui.timeline_entry(
-                        (item.type, item.description),
+                        item.description,
                         title=item.title,
                         subtitle=item.date.strftime("%d %B"),
-                        icon="rocket",
+                        icon=timeline_item_icon(item.type),
                         color=timeline_in_the_past(item.date),
                     )
             ui.timeline_entry(
                 title="Début de la foire",
                 subtitle=fair.start_date.strftime("%d %B"),
-                icon="rocket",
+                icon="auto_awesome",
                 color=timeline_in_the_past(fair.start_date),
             )

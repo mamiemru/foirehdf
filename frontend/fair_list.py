@@ -7,21 +7,20 @@ from backend.services.fair_service import (
     list_fair_sort_by_status,
 )
 from backend.services.location_service import list_locations_cities
-from components.fair_timeline import fair_timeline
+from components.fair_timeline import fair_timeline, format_date
 from pages.const import _
 
 
-def display_fair_item(fair: Fair) -> None:
+def display_fair_card(fair: Fair) -> None:
     """
     Display a fair in a box.
 
     Args:
-        ui (niceguid): niceguidhandler
         fair (Fair): the fair to display
 
     """
     with ui.card().classes("w-full p-4"):
-        with ui.row().classes("items-center justify-between"):
+        with ui.row().classes("w-full items-center justify-between"):
             ui.label(fair.name).classes("text-xl font-semibold")
 
             ui.button(_("FAIR_VIEW_FAIR"), icon="visibility",
@@ -29,12 +28,30 @@ def display_fair_item(fair: Fair) -> None:
             ).props("unelevated color=primary")
 
         # Locations
-        ui.label(f"📍 {_('LOCATIONS')}").classes("mt-2 font-medium")
         for location in fair.locations_str():
             ui.label(location).classes("text-sm text-gray-600")
 
         # Dates
         fair_timeline(fair, draw_bars=False)
+
+def display_fairs_list(fairs: list[Fair]) -> None:
+    """
+    Display a fairs in a table.
+
+    Args:
+        fairs (list[Fair]): list of fairs to display
+
+    """
+    with ui.grid(columns=5, rows=len(fairs)).classes("items-center justify-center"):
+        for fair in fairs:
+            ui.label(fair.name).classes("text-xl font-semibold")
+            ui.label(fair.first_location_str()).classes("text-sm text-gray-600")
+            ui.label(f"{_('FAIR_FROM_DATE')}: {format_date(fair.start_date)}")
+            ui.label(f"{_('FAIR_UNTIL_DATE')}: {format_date(fair.end_date)}")
+
+            ui.button(_("FAIR_VIEW_FAIR"), icon="visibility",
+                    on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}"),
+                ).props("unelevated color=primary")
 
 @ui.refreshable
 def display_fairs() -> None:
@@ -53,7 +70,7 @@ def display_fairs() -> None:
         fig = px.timeline(
             gantt_chart_pd,x_start="start",x_end="finish",y="task",color="status",
             hover_data={"name": True,"start_date": True,"end_date": True,"date": True},
-            color_discrete_map=color_map,
+            color_discrete_map=color_map, height=len(gantt_chart_pd)*50,
         )
         fig.update_yaxes(title_text=_("CITY"), autorange="reversed")
         fig.update_xaxes(title_text=_("FAIR_DATES"))
@@ -66,7 +83,7 @@ def display_fairs() -> None:
             if fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
                 fairs_struct[FairStatus.CURRENTLY_AVAILABLE].reverse()
                 for fair in fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
-                    display_fair_item(fair)
+                    display_fair_card(fair)
             else:
                 ui.label(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
 
@@ -80,17 +97,16 @@ def display_fairs() -> None:
     if fairs_struct[FairStatus.INCOMING]:
         fairs_struct[FairStatus.INCOMING].reverse()
         for fair in fairs_struct[FairStatus.INCOMING]:
-            display_fair_item(fair)
+            display_fair_card(fair)
     else:
         ui.label(_("FAIR_NO_FAIRS_COMMING_SOON"))
 
-    ui.label(_("FAIR_LIST_FUNFAIRS_DONE")).classes("mb-4 text-h3")
     if fairs_struct[FairStatus.DONE]:
+        ui.label(_("FAIR_LIST_FUNFAIRS_DONE")).classes("mb-4 text-h3")
         fairs_struct[FairStatus.DONE].reverse()
         for fair in fairs_struct[FairStatus.DONE]:
-            display_fair_item(fair)
-    else:
-        ui.label(_("FAIR_NO_FAIRS_DONE"))
+            display_fair_card(fair)
+
 
 def refresh_fairs_list(search_fair_query: SearchFairQuery) -> None:
     """Refresh the page in one function call."""

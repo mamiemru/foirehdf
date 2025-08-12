@@ -10,7 +10,7 @@ from backend.services.manufacturer_service import (
     create_manufacturer,
     list_manufacturers_names,
 )
-from backend.services.ride_service import create_ride, list_rides_names
+from backend.services.ride_service import create_ride, list_ride_types, list_rides_names
 from pages.const import _
 
 
@@ -141,7 +141,7 @@ def ride_create() -> None:
                 label=_("RIDE_TECHNICAL_NAME"), placeholder=_("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"),
             ).bind_value(ride_create_input, "technical_name").classes("w-full")
 
-            ui.select(label=_("RIDE_ATTRACTION_TYPE"), options=list(RideType)).bind_value(ride_create_input, "ride_type").classes("w-full")
+            ui.select(label=_("RIDE_ATTRACTION_TYPE"), options=list_ride_types()).bind_value(ride_create_input, "ride_type").classes("w-full")
 
             ui.input(
                 label=_("RIDE_MANUFACTURER_PAGE"), placeholder=_("RIDE_ENTER_THE_URL_PAGE_OF_THE_MANUFACTURER_RIDE"),

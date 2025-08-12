@@ -803,10 +803,14 @@
             "start_date": 1755043200,
             "end_date": 1756080000,
             "rides": [
-                "681785f093d20116d052b887",
-                "681785f093d20116d052b87f",
+                "681785f093d20116d052b87c",
+                "681785f093d20116d052b87b",
+                "681785f093d20116d052b88b",
                 "681785f093d20116d052b883",
-                "681785f093d20116d052b12a"
+                "681785f093d20116d052b887",
+                "681785f093d20116d052b88f",
+                "681785f093d20116d052b87f",
+                "681785f093d20116d052b890"
             ],
             "city_event_page": null,
             "official_ad_page": null,
@@ -1531,7 +1535,7 @@
                 "https://i.ytimg.com/vi/17KQEbziXOE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB_cHJJ3LdSEsGe8jp8OFiW5g3eEQ"
             ],
             "manufacturer_page_url": "https://www.funlight.cz/en/product/extreme-australia",
-            "news_page_url": null
+            "news_page_url": "https://www.facebook.com/profile.php?id=61574542591365"
         },
         "8": {
             "id": "681785f093d20116d052b880",

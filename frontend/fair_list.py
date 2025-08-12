@@ -4,55 +4,27 @@ from nicegui import app, ui
 from pandas import DataFrame
 
 from backend.models.fair_model import Fair, FairStatus, SearchFairQuery, SearchFairResult
-from backend.services.fair_service import (
-    list_fair_sort_by_status,
-)
+from backend.services.fair_service import list_fair_sort_by_status
 from backend.services.location_service import list_locations_cities
-from components.fair_timeline import fair_timeline, format_date
+from components.fair_timeline import fair_timeline
 from frontend.const import _
 
 
-def display_fair_card(fair: Fair) -> None:
-    """
-    Display a fair in a box.
-
-    Args:
-        fair (Fair): the fair to display
-
-    """
-    with ui.card().classes("w-full p-4"):
-        with ui.row().classes("w-full items-center justify-between"):
-            ui.label(fair.name).classes("text-xl font-semibold")
-
-            ui.button(_("FAIR_VIEW_FAIR"), icon="visibility",
-                on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}"),
-            ).props("unelevated color=primary")
-
-        # Locations
-        for location in fair.locations_str():
-            ui.label(location).classes("text-sm text-gray-600")
-
-        # Dates
-        fair_timeline(fair, draw_bars=False)
-
 def display_fairs_list(fairs: list[Fair]) -> None:
     """
-    Display a fairs in a table.
+    Display a list of fairs in a box.
 
     Args:
-        fairs (list[Fair]): list of fairs to display
+        fairs (list[Fair]): the fair to display
 
     """
-    with ui.grid(columns=5, rows=len(fairs)).classes("items-center justify-center"):
+    with ui.list().props("separator").classes("w-full"):
         for fair in fairs:
-            ui.label(fair.name).classes("text-xl font-semibold")
-            ui.label(fair.first_location_str()).classes("text-sm text-gray-600")
-            ui.label(f"{_('FAIR_FROM_DATE')}: {format_date(fair.start_date)}")
-            ui.label(f"{_('FAIR_UNTIL_DATE')}: {format_date(fair.end_date)}")
-
-            ui.button(_("FAIR_VIEW_FAIR"), icon="visibility",
-                    on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}"),
-                ).props("unelevated color=primary")
+            with ui.item(on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}")).classes("w-full"), ui.item_section():
+                    ui.label(fair.name).classes("text-xl font-semibold")
+                    for location in fair.locations_str():
+                        ui.label(location).classes("text-sm text-gray-600")
+                    fair_timeline(fair, draw_bars=False)
 
 def display_gantt(gantt_chart_pd: DataFrame) -> None:
     """Display the gantt graph."""
@@ -79,15 +51,15 @@ def display_fairs() -> None:
     search_fair_result: SearchFairResult = list_fair_sort_by_status(search_fair_query=app.storage.client["search_fair_query"])
     display_gantt(gantt_chart_pd=search_fair_result.gantt)
 
-    ui.label(_("FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY")).classes("mb-4 text-h3")
     with ui.row().classes("w-full flex-wrap align-center space-between"):
-        with ui.column().classes("w-full  md:w-6/12"), ui.scroll_area().classes("w-full").style("height: 500px"):
-            if search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE]:
-                search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE].reverse()
-                for fair in search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE]:
-                    display_fair_card(fair)
-            else:
-                ui.label(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
+        with ui.column().classes("w-full  md:w-6/12"), ui.card().classes("w-full"):
+            ui.label(_("FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY")).classes("mb-4 text-h5 text-grey-8")
+            with ui.scroll_area().classes("w-full h-[500px]"):
+                if search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE]:
+                    search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE].reverse()
+                    display_fairs_list(fairs=search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE])
+                else:
+                    ui.label(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
 
         with ui.column().classes("w-full md:w-5/12"):
             options = {"zoomControl": False,"scrollWheelZoom": False, "doubleClickZoom": False, "boxZoom": False, "keyboard": False, "dragging": False}
@@ -95,19 +67,19 @@ def display_fairs() -> None:
             for fair_marker in search_fair_result.map:
                 lfmap.marker(latlng=(fair_marker.lat, fair_marker.lng), options={"color": fair_marker.color})
 
-    ui.label(_("FAIR_LIST_FUNFAIRS_COMING_SOON")).classes("mb-4 text-h3")
-    if search_fair_result.fairs[FairStatus.INCOMING]:
-        search_fair_result.fairs[FairStatus.INCOMING].reverse()
-        for fair in search_fair_result.fairs[FairStatus.INCOMING]:
-            display_fair_card(fair)
-    else:
-        ui.label(_("FAIR_NO_FAIRS_COMMING_SOON"))
+    with ui.card().classes("w-full"):
+        ui.label(_("FAIR_LIST_FUNFAIRS_COMING_SOON")).classes("mb-4 text-h5 text-grey-8")
+        if search_fair_result.fairs[FairStatus.INCOMING]:
+            search_fair_result.fairs[FairStatus.INCOMING].reverse()
+            display_fairs_list(fairs=search_fair_result.fairs[FairStatus.INCOMING])
+        else:
+            ui.label(_("FAIR_NO_FAIRS_COMMING_SOON"))
 
     if search_fair_result.fairs[FairStatus.DONE]:
-        ui.label(_("FAIR_LIST_FUNFAIRS_DONE")).classes("mb-4 text-h3")
-        search_fair_result.fairs[FairStatus.DONE].reverse()
-        for fair in search_fair_result.fairs[FairStatus.DONE]:
-            display_fair_card(fair)
+        with ui.card().classes("w-full"):
+            ui.label(_("FAIR_LIST_FUNFAIRS_DONE")).classes("mb-4 text-h5 text-grey-8")
+            search_fair_result.fairs[FairStatus.DONE].reverse()
+            display_fairs_list(fairs=search_fair_result.fairs[FairStatus.DONE])
 
 
 def refresh_fairs_list(search_fair_query: SearchFairQuery) -> None:

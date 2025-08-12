@@ -8,7 +8,7 @@ from backend.services.fair_service import (
 )
 from backend.services.location_service import list_locations_cities
 from components.fair_timeline import fair_timeline, format_date
-from pages.const import _
+from frontend.const import _
 
 
 def display_fair_card(fair: Fair) -> None:

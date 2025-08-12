@@ -11,7 +11,7 @@ from backend.services.manufacturer_service import (
     list_manufacturers_names,
 )
 from backend.services.ride_service import create_ride, list_ride_types, list_rides_names
-from pages.const import _
+from frontend.const import _
 
 
 class RideCreateInput(BaseModel):

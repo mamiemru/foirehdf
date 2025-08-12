@@ -5,7 +5,7 @@ from backend.models.fair_model import Fair
 from backend.models.ride_model import Ride
 from backend.services.fair_service import list_fairs_containing_ride_id
 from components.image_loader import fetch_cached_image
-from pages.const import _
+from frontend.const import _
 
 
 def display_fair(fair: Fair) -> None:

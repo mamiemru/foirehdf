@@ -4,8 +4,8 @@ from nicegui import app, ui
 from backend.models.ride_model import SearchRideQuery
 from backend.services.manufacturer_service import list_manufacturers
 from backend.services.ride_service import list_ride_types, list_rides
+from frontend.const import _
 from frontend.ride_box import display_ride_as_item_in_list
-from pages.const import _
 
 
 def view_ride(fair_id: int) -> None:

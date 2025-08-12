@@ -11,8 +11,8 @@ from backend.services.fair_service import get_fair
 from backend.services.ride_service import get_ride_by_id
 from components.fair_timeline import fair_timeline
 from components.image_loader import fetch_cached_image
+from frontend.const import _
 from frontend.ride_box import display_ride_as_item_in_list
-from pages.const import _
 
 
 def icon_text(icon_name: str, text: str) -> None:

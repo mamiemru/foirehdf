@@ -1,7 +1,7 @@
 
 from datetime import date, datetime
 from enum import StrEnum
-from typing import Annotated
+from typing import Annotated, Any
 
 from bson.objectid import ObjectId
 from dateutil.relativedelta import relativedelta
@@ -133,3 +133,32 @@ class SearchFairQuery(BaseModel):
         self.date_min = (datetime.now() - relativedelta(months=1)).date()
         self.date_max = (datetime.now() + relativedelta(months=6)).date()
         self.cities.clear()
+
+class SearchFairMap(BaseModel):
+    """Structurer fair search map."""
+
+    color: str
+    lng: float
+    lat: float
+    size: int
+
+
+class SearchFairResult(BaseModel):
+    """Structured fair search results."""
+
+    fairs: dict[str, list[Fair]] = Field(default_factory=lambda: {s.value: [] for s in FairStatus})
+    map: list[SearchFairMap] = Field(default_factory=list)
+    gantt: Any = Field(...)
+
+class FairCreateInput(BaseModel):
+    """Describe the inputs to create a fair."""
+
+    name: str
+    start_date: date
+    end_date: date
+    locations: list[str] = Field(default_factory=list)
+    rides: list[str] = Field(default_factory=list)
+    walk_tour_video: URL_VALIDATION
+    official_ad_page: URL_VALIDATION
+    facebook_event_page: URL_VALIDATION
+    city_event_page: URL_VALIDATION

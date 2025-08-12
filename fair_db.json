@@ -1989,8 +1989,8 @@
             "technical_name": "Techno power",
             "ride_type": "Flat ride",
             "owner": "Deliere",
-            "videos_url": [],
-            "images_url": [],
+            "videos_url": ["https://www.youtube.com/watch?v=55SIz__iToI"],
+            "images_url": ["https://i.ytimg.com/vi/55SIz__iToI/maxresdefault.jpg"],
             "manufacturer_page_url": null,
             "news_page_url": null
         },

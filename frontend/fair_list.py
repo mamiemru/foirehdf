@@ -1,8 +1,9 @@
 
 import plotly.express as px
 from nicegui import app, ui
+from pandas import DataFrame
 
-from backend.models.fair_model import Fair, FairStatus, SearchFairQuery
+from backend.models.fair_model import Fair, FairStatus, SearchFairQuery, SearchFairResult
 from backend.services.fair_service import (
     list_fair_sort_by_status,
 )
@@ -53,14 +54,8 @@ def display_fairs_list(fairs: list[Fair]) -> None:
                     on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}"),
                 ).props("unelevated color=primary")
 
-@ui.refreshable
-def display_fairs() -> None:
-    """Display filtered fairs, need decorators to be dynamic."""
-    fairs_by_status = list_fair_sort_by_status(search_fair_query=app.storage.client["search_fair_query"])
-    fairs_struct = fairs_by_status["fairs"]
-    data_map = fairs_by_status["map"]
-    gantt_chart_pd = fairs_by_status["gantt"]
-
+def display_gantt(gantt_chart_pd: DataFrame) -> None:
+    """Display the gantt graph."""
     color_map = {
         FairStatus.CURRENTLY_AVAILABLE: "#33cc33",
         FairStatus.INCOMING: "#ff9900",
@@ -75,14 +70,21 @@ def display_fairs() -> None:
         fig.update_yaxes(title_text=_("CITY"), autorange="reversed")
         fig.update_xaxes(title_text=_("FAIR_DATES"))
         fig.update_layout(coloraxis_showscale=False)
-        ui.plotly(fig).classes("w-full")
+        with ui.card().classes("w-full"):
+            ui.plotly(fig).classes("w-full")
+
+@ui.refreshable
+def display_fairs() -> None:
+    """Display filtered fairs, need decorators to be dynamic."""
+    search_fair_result: SearchFairResult = list_fair_sort_by_status(search_fair_query=app.storage.client["search_fair_query"])
+    display_gantt(gantt_chart_pd=search_fair_result.gantt)
 
     ui.label(_("FAIR_LIST_FUNFAIRS_CURRENTLY_AVAILABLE_TODAY")).classes("mb-4 text-h3")
     with ui.row().classes("w-full flex-wrap align-center space-between"):
         with ui.column().classes("w-full  md:w-6/12"), ui.scroll_area().classes("w-full").style("height: 500px"):
-            if fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
-                fairs_struct[FairStatus.CURRENTLY_AVAILABLE].reverse()
-                for fair in fairs_struct[FairStatus.CURRENTLY_AVAILABLE]:
+            if search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE]:
+                search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE].reverse()
+                for fair in search_fair_result.fairs[FairStatus.CURRENTLY_AVAILABLE]:
                     display_fair_card(fair)
             else:
                 ui.label(_("FAIR_NO_FAIRS_CURRENTLY_AVAILABLE"))
@@ -90,21 +92,21 @@ def display_fairs() -> None:
         with ui.column().classes("w-full md:w-5/12"):
             options = {"zoomControl": False,"scrollWheelZoom": False, "doubleClickZoom": False, "boxZoom": False, "keyboard": False, "dragging": False}
             lfmap = ui.leaflet(center=(50.5, 2), zoom=8, options=options).classes("w-90 h-[500px]")
-            for row in data_map:
-                lfmap.marker(latlng=(row["lat"], row["lng"]), options={"color": "red"})
+            for fair_marker in search_fair_result.map:
+                lfmap.marker(latlng=(fair_marker.lat, fair_marker.lng), options={"color": fair_marker.color})
 
     ui.label(_("FAIR_LIST_FUNFAIRS_COMING_SOON")).classes("mb-4 text-h3")
-    if fairs_struct[FairStatus.INCOMING]:
-        fairs_struct[FairStatus.INCOMING].reverse()
-        for fair in fairs_struct[FairStatus.INCOMING]:
+    if search_fair_result.fairs[FairStatus.INCOMING]:
+        search_fair_result.fairs[FairStatus.INCOMING].reverse()
+        for fair in search_fair_result.fairs[FairStatus.INCOMING]:
             display_fair_card(fair)
     else:
         ui.label(_("FAIR_NO_FAIRS_COMMING_SOON"))
 
-    if fairs_struct[FairStatus.DONE]:
+    if search_fair_result.fairs[FairStatus.DONE]:
         ui.label(_("FAIR_LIST_FUNFAIRS_DONE")).classes("mb-4 text-h3")
-        fairs_struct[FairStatus.DONE].reverse()
-        for fair in fairs_struct[FairStatus.DONE]:
+        search_fair_result.fairs[FairStatus.DONE].reverse()
+        for fair in search_fair_result.fairs[FairStatus.DONE]:
             display_fair_card(fair)
 
 

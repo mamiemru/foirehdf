@@ -1,11 +1,15 @@
+import os
 from collections.abc import Callable
 from functools import wraps
 from typing import Annotated
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Request
+from fastapi.concurrency import asynccontextmanager
 from fastapi.staticfiles import StaticFiles
 from nicegui import ui
+from tinydb import TinyDB
 
+from backend import api_router
 from backend.models.fair_model import SearchFairQuery
 from backend.models.ride_model import SearchRideQuery
 from backend.services.ride_service import get_ride_by_id
@@ -16,13 +20,28 @@ from frontend.ride_create import ride_create
 from frontend.ride_list import ride_list
 from frontend.ride_view import ride_view
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Load the Database in state then yield the app."""
+    app.state.db = TinyDB("fair_db.json")
+    yield
+    app.state.db.close()
+
+def get_db(request: Request) -> TinyDB:
+    """Return the instancied Database."""
+    return request.app.state.db
+
 app = FastAPI(
+    lifespan=lifespan,
     title="Foire HDF",
     description="Une Base des foires et manèges des Haut de france",
     version="v2",
 )
 
+app.include_router(api_router)
 app.mount("/statics", StaticFiles(directory="statics"), name="statics")
+
 
 def with_sidebar(func: Callable) -> Callable:
     """Wrap page content with the sidebar layout."""
@@ -88,13 +107,12 @@ def main_page():
     pass
 
 
-ui.run_with(
-    app=app,
-)
+ui.add_head_html("""<style>body { background-color: #f4f2ee; }</style>""")
+ui.run_with(app=app)
 ui.run(
     title=app.title,
     favicon="statics/logo.png",
     dark=False,
     language="fr",
-    storage_secret="todochangethistoarealkeywaitthisisakey",
+    storage_secret=os.getenv("NICEGUI_SECRET","todochangethistoarealkeywaitthisisakey"),
 )

@@ -18,7 +18,6 @@ def display_fair(fair: Fair) -> None:
 def ride_view(ride: Ride) -> None:
     """Display full ride view layout in NiceGUI."""
     with ui.row().classes("w-full flex-wrap items-start gap-6"):
-        # --- Left Column (ride info) ---
         with ui.column().classes("w-full  md:w-6/12"):
 
             ui.label(ride.name).classes("text-4xl font-bold text-orange-500 mb-4")
@@ -38,18 +37,13 @@ def ride_view(ride: Ride) -> None:
                 if ride.news_page_url:
                     ui.markdown(f"**{_('RIDE_NEWS_PAGE')}:** [Link]({ride.news_page_url})").classes("bg-orange-300 text-black text-sm px-2 py-1 rounded font-semibold")
 
-        # --- Right Column (admin + image) ---
         with ui.column().classes("w-full  md:w-5/12 item-end"):
-
-            #ui.button(icon="edit", on_click=lambda: go_to_edit_ride(ride.id)).props("round flat color=primary")
-
             if ride.images_url:
                 image = fetch_cached_image(ride.images_url[0])
                 if image:
                     ui.image(image).classes("w-full rounded shadow")
 
     ui.separator()
-
     ui.label(_("RIDE_WAS_INSTALLED_IN_FAIRS")).classes("text-2xl font-semibold mb-2")
 
     with ui.grid(columns=3):
@@ -57,14 +51,12 @@ def ride_view(ride: Ride) -> None:
             display_fair(fair=fair)
 
     ui.separator()
-
     with ui.row().classes("w-full flex-wrap"):
         for url in ride.videos_url:
             with ui.column().classes("w-1/3 p-2"):
                 ui.video(str(url)).classes("w-full rounded shadow-md")
 
     ui.separator()
-
     with ui.row().classes("w-full flex-wrap"):
         for url in ride.images_url:
             with ui.column().classes("w-1/3 p-2"):

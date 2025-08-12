@@ -1,28 +1,13 @@
 import json
-from datetime import date
 
 from nicegui import ui
-from pydantic import BaseModel, Field
 
-from backend.models.annotated import URL_VALIDATION
+from backend.models.fair_model import FairCreateInput
 from backend.models.location_model import Location
 from backend.services.fair_service import create_fair
 from backend.services.location_service import list_locations
 from backend.services.ride_service import list_rides_names_and_id
 
-
-class FairCreateInput(BaseModel):
-    """Describe the inputs to create a fair."""
-
-    name: str
-    start_date: date
-    end_date: date
-    locations: list[str] = Field(default_factory=list)
-    rides: list[str] = Field(default_factory=list)
-    walk_tour_video: URL_VALIDATION
-    official_ad_page: URL_VALIDATION
-    facebook_event_page: URL_VALIDATION
-    city_event_page: URL_VALIDATION
 
 def mandatory_field_value(value: str) -> str:
     """Return a translated field with an asterix meaning the field is required."""

@@ -44,6 +44,17 @@ def get_markdown_link_table(fair: Fair) -> str:
         markdown_table += get_markdown_link_table_row("FAIR_VIEW_OTHER", url)
     return markdown_table
 
+def timeline_in_the_past(d: datetime) -> str:
+    """Return blue if the event is in comming, grey otherwise."""
+    return "grey" if d < datetime.today() else "blue"
+
+def timeline_item_icon(t: TimelineItemType | None) -> str:
+    """Return the right icon according to the timeline item."""
+    if t == TimelineItemType.RIDE_AVAILABLE:
+        return "add"
+    if t == TimelineItemType.RIDE_LEAVING:
+        return "remove"
+    return "rocket"
 
 def fair_view(fair_id: str) -> None:
     """Display all information about a fair."""
@@ -63,7 +74,7 @@ def fair_view(fair_id: str) -> None:
         icon_text("location_on", _("LOCATIONS"))
         ui.label(fair.first_location_str()).classes("mb-2")
 
-    with ui.row().classes("w-full flex-wrap"):
+    with ui.row().classes("w-full flex-wrap justify-around"):
         with ui.column().classes("w-full md:w-8/12"):
 
             fair_timeline(fair)
@@ -91,20 +102,7 @@ def fair_view(fair_id: str) -> None:
                         display_ride_as_item_in_list(_, ride)
 
 
-        date_today = datetime.today()
-        def timeline_in_the_past(d: datetime) -> str:
-            """Return blue if the event is in comming, grey otherwise."""
-            return "grey" if d < date_today else "blue"
-
-        def timeline_item_icon(t: TimelineItemType | None) -> str:
-            """Return the right icon according to the timeline item."""
-            if t == TimelineItemType.RIDE_AVAILABLE:
-                return "add"
-            if t == TimelineItemType.RIDE_LEAVING:
-                return "remove"
-            return "rocket"
-
-        with ui.column().classes("w-full md:w-3/12"), ui.timeline(side="right"):
+        with ui.column().classes("w-full md:w-3/12"), ui.card().classes("w-full"), ui.timeline(side="right"):
             ui.timeline_entry(
                 title="Fin de la foire.",
                 subtitle=fair.end_date.strftime("%d %B"),

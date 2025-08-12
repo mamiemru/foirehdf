@@ -7,7 +7,7 @@ from typing import Any
 import pandas as pd
 from tinydb import Query, TinyDB
 
-from backend.models.fair_model import Fair, FairBase, FairStatus, SearchFairQuery
+from backend.models.fair_model import Fair, FairBase, FairStatus, SearchFairMap, SearchFairQuery, SearchFairResult
 from backend.services.location_service import get_location_by_id
 
 tinydb: TinyDB = TinyDB("fair_db.json")
@@ -99,6 +99,16 @@ def delete_fair(id: str) -> str:
 
 
 def list_fairs_containing_ride_id(ride_id: str) -> list[Fair]:
+    """
+    List all fairs that contrains the ride.
+
+    Args:
+        ride_id (str): the ride we are looking for
+
+    Returns:
+        list[Fair]: a list of fairs with the ride in it
+
+    """
     fairs: list[Fair] = [Fair(**fair) for fair in db.search(FairQuery.rides.any(ride_id))]
     # hidden fairs aren't Fair objects — but type declared says return Fair
     # you could optionally change return type to list[Union[Fair, FairBase]]
@@ -107,40 +117,39 @@ def list_fairs_containing_ride_id(ride_id: str) -> list[Fair]:
 
 
 
-def list_fair_sort_by_status(search_fair_query: SearchFairQuery) -> dict[str, Any]:
-    fairs: list[Fair] = list_fairs(search_fair_query=search_fair_query)
-    pd_dict: list[dict[str, Any]] = []
+def list_fair_sort_by_status(search_fair_query: SearchFairQuery) -> SearchFairResult:
+    """
+    List all fairs that match with search_fair_query. it also returns map and gentt informations about the selected list of fairs.
 
-    response: dict[str, Any] = {
-        "fairs": {
-            str(FairStatus.INCOMING.value): [],
-            str(FairStatus.DONE.value): [],
-            str(FairStatus.CURRENTLY_AVAILABLE.value): [],
-        },
-        "map": [],
-        "gantt": None,
-    }
+    Args:
+        search_fair_query (SearchFairQuery): Some filters to filter out fairs
+
+    Returns:
+        SearchFairResult: search result
+
+    """
+    fairs: list[Fair] = list_fairs(search_fair_query=search_fair_query)
+    fairs.sort(key=lambda f: f.start_date)
+
+    pd_dict: list[dict[str, Any]] = []
+    fairs_map: list[SearchFairMap] = []
+    fairs_sorted: dict[str, list[Fair]] = {f.value: [] for f in FairStatus}
+
+    def fair_color(fair: Fair) -> str:
+        """Return the best color from a fair state."""
+        return "#33cc33" if fair.fair_available_today else "#ff9900" if fair.fair_incoming else "#0066cc"
+
+    def fair_date_info(fair: Fair) -> int | None:
+        """Return piece of information about the date."""
+        return fair.days_before_start_date if fair.fair_incoming  else fair.days_before_end_date  if fair.fair_available_today else None
 
     for fair in fairs:
-        response["fairs"][fair.fair_status].append(fair)
+        fairs_sorted[fair.fair_status.value].append(fair)
         location = fair.locations[0]
         if location.lng and location.lat:
-            color = (
-                "#33cc33"
-                if fair.fair_available_today
-                else "#ff9900"
-                if fair.fair_incoming
-                else "#0066cc"
-            )
+            color = fair_color(fair=fair)
             size = 7 if fair.fair_available_today else 5 if fair.fair_incoming else 2
-            response["map"].append(
-                {
-                    "color": color,
-                    "lng": location.lng,
-                    "lat": location.lat,
-                    "size": size,
-                },
-            )
+            fairs_map.append(SearchFairMap(color=color, lng=location.lng, lat=location.lat, size=size))
 
         pd_dict.append(
             {
@@ -148,28 +157,13 @@ def list_fair_sort_by_status(search_fair_query: SearchFairQuery) -> dict[str, An
                 "start": fair.start_date,
                 "finish": fair.end_date,
                 "resource": location.city,
-                "status": (
-                    FairStatus.CURRENTLY_AVAILABLE
-                    if fair.fair_available_today
-                    else FairStatus.INCOMING
-                    if fair.fair_incoming
-                    else FairStatus.DONE
-                ),
-                "date": (
-                    fair.days_before_start_date
-                    if fair.fair_incoming
-                    else fair.days_before_end_date
-                    if fair.fair_available_today
-                    else None
-                ),
+                "status":  fair.fair_status,
+                "date": fair_date_info(fair=fair),
                 "start_date": fair.start_date.strftime("%d %B %Y"),
                 "end_date": fair.end_date.strftime("%d %B %Y"),
                 "name": fair.name,
             },
         )
 
-    for key, fair_list in response["fairs"].items():
-        response["fairs"][key] = sorted(fair_list, key=lambda fair: fair.start_date, reverse=True)
-
-    response["gantt"] = pd.DataFrame(pd_dict)
-    return response
+    structured_search_fair_result: SearchFairResult = SearchFairResult(gantt=pd.DataFrame(pd_dict), map=fairs_map, fairs=fairs_sorted)
+    return structured_search_fair_result

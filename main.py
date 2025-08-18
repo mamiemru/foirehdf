@@ -59,8 +59,8 @@ def with_sidebar(func: Callable) -> Callable:
             ui.label(app.title).classes("text-lg font-bold mt-0 mb-1")
             ui.label(app.description).classes("text-sm font-italic mt-0 mb-4")
             ui.link("🏠 Accueil", "/")
-            ui.link("📅 Foires", "/fair_list")
-            ui.link("🎢 Manèges", "/ride_list")
+            ui.link("📅 Foires", "/fair-list")
+            ui.link("🎢 Manèges", "/ride-list")
 
         with ui.column().classes("w-full p-4"):
             func(*args, **kwargs)
@@ -71,7 +71,7 @@ def with_sidebar(func: Callable) -> Callable:
     return wrapper
 
 
-@ui.page("/fair_list")
+@ui.page("/fair-list")
 @with_sidebar
 def route_fair_list(search_fair_query: Annotated[SearchFairQuery, Query()]) -> None:
     fair_list(search_fair_query=search_fair_query)
@@ -86,12 +86,12 @@ def route_fair_create():
 def route_fair_edit(fair_id: str):
     fair_edit(fair_id)
 
-@ui.page("/fair_view/{fair_id}")
+@ui.page("/fair-view/{fair_id}")
 @with_sidebar
 def route_fair_view(fair_id: str):
     fair_view(fair_id)
 
-@ui.page("/ride_list")
+@ui.page("/ride-list")
 @with_sidebar
 def route_ride_list(search_ride_query: Annotated[SearchRideQuery, Query()]) -> None:
     ride_list(search_ride_query=search_ride_query)
@@ -101,7 +101,7 @@ def route_ride_list(search_ride_query: Annotated[SearchRideQuery, Query()]) -> N
 def route_ride_create() -> None:
     ride_create()
 
-@ui.page("/ride_view/{ride_id}")
+@ui.page("/ride-view/{ride_id}")
 @with_sidebar
 def route_ride_view(ride_id: str):
     ride = get_ride_by_id(ride_id)

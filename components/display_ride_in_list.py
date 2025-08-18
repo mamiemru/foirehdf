@@ -45,7 +45,7 @@ def display_ride_as_item_in_list(_, st, ride) -> None:
         with col2:
             if st.button(_("VIEW_RIDE_DETAILS"), key=f"view_ride_{ride.id}_detail", use_container_width=True):
                 st.session_state.ride_id = ride.id
-                st.switch_page("pages/ride_view.py")
+                st.switch_page("pages/ride-view.py")
 
             if len(ride.images_url):
                 image = fetch_cached_image(ride.images_url[0])

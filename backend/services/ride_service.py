@@ -4,7 +4,7 @@ from typing import Any
 
 from tinydb import Query, TinyDB
 
-from backend.models.ride_model import Ride, RideType, SearchRideQuery
+from backend.models.ride_model import Ride, RideType, SearchRideQuery, SortDirection
 
 tinydb = TinyDB("fair_db.json")
 db = tinydb.table("ride")
@@ -72,7 +72,16 @@ def list_rides(search_ride_query: SearchRideQuery) -> list[Ride]:
             return False
         return not (search_ride_query.manufacturers and record["manufacturer"] not in search_ride_query.manufacturers)
 
-    return [Ride(**ride) for ride in db.all() if search_ride_query_funct(ride)]
+    rides = [Ride(**ride) for ride in db.all() if search_ride_query_funct(ride)]
+
+    if search_ride_query.order_by and search_ride_query.order_by.value:
+        return sorted(
+                rides,
+                key=lambda r: getattr(r, search_ride_query.order_by.value) or "z",
+                reverse=(search_ride_query.sort == SortDirection.DESC),
+            )
+
+    return rides
 
 
 def get_ride_by_id(ride_id: str) -> Ride:

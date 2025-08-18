@@ -9,6 +9,22 @@ from pydantic import BaseModel, Field, StringConstraints
 from backend.models.annotated import OPTIONAL_STR, URL_VALIDATION, URLS_VALIDATION
 
 
+class SortDirection(StrEnum):
+    """To order results in sort direction."""
+
+    ASC = "ASC"
+    DESC = "DESC"
+
+class RideOrderBy(StrEnum):
+    """To order by values."""
+
+    NAME = "name"
+    OWNER = "owner"
+    PRICE = "ticket_price"
+    MANUFACTURER = "manufacturer"
+    TECHNICAL_NAME = "technical_name"
+    TYPE = "ride_type"
+
 class RideType(StrEnum):
     """Store the type of the ride."""
 
@@ -59,8 +75,11 @@ class SearchRideQuery(BaseModel):
 
     ride_type: list[str] = Field(default_factory=list)
     manufacturers: list[str] = Field(default_factory=list)
+    order_by: RideOrderBy | None = Field(default=None)
+    sort: SortDirection = Field(default=SortDirection.ASC)
 
     def reset(self) -> None:
         """Reset search query filters to default."""
         self.ride_type.clear()
         self.manufacturers.clear()
+

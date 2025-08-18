@@ -36,7 +36,7 @@ def fetch_cached_image(url: HttpUrl | str) -> Image.Image | None:
 
 def view_ride_details(ride_id: int) -> None:
     """Navigate to the ride details page with ride_id."""
-    ui.navigate.to(f"/ride_view/{ride_id}")
+    ui.navigate.to(f"/ride-view/{ride_id}")
 
 
 def display_ride_as_item_in_list(_, ride: Ride) -> None:

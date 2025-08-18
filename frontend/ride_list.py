@@ -1,7 +1,7 @@
 
 from nicegui import app, ui
 
-from backend.models.ride_model import SearchRideQuery
+from backend.models.ride_model import RideOrderBy, SearchRideQuery, SortDirection
 from backend.services.manufacturer_service import list_manufacturers
 from backend.services.ride_service import list_ride_types, list_rides
 from frontend.const import _, field_value
@@ -10,7 +10,7 @@ from frontend.ride_box import display_ride_as_item_in_list
 
 def view_ride(fair_id: int) -> None:
     """Simulate navigation to fair details page."""
-    ui.navigate.to(f"/fair_view/{fair_id}")
+    ui.navigate.to(f"/fair-view/{fair_id}")
 
 @ui.refreshable
 def display_rides() -> None:
@@ -41,14 +41,21 @@ def ride_list(search_ride_query: SearchRideQuery) -> None:
         ui.space()
         ui.button("Add ride", icon="add", on_click=lambda: ui.navigate.to("/ride_create"))
 
-
     with ui.expansion(field_value("RIDES_SEARCH_TITLE"), icon="search").classes("w-full justify-center"):
-        ui.select(list_ride_types(), with_input=True, multiple=True, label=field_value("RIDES_SEARCH_BY_ATTRACTION_TYPE")).classes("w-full").props("use-chips").bind_value(search_ride_query, "ride_type")
-        ui.select(manufacturer_names, with_input=True, multiple=True, label=field_value("RIDES_SEARCH_BY_MANUFACTURER")).classes("w-full").props("use-chips").bind_value(search_ride_query, "manufacturers")
+        with ui.row().classes("w-full justify-center space-between"):
+
+            with ui.column().classes("w-6/12"):
+                ui.select(list_ride_types(), with_input=True, multiple=True, label=field_value("RIDES_SEARCH_BY_ATTRACTION_TYPE")).classes("w-full").props("use-chips").bind_value(search_ride_query, "ride_type")
+                ui.select(manufacturer_names, with_input=True, multiple=True, label=field_value("RIDES_SEARCH_BY_MANUFACTURER")).classes("w-full").props("use-chips").bind_value(search_ride_query, "manufacturers")
+
+            with ui.column().classes("w-5/12"):
+                ui.select({r:field_value(r) for r in list(RideOrderBy)}, with_input=True, label=field_value("RIDES_SEARCH_ORDER_BY")).classes("w-full").bind_value(search_ride_query, "order_by")
+                ui.select({s:field_value(s) for s in list(SortDirection)}, with_input=True, label=field_value("RIDES_SEARCH_SORT")).classes("w-full").bind_value(search_ride_query, "sort")
 
         with ui.row().classes("w-full"):
             ui.button(field_value("FAIR_SEARCH_BUTTON"), icon="search",on_click=lambda: refresh_rides_list(search_ride_query))
             ui.button(field_value("FAIR_SEARCH_BUTTON_RESET"), icon="close", on_click=lambda: reset_rides_list(search_ride_query))
+
 
     refresh_rides_list(search_ride_query=search_ride_query)
     display_rides()

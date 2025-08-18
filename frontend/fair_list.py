@@ -21,7 +21,7 @@ def display_fairs_list(fairs: list[Fair]) -> None:
 
     def closure_fair(fair: Fair): # type: ignore
         """Ensure the right fair is called by the on_clock below."""
-        return lambda: ui.navigate.to(f"/fair_view/{fair.id}")
+        return lambda: ui.navigate.to(f"/fair-view/{fair.id}")
 
     with ui.list().props("separator").classes("w-full"):
         for fair in fairs:

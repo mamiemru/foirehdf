@@ -7,6 +7,7 @@ from PIL import Image
 from pydantic import HttpUrl
 
 from backend.models.ride_model import Ride
+from frontend.const import field_value
 
 
 def _fetch_cached_image(url: str) -> Image.Image | None:
@@ -48,9 +49,13 @@ def display_ride_as_item_in_list(_, ride: Ride) -> None:
             ui.label(ride.name).classes("text-2xl font-bold text-orange-500 mb-2")
 
             with ui.row().classes("gap-2 flex-wrap"):
-                ui.label(ride.ride_type).classes("bg-blue-500 text-white text-sm px-2 py-1 rounded font-semibold")
-                ui.label(ride.manufacturer or "_").classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
-                ui.label(ride.technical_name or "_").classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")
-                ui.label(f"{ride.ticket_price:.2f} €").classes("bg-yellow-300 text-black text-sm px-2 py-1 rounded font-semibold")
+                if ride.ride_type:
+                    ui.label(ride.ride_type).classes("bg-blue-500 text-white text-sm px-2 py-1 rounded font-semibold")
+                if ride.manufacturer:
+                    ui.label(ride.manufacturer).classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
+                if ride.technical_name:
+                    ui.label(ride.technical_name).classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")
+                if ride.ticket_price:
+                    ui.label(f"{ride.ticket_price:.2f} €").classes("bg-yellow-300 text-black text-sm px-2 py-1 rounded font-semibold")
 
-            ui.button( _("VIEW_RIDE_DETAILS"),on_click=lambda: view_ride_details(ride.id)).props("unelevated color=primary").classes("w-full mt-5")
+            ui.button( field_value("VIEW_RIDE_DETAILS"),on_click=lambda: view_ride_details(ride.id)).props("unelevated color=primary").classes("w-full mt-5")

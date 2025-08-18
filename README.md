@@ -17,7 +17,7 @@ We use MVC pattern, that mean if at some point the back need to be standalone th
 Tiny db is fun but will be changed to Sqlite at some point, im still figure out a good data model as the project grow.
 
 Use uv to install and run the app.
-My vscode setting set ruff and mypy to be very very annoying. 
+My vscode setting tell ruff and mypy to be very very annoying. 
 
 The only working translation lang is French, but you are free to add a lang (follow how python handle lang with .mo .po files).
 

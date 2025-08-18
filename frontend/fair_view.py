@@ -11,7 +11,7 @@ from backend.services.fair_service import get_fair
 from backend.services.ride_service import get_ride_by_id
 from components.fair_timeline import fair_timeline
 from components.image_loader import fetch_cached_image
-from frontend.const import _
+from frontend.const import _, field_value
 from frontend.ride_box import display_ride_as_item_in_list
 
 
@@ -71,7 +71,7 @@ def fair_view(fair_id: str) -> None:
             options = {"keyboard": False, "dragging": False}
             lfmap = ui.leaflet(center=(50.5, 2), zoom=8, options=options).classes("w-full h-[500px]")
             lfmap.marker(latlng=(location.lat, location.lng), options={"color": "red","autoPanOnFocus": True})
-        icon_text("location_on", _("LOCATIONS"))
+        icon_text("location_on", field_value("LOCATIONS"))
         ui.label(fair.first_location_str()).classes("mb-2")
 
     with ui.row().classes("w-full flex-wrap justify-around"):
@@ -90,7 +90,7 @@ def fair_view(fair_id: str) -> None:
                         ui.image(img).classes("w-full rounded shadow mb-2")
 
             ui.separator()
-            icon_text("map", _("FAIR_VIEW_SOURCES_AND_USEFUL_LINKS"))
+            icon_text("map", field_value("FAIR_VIEW_SOURCES_AND_USEFUL_LINKS"))
             ui.markdown(get_markdown_link_table(fair)).classes("mb-4 w-full")
 
             ui.separator()

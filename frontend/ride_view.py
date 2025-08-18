@@ -5,7 +5,7 @@ from backend.models.fair_model import Fair
 from backend.models.ride_model import Ride
 from backend.services.fair_service import list_fairs_containing_ride_id
 from components.image_loader import fetch_cached_image
-from frontend.const import _
+from frontend.const import _, field_value
 
 
 def display_fair(fair: Fair) -> None:
@@ -25,11 +25,14 @@ def ride_view(ride: Ride) -> None:
                     ui.markdown(ride.description).classes("mb-4")
 
             with ui.row().classes("w-full"):
-                ui.markdown(f"**{_('RIDE_TICKET_PRICE')}:** €{ride.ticket_price}").classes("bg-yellow-300 text-black text-sm px-2 py-1 rounded font-semibold")
-                ui.markdown(f"**{_('RIDE_MANUFACTURER')}:** {ride.manufacturer}").classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
-                ui.markdown(f"**{_('RIDE_TECHNICAL_NAME')}:** {ride.technical_name}").classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")
-                ui.markdown(f"**{_('RIDE_ATTRACTION_TYPE')}:** {ride.ride_type}").classes("bg-blue-500 text-white text-sm px-2 py-1 rounded font-semibold")
-
+                if ride.ticket_price:
+                    ui.markdown(f"**{_('RIDE_TICKET_PRICE')}:** €{ride.ticket_price}").classes("bg-yellow-300 text-black text-sm px-2 py-1 rounded font-semibold")
+                if ride.manufacturer:
+                    ui.markdown(f"**{_('RIDE_MANUFACTURER')}:** {ride.manufacturer}").classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
+                if ride.technical_name:
+                    ui.markdown(f"**{_('RIDE_TECHNICAL_NAME')}:** {ride.technical_name}").classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")
+                if ride.ride_type:
+                    ui.markdown(f"**{_('RIDE_ATTRACTION_TYPE')}:** {ride.ride_type}").classes("bg-blue-500 text-white text-sm px-2 py-1 rounded font-semibold")
                 if ride.owner:
                     ui.markdown(f"**{_('RIDE_OWNER')}:** {ride.owner}").classes("bg-gray-300 text-black text-sm px-2 py-1 rounded font-semibold")
                 if ride.manufacturer_page_url:
@@ -44,7 +47,7 @@ def ride_view(ride: Ride) -> None:
                     ui.image(image).classes("w-full rounded shadow")
 
     ui.separator()
-    ui.label(_("RIDE_WAS_INSTALLED_IN_FAIRS")).classes("text-2xl font-semibold mb-2")
+    ui.label(field_value("RIDE_WAS_INSTALLED_IN_FAIRS")).classes("text-2xl font-semibold mb-2")
 
     with ui.grid(columns=3):
         for fair in list_fairs_containing_ride_id(ride.id):

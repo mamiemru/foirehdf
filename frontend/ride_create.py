@@ -11,7 +11,7 @@ from backend.services.manufacturer_service import (
     list_manufacturers_names,
 )
 from backend.services.ride_service import create_ride, list_ride_types, list_rides_names
-from frontend.const import _
+from frontend.const import _, field_value
 
 
 class RideCreateInput(BaseModel):
@@ -32,24 +32,24 @@ class RideCreateInput(BaseModel):
 
 def add_manufacturer_dialog() -> None:
     """Open a dialog to create a new manufacturer."""
-    name = ui.input(_("RIDE_NAME_OF_THE_MANUFACTURER"))
-    if st.button(_("RIDE_SUBMIT")):
+    name = ui.input(field_value("RIDE_NAME_OF_THE_MANUFACTURER"))
+    if st.button(field_value("RIDE_SUBMIT")):
         create_manufacturer({"name": name})
         st.rerun()
 
 def display_video_wizard(ride_create_input: RideCreateInput) -> None:
     """Display video wizard."""
-    ui.label(_("RIDE_VIDEOS"))
+    ui.label(field_value("RIDE_VIDEOS"))
     with ui.grid(rows=1, columns=2).classes("w-full"):
         video_url = ui.input(
-            label=_("RIDE_VIDEOS_URL"), placeholder=_("RIDE_ENTER_A_VIDEO_URL_E_G_YOUTUBE_MP4_LINK"),
+            label=field_value("RIDE_VIDEOS_URL"), placeholder=field_value("RIDE_ENTER_A_VIDEO_URL_E_G_YOUTUBE_MP4_LINK"),
         )
 
-        if ui.button(_("RIDE_ADD_VIDEO")):
+        if ui.button(field_value("RIDE_ADD_VIDEO")):
             if video_url.value:
                 ride_create_input.videos_url.append(HttpUrl(video_url.value))
             else:
-                ui.label(_("RIDE_ERROR_VIDEO_URL"))
+                ui.label(field_value("RIDE_ERROR_VIDEO_URL"))
 
     if ride_create_input.videos_url:
         with ui.row().classes("w-full"):
@@ -73,17 +73,17 @@ def append_ride_image(ride_create_input: RideCreateInput, url: str) -> None:
     if url:
         ride_create_input.images_url.append(HttpUrl(url))
     else:
-        ui.label(_("RIDE_PLEASE_ENTER_A_VALID_IMAGE_URL"))
+        ui.label(field_value("RIDE_PLEASE_ENTER_A_VALID_IMAGE_URL"))
 
 def display_image_wizard(ride_create_input: RideCreateInput) -> None:
     """Display image wizard."""
-    ui.label(_("RIDE_IMAGES"))
+    ui.label(field_value("RIDE_IMAGES"))
     with ui.grid(rows=1, columns=2).classes("w-full"):
         image_url = ui.input(
-            label=_("RIDE_IMAGES_URL"), placeholder=_("RIDE_ENTER_A_IMAGE_URL"),
+            label=field_value("RIDE_IMAGES_URL"), placeholder=field_value("RIDE_ENTER_A_IMAGE_URL"),
         )
 
-        ui.button(_("RIDE_ADD_IMAGE"), on_click=lambda: append_ride_image(ride_create_input, image_url.value))
+        ui.button(field_value("RIDE_ADD_IMAGE"), on_click=lambda: append_ride_image(ride_create_input, image_url.value))
 
     if ride_create_input.images_url:
         with ui.row().classes("w-full"):
@@ -114,7 +114,7 @@ def submit_new_ride(ride: RideCreateInput) -> None:
 
 def ride_create() -> None:
     """Wizard to create a ride."""
-    ui.label(_("RIDE_ADD_A_NEW_RIDE"))
+    ui.label(field_value("RIDE_ADD_A_NEW_RIDE"))
 
     ride_create_input: RideCreateInput = RideCreateInput.model_construct()
     rides_names: list[str] = list_rides_names()
@@ -122,44 +122,44 @@ def ride_create() -> None:
 
     with ui.row().classes("w-full flex-wrap items-start gap-6"):
         with ui.column().classes("w-full  md:w-5/12"):
-            ui.label(_("RIDE_GENERAL_INFORMATION"))
+            ui.label(field_value("RIDE_GENERAL_INFORMATION"))
 
-            ui.input(label=f"{_('RIDE_NAME')}*", placeholder=_("RIDE_NAME_OF_THE_RIDE")).bind_value(ride_create_input, "name").classes("w-full")
+            ui.input(label=f"{_('RIDE_NAME')}*", placeholder=field_value("RIDE_NAME_OF_THE_RIDE")).bind_value(ride_create_input, "name").classes("w-full")
             if ride_create_input.name in rides_names:
-                ui.label(_("RIDE_THIS_ATTRACTION_NAME_ALREADY_EXISTS"))
+                ui.label(field_value("RIDE_THIS_ATTRACTION_NAME_ALREADY_EXISTS"))
 
-            ui.textarea(label=_("RIDE_DESCRIPTION"), placeholder=_("RIDE_A_SHORT_DESCRIPTION_OF_THE_RIDE")).bind_value(ride_create_input, "description").classes("w-full")
-            ui.number(label=_("RIDE_TICKET_PRICE"), placeholder=_("RIDE_TICKET_PRICE")).bind_value(ride_create_input, "ticket_price").classes("w-full")
+            ui.textarea(label=field_value("RIDE_DESCRIPTION"), placeholder=field_value("RIDE_A_SHORT_DESCRIPTION_OF_THE_RIDE")).bind_value(ride_create_input, "description").classes("w-full")
+            ui.number(label=field_value("RIDE_TICKET_PRICE"), placeholder=field_value("RIDE_TICKET_PRICE")).bind_value(ride_create_input, "ticket_price").classes("w-full")
 
-            ui.label(_("RIDE_MANUFACTURER_INFORMATION"))
+            ui.label(field_value("RIDE_MANUFACTURER_INFORMATION"))
 
-            ui.select(label=_("RIDE_MANUFACTURER"), options=manufacturer_names).bind_value(ride_create_input, "manufacturer").classes("w-full")
+            ui.select(label=field_value("RIDE_MANUFACTURER"), options=manufacturer_names).bind_value(ride_create_input, "manufacturer").classes("w-full")
 
             ui.input(
-                label=_("RIDE_TECHNICAL_NAME"), placeholder=_("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"),
+                label=field_value("RIDE_TECHNICAL_NAME"), placeholder=field_value("RIDE_THE_NAME_GIVEN_BY_THE_MANUFACTURER"),
             ).bind_value(ride_create_input, "technical_name").classes("w-full")
 
-            ui.select(label=_("RIDE_ATTRACTION_TYPE"), options=list_ride_types()).bind_value(ride_create_input, "ride_type").classes("w-full")
+            ui.select(label=field_value("RIDE_ATTRACTION_TYPE"), options=list_ride_types()).bind_value(ride_create_input, "ride_type").classes("w-full")
 
             ui.input(
-                label=_("RIDE_MANUFACTURER_PAGE"), placeholder=_("RIDE_ENTER_THE_URL_PAGE_OF_THE_MANUFACTURER_RIDE"),
+                label=field_value("RIDE_MANUFACTURER_PAGE"), placeholder=field_value("RIDE_ENTER_THE_URL_PAGE_OF_THE_MANUFACTURER_RIDE"),
             ).bind_value(ride_create_input, "manufacturer_page_url").classes("w-full")
 
-            ui.label(_("RIDE_OWNER"))
+            ui.label(field_value("RIDE_OWNER"))
 
-            ui.input(label=_("RIDE_FAMILY_OWNER"), placeholder=_("RIDE_NAME_OF_THE_FAMILY_THAT_OWN_THE_RIDE")).bind_value(ride_create_input, "owner").classes("w-full")
+            ui.input(label=field_value("RIDE_FAMILY_OWNER"), placeholder=field_value("RIDE_NAME_OF_THE_FAMILY_THAT_OWN_THE_RIDE")).bind_value(ride_create_input, "owner").classes("w-full")
 
-            ui.label(_("RIDE_MEDIAS"))
+            ui.label(field_value("RIDE_MEDIAS"))
 
             ui.input(
-                _("RIDE_OFFICIAL_NEWS_PAGE_OF_THE_RIDE"), placeholder=_("RIDE_OFFICIAL_NEWS_PAGE_OR_FAN_PAGE"),
+                field_value("RIDE_OFFICIAL_NEWS_PAGE_OF_THE_RIDE"), placeholder=field_value("RIDE_OFFICIAL_NEWS_PAGE_OR_FAN_PAGE"),
             ).bind_value(ride_create_input, "news_page_url").classes("w-full")
 
 
             display_video_wizard(ride_create_input)
             display_image_wizard(ride_create_input)
 
-            ui.button(_("SUBMIT"), on_click=lambda: submit_new_ride(ride_create_input))
+            ui.button(field_value("SUBMIT"), on_click=lambda: submit_new_ride(ride_create_input))
 
         with ui.column().classes("w-full  md:w-5/12"):
             pass

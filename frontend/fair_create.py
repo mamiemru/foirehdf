@@ -7,11 +7,8 @@ from backend.models.location_model import Location
 from backend.services.fair_service import create_fair
 from backend.services.location_service import list_locations
 from backend.services.ride_service import list_rides_names_and_id
+from frontend.const import field_value, mandatory_field_value
 
-
-def mandatory_field_value(value: str) -> str:
-    """Return a translated field with an asterix meaning the field is required."""
-    return f"{_(value)}*"
 
 def submit_new_fair(fair: FairCreateInput) -> None:
     """
@@ -38,7 +35,7 @@ def fair_create() -> None:
 
     with ui.row().classes("w-full flex-wrap items-start gap-6"):
         with ui.column().classes("w-full  md:w-5/12"):
-            ui.label(_("FAIR_CREATE_FAIR")).classes("text-xl font-semibold")
+            ui.label(field_value("FAIR_CREATE_FAIR")).classes("text-xl font-semibold")
             ui.label(mandatory_field_value("FAIR_INFORMATION"))
             ui.input(mandatory_field_value("FAIR_NAME")).bind_value(fair, "name").classes("w-full")
 
@@ -68,14 +65,14 @@ def fair_create() -> None:
                 multiple=True, clearable=True,
             ).bind_value(fair, "rides").props("use-chips").classes("w-full")
 
-            ui.input(label=_("FAIR_WALKTOUR_VIDEO"), placeholder="http://...").bind_value(fair, "walk_tour_video").classes("w-full")
+            ui.input(label=field_value("FAIR_WALKTOUR_VIDEO"), placeholder="http://...").bind_value(fair, "walk_tour_video").classes("w-full")
 
-            ui.label(_("FAIR_SOURCES"))
-            ui.input(label=_("FAIR_AD_URL"), placeholder="http://..." ).bind_value(fair, "official_ad_page").classes("w-full")
-            ui.input(label=_("FAIR_FACEBOOK_EVENT_PAGE_URL"), placeholder="http://...").bind_value(fair, "facebook_event_page").classes("w-full")
-            ui.input(label=_("FAIR_CITY_PAGE"), placeholder="http://...").bind_value(fair, "city_event_page").classes("w-full")
+            ui.label(text=field_value("FAIR_SOURCES"))
+            ui.input(label=field_value("FAIR_AD_URL"), placeholder="http://..." ).bind_value(fair, "official_ad_page").classes("w-full")
+            ui.input(label=field_value("FAIR_FACEBOOK_EVENT_PAGE_URL"), placeholder="http://...").bind_value(fair, "facebook_event_page").classes("w-full")
+            ui.input(label=field_value("FAIR_CITY_PAGE"), placeholder="http://...").bind_value(fair, "city_event_page").classes("w-full")
 
-            ui.button(_("SUBMIT"), on_click=lambda: submit_new_fair(fair))
+            ui.button(field_value("SUBMIT"), on_click=lambda: submit_new_fair(fair))
 
         with ui.column().classes("w-full  md:w-5/12"):
             pass

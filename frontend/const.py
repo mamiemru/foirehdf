@@ -9,3 +9,13 @@ language = gettext.translation("messages", localedir=locale_path, languages=["fr
 language.install()
 
 _ = language.gettext
+
+
+def mandatory_field_value(value: str) -> str:
+    """Return a translated field with an asterix meaning the field is required."""
+    return f"{_(value)}*"
+
+
+def field_value(value: str) -> str:
+    """Return a translated field."""
+    return f"{_(value)}"

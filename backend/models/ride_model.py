@@ -6,7 +6,7 @@ from typing import Annotated
 from bson.objectid import ObjectId
 from pydantic import BaseModel, Field, StringConstraints
 
-from backend.models.annotated import URL_VALIDATION, URLS_VALIDATION
+from backend.models.annotated import OPTIONAL_STR, URL_VALIDATION, URLS_VALIDATION
 
 
 class RideType(StrEnum):
@@ -36,18 +36,18 @@ class ManufacturerRide(BaseModel):
     """A ride from the manufacturer, its the kinds of information you have when browsing manufacturer's rides."""
 
     manufacturer_ride_id: str = Field(default_factory=lambda:str(ObjectId()), description="unique id of the manufactured ride")
-    manufacturer: str | None = Field(default=None, description="Manufacturer name of the ride")
-    technical_name: str | None = Field(default=None, description="Technical name of the ride")
+    manufacturer: OPTIONAL_STR = Field(default=None, description="Manufacturer name of the ride")
+    technical_name: OPTIONAL_STR = Field(default=None, description="Technical name of the ride")
     ride_type: RideType | None = Field(default=None, description="Type of the ride (e.g., roller coaster, carousel)")
     manufacturer_page_url: URL_VALIDATION = Field(default=None, description="page of the manufacturer")
-    description: str | None = Field(default=None, description="Short description of the ride")
+    description: OPTIONAL_STR = Field(default=None, description="Short description of the ride")
 
 class Ride(ManufacturerRide):
     """Describe a ride owned by a fraiground worker, the minimal is the name."""
 
     id: str = Field(default_factory=lambda:str(ObjectId()))
     name: Annotated[str, StringConstraints(min_length=1)] = Field(..., description="Name of the ride")
-    owner: str | None = Field(default=None, description="Family owner name")
+    owner: OPTIONAL_STR = Field(default=None, description="Family owner name")
     ticket_price: float | None = Field(default=None, description="Additional ticket price for the ride, if any", ge=.0)
     images_url: URLS_VALIDATION = Field(default_factory=list, description="some images")
     videos_url: URLS_VALIDATION = Field(default_factory=list, description="some videos")

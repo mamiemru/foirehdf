@@ -47,3 +47,4 @@ def datetime_validation_func(value: float | str | date | datetime) -> datetime:
 URL_VALIDATION = Annotated[HttpUrl | None, BeforeValidator(lambda url: url or None)]
 URLS_VALIDATION = Annotated[list[HttpUrl], BeforeValidator(lambda urls: [url for url in urls if url])]
 DATETIME_VALIDATION = Annotated[datetime, BeforeValidator(datetime_validation_func)]
+OPTIONAL_STR = Annotated[str | None, BeforeValidator(lambda s: str(s) if s else None)]

@@ -24,7 +24,7 @@ def ride_view(ride: Ride) -> None:
             if ride.description:
                     ui.markdown(ride.description).classes("mb-4")
 
-            with ui.grid(columns=2).classes("w-full"):
+            with ui.row().classes("w-full"):
                 ui.markdown(f"**{_('RIDE_TICKET_PRICE')}:** €{ride.ticket_price}").classes("bg-yellow-300 text-black text-sm px-2 py-1 rounded font-semibold")
                 ui.markdown(f"**{_('RIDE_MANUFACTURER')}:** {ride.manufacturer}").classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
                 ui.markdown(f"**{_('RIDE_TECHNICAL_NAME')}:** {ride.technical_name}").classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")

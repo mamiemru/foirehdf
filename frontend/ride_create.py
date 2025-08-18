@@ -103,8 +103,6 @@ def submit_new_ride(ride: RideCreateInput) -> None:
         ride (RideCreateInput): ride to create
 
     """
-    print(ride)
-    ui.notify(ride.model_dump())
     try:
         validated_ride = RideCreateInput.model_validate(ride)
         create_ride(validated_ride.model_dump())

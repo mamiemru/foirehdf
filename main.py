@@ -14,6 +14,7 @@ from backend.models.fair_model import SearchFairQuery
 from backend.models.ride_model import SearchRideQuery
 from backend.services.ride_service import get_ride_by_id
 from frontend.fair_create import fair_create
+from frontend.fair_edit import fair_edit
 from frontend.fair_list import fair_list
 from frontend.fair_view import fair_view
 from frontend.ride_create import ride_create
@@ -79,6 +80,11 @@ def route_fair_list(search_fair_query: Annotated[SearchFairQuery, Query()]) -> N
 @with_sidebar
 def route_fair_create():
     fair_create()
+
+@ui.page("/fair_edit/{fair_id}")
+@with_sidebar
+def route_fair_edit(fair_id: str):
+    fair_edit(fair_id)
 
 @ui.page("/fair_view/{fair_id}")
 @with_sidebar

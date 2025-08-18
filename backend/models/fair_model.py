@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 from dateutil.relativedelta import relativedelta
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
-from backend.models.annotated import DATETIME_VALIDATION, URL_VALIDATION, URLS_VALIDATION
+from backend.models.annotated import DATETIME_VALIDATION, OPTIONAL_STR, URL_VALIDATION, URLS_VALIDATION
 from backend.models.timeline_model import Timeline
 
 from .location_model import LocationBase
@@ -158,7 +158,11 @@ class FairCreateInput(BaseModel):
     end_date: date
     locations: list[str] = Field(default_factory=list)
     rides: list[str] = Field(default_factory=list)
-    walk_tour_video: URL_VALIDATION
-    official_ad_page: URL_VALIDATION
-    facebook_event_page: URL_VALIDATION
-    city_event_page: URL_VALIDATION
+    walk_tour_video: OPTIONAL_STR
+    official_ad_page: OPTIONAL_STR
+    facebook_event_page: OPTIONAL_STR
+    city_event_page: OPTIONAL_STR
+
+class FairUpdateInput(FairCreateInput):
+    """Describe the inputs to edit a fair."""
+

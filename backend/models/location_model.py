@@ -3,12 +3,14 @@ from typing import Annotated
 
 from pydantic import BaseModel, Field
 
+from backend.models.annotated import OPTIONAL_STR
+
 
 class LocationBase(BaseModel):
     """Describe a location."""
 
-    street: Annotated[str | None, Field(None, description="Street where its situated")]
-    area: Annotated[str | None, Field(None, description="Area where the location is situated")]
+    street: OPTIONAL_STR = Field(None, description="Street where its situated")
+    area: OPTIONAL_STR = Field(None, description="Area where the location is situated")
 
     city: Annotated[str, Field(..., description="City or town where the location is situated.")]
     postal_code: Annotated[str, Field(..., description="Postal code code for the location.")]

@@ -47,7 +47,7 @@ def display_ride_as_item_in_list(_, ride: Ride) -> None:
         with ui.card_section().classes("w-full"):
             ui.label(ride.name).classes("text-2xl font-bold text-orange-500 mb-2")
 
-            with ui.grid(columns=2).classes("gap-2 flex-wrap"):
+            with ui.row().classes("gap-2 flex-wrap"):
                 ui.label(ride.ride_type).classes("bg-blue-500 text-white text-sm px-2 py-1 rounded font-semibold")
                 ui.label(ride.manufacturer or "_").classes("bg-red-500 text-white text-sm px-2 py-1 rounded font-semibold")
                 ui.label(ride.technical_name or "_").classes("bg-green-500 text-white text-sm px-2 py-1 rounded font-semibold")

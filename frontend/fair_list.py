@@ -18,9 +18,14 @@ def display_fairs_list(fairs: list[Fair]) -> None:
         fairs (list[Fair]): the fair to display
 
     """
+
+    def closure_fair(fair: Fair): # type: ignore
+        """Ensure the right fair is called by the on_clock below."""
+        return lambda: ui.navigate.to(f"/fair_view/{fair.id}")
+
     with ui.list().props("separator").classes("w-full"):
         for fair in fairs:
-            with ui.item(on_click=lambda: ui.navigate.to(f"/fair_view/{fair.id}")).classes("w-full"), ui.item_section():
+            with ui.item(on_click=closure_fair(fair)).classes("w-full"), ui.item_section():
                     ui.label(fair.name).classes("text-xl font-semibold")
                     for location in fair.locations_str():
                         ui.label(location).classes("text-sm text-gray-600")

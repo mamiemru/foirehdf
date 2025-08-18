@@ -7,8 +7,12 @@ from typing import Any
 import pandas as pd
 from tinydb import Query, TinyDB
 
-from backend.models.fair_model import Fair, FairBase, FairStatus, SearchFairMap, SearchFairQuery, SearchFairResult
+from backend.models.fair_model import Fair, FairBase, FairCreateInput, FairStatus, FairUpdateInput, SearchFairMap, SearchFairQuery, SearchFairResult
+from backend.models.location_model import LocationBase
+from backend.models.ride_model import Ride
+from backend.models.timeline_model import Timeline, TimelineItem, TimelineItemType
 from backend.services.location_service import get_location_by_id
+from backend.services.ride_service import get_ride_by_id
 
 tinydb: TinyDB = TinyDB("fair_db.json")
 db = tinydb.table("fair")
@@ -24,16 +28,37 @@ def create_hidden_fair(fair_dict: dict[str, Any]) -> FairBase:
     return fair
 
 
-def create_fair(fair_dict: dict[str, Any]) -> Fair:
-    fair_dict["locations"] = [get_location_by_id(loc) for loc in fair_dict["locations"]]
+def create_fair(fair_create_input: FairCreateInput) -> Fair:
+    """
+    Create a fair.
+
+    Args:
+        fair_create_input (FairCreateInput): fair datas
+
+    Returns:
+        Fair: created fair
+
+    """
+    rides: dict[str, Ride] = {ride_id: get_ride_by_id(ride_id) for ride_id in fair_create_input.rides}
+    locations: list[LocationBase] = [get_location_by_id(loc) for loc in fair_create_input.locations]
+
+    fair_dict: dict[str, Any] = fair_create_input.model_dump()
+    fair_dict["locations"] = locations
     fair: Fair = Fair.model_validate(fair_dict)
+    fair.timeline = Timeline(
+        line=[
+            TimelineItem(type=TimelineItemType.RIDE_AVAILABLE, ride=ride.id, date=fair.start_date, title=ride.name) for ride in rides if ride
+        ],
+    )
     save_fair(fair)
     return fair
 
 
-def update_fair(updated_fair_dict: dict[str, Any], id: str) -> Fair:
-    fair: Fair = get_fair(id)
-    updated_fair: Fair = Fair.model_validate(updated_fair_dict)
+def update_fair(fair_id: str, fair_update_input: FairUpdateInput) -> Fair:
+    fair: Fair = get_fair(fair_id=fair_id)
+    fair_dict: dict[str, Any] = fair_update_input.model_dump()
+    fair_dict["locations"] = [get_location_by_id(loc) for loc in fair_dict["locations"]]
+    updated_fair: Fair = Fair.model_validate(fair_dict)
     save_fair(updated_fair, update_id=fair.id)
     return updated_fair
 

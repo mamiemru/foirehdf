@@ -23,7 +23,7 @@ def submit_new_fair(fair: FairCreateInput) -> None:
     """
     try:
         validated_fair = FairCreateInput.model_validate(fair)
-        create_fair(validated_fair.model_dump())
+        create_fair(fair_create_input=validated_fair)
     except ValueError as e:
         json_error = json.loads(e.json())
         error_message: list[str] = [f"""{error["loc"]}: {error['type']}""" for error in json_error]
@@ -59,7 +59,7 @@ def fair_create() -> None:
             ui.select(
                 {loc.id:loc.location_to_str() for loc in locations}, with_input=True, multiple=True,
                 clearable=True, label=mandatory_field_value("FAIR_SEARCH_BY_CITY"),
-            ).bind_value(fair, "locations").classes("w-full")
+            ).bind_value(fair, "locations").classes("w-full").props("use-chips")
 
             ui.label(mandatory_field_value("FAIR_RIDES_IN_THE_FAIR"))
             ui.select(

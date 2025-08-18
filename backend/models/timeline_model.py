@@ -4,7 +4,7 @@ from typing import Annotated
 
 from pydantic import AfterValidator, BaseModel, Field
 
-from backend.models.annotated import DATETIME_VALIDATION
+from backend.models.annotated import DATETIME_VALIDATION, OPTIONAL_STR
 
 
 class TimelineItemType(StrEnum):
@@ -26,7 +26,8 @@ class TimelineItem(BaseModel):
 
     type: TimelineItemType | None = Field(default=None)
     title: str = Field(...)
-    description: str | None = Field(default=None)
+    ride: OPTIONAL_STR = Field(default=None)
+    description: OPTIONAL_STR = Field(default=None)
     date: DATETIME_VALIDATION = Field(...)
 
 class Timeline(BaseModel):

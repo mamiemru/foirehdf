@@ -428,3 +428,16 @@ msgstr "Afficher les vidéos par rangées de"
 msgid "SUBMIT"
 msgstr "Envoyer"
 
+msgid "SEARCH_ORDER_BY"
+msgstr "Trier par"
+
+msgid "SEARCH_SORT"
+msgstr "Ordonner par"
+
+msgid "ASC"
+msgstr "Ordre croissant"
+
+msgid "DESC"
+msgstr "Ordre décroissant"
+
+

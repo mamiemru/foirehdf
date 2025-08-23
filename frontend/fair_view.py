@@ -6,13 +6,14 @@ from nicegui import ui
 from pydantic import HttpUrl
 
 from backend.models.fair_model import Fair
+from backend.models.ride_model import Ride
 from backend.models.timeline_model import TimelineItemType
 from backend.services.fair_service import get_fair
 from backend.services.ride_service import get_ride_by_id
 from components.fair_timeline import fair_timeline
 from components.image_loader import fetch_cached_image
 from frontend.const import _, field_value
-from frontend.ride_box import display_ride_as_item_in_list
+from frontend.ride_box import display_rides_wizard
 
 
 def icon_text(icon_name: str, text: str) -> None:
@@ -95,12 +96,8 @@ def fair_view(fair_id: str) -> None:
 
             ui.separator()
 
-            with ui.grid(columns=2).classes("w-full flex-wrap justify-center"):
-                for ride_id in fair.rides:
-                    ride = get_ride_by_id(ride_id=ride_id)
-                    if ride:
-                        display_ride_as_item_in_list(_, ride)
-
+            rides: list[Ride] = [get_ride_by_id(ride_id=ride_id) for ride_id in fair.rides]
+            display_rides_wizard(rides=rides)
 
         with ui.column().classes("w-full md:w-3/12"), ui.card().classes("w-full"), ui.timeline(side="right"):
             ui.timeline_entry(

@@ -37,16 +37,16 @@ def fair_create() -> None:
         with ui.column().classes("w-full  md:w-5/12"):
             ui.label(field_value("FAIR_CREATE_FAIR")).classes("text-xl font-semibold")
             ui.label(mandatory_field_value("FAIR_INFORMATION"))
-            ui.input(mandatory_field_value("FAIR_NAME")).bind_value(fair, "name").classes("w-full")
+            ui.input(mandatory_field_value("FAIR_NAME"), validation={"Requis": lambda value: len(value) > 3}).bind_value(fair, "name").classes("w-full")
 
             with ui.grid(columns=2, rows=1).classes("w-full"):
-                with ui.input(mandatory_field_value("FAIR_START_DATE")).bind_value(fair, "start_date").classes("w-full") as start_date:
+                with ui.input(mandatory_field_value("FAIR_START_DATE"), validation={"Requis": lambda value: len(value) == 10}).bind_value(fair, "start_date").classes("w-full") as start_date:
                     with ui.menu() as menu:
                         ui.date().bind_value(start_date)
                     with start_date.add_slot("append"):
                         ui.icon("edit_calendar").on("click", menu.open).classes("cursor-pointer")
 
-                with ui.input(mandatory_field_value("FAIR_END_DATE")).bind_value(fair, "end_date").classes("w-full") as end_date:
+                with ui.input(mandatory_field_value("FAIR_END_DATE"), validation={"Requis": lambda value: len(value) == 10}).bind_value(fair, "end_date").classes("w-full") as end_date:
                     with ui.menu() as menu:
                         ui.date().bind_value(end_date)
                     with end_date.add_slot("append"):
@@ -62,7 +62,7 @@ def fair_create() -> None:
             ui.select(
                 rides_array,
                 label=mandatory_field_value("FAIR_SELECT_RIDE_MESSAGE"),
-                multiple=True, clearable=True,
+                multiple=True, clearable=True, with_input=True,
             ).bind_value(fair, "rides").props("use-chips").classes("w-full")
 
             ui.input(label=field_value("FAIR_WALKTOUR_VIDEO"), placeholder="http://...").bind_value(fair, "walk_tour_video").classes("w-full")

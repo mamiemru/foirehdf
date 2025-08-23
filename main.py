@@ -112,8 +112,8 @@ def route_ride_view(ride_id: str):
 def main_page():
     pass
 
+ui.query("body").style("background-color: #f4f2ee")
 
-ui.add_head_html("""<style>body { background-color: #f4f2ee; }</style>""")
 ui.run_with(app=app)
 ui.run(
     title=app.title,

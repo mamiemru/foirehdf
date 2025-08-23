@@ -75,7 +75,7 @@ class SearchRideQuery(BaseModel):
 
     ride_type: list[str] = Field(default_factory=list)
     manufacturers: list[str] = Field(default_factory=list)
-    order_by: RideOrderBy | None = Field(default=None)
+    order_by: RideOrderBy = Field(default=RideOrderBy.NAME)
     sort: SortDirection = Field(default=SortDirection.ASC)
 
     def reset(self) -> None:

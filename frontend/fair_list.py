@@ -42,7 +42,7 @@ def display_gantt(gantt_chart_pd: DataFrame) -> None:
         fig = px.timeline(
             gantt_chart_pd,x_start="start",x_end="finish",y="task",color="status",
             hover_data={"name": True,"start_date": True,"end_date": True,"date": True},
-            color_discrete_map=color_map, height=len(gantt_chart_pd)*50,
+            color_discrete_map=color_map, height=max(len(gantt_chart_pd)*50, 200),
         )
         fig.update_yaxes(title_text=field_value("CITY"), autorange="reversed")
         fig.update_xaxes(title_text=field_value("FAIR_DATES"))

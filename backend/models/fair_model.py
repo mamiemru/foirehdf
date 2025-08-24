@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 from dateutil.relativedelta import relativedelta
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
-from backend.models.annotated import DATETIME_VALIDATION, OPTIONAL_STR, URL_VALIDATION, URLS_VALIDATION
+from backend.models.annotated import DATETIME_VALIDATION, OPTIONAL_STR, URL_VALIDATION, URLS_VALIDATION, datetime_validation_func
 from backend.models.timeline_model import Timeline
 
 from .location_model import LocationBase
@@ -116,7 +116,7 @@ class Fair(FairBase):
     images: list[str] = Field(default_factory=list)
 
     @field_validator("city_event_page", "official_ad_page", "walk_tour_video", "facebook_event_page")
-    def valide_optional_url(v) -> HttpUrl | None:
+    def valide_optional_url(v: Any) -> HttpUrl | None:
         """Make sure the value is a valid url otherwise None."""
         return HttpUrl(v) if v else None
 
@@ -124,9 +124,16 @@ class Fair(FairBase):
 class SearchFairQuery(BaseModel):
     """Search fair query params to search filter through fairs."""
 
-    date_min: date = Field(default=(datetime.now() - relativedelta(months=1)).date())
+    date_min: date = Field(default=(datetime.now() - relativedelta(days=1)).date())
     date_max: date = Field(default=(datetime.now() + relativedelta(months=6)).date())
     cities: list[str] = Field(default_factory=list)
+
+    def get_date_min(self) -> date:
+        return datetime_validation_func(self.date_min).date()
+
+    def get_date_max(self) -> date:
+        return datetime_validation_func(self.date_max).date()
+
 
     def reset(self) -> None:
         """Reset search query filters to default."""

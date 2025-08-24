@@ -95,15 +95,17 @@ def list_fairs(search_fair_query: SearchFairQuery) -> list[Fair]:
         list[Fair]: list of filtered fairs
 
     """
+    date_min = search_fair_query.get_date_min()
+    date_max = search_fair_query.get_date_max()
 
     def search_query_func(record: dict[str, Any]) -> bool:
         date = datetime.fromtimestamp(record["start_date"], tz=None).date()
         city = record["locations"][0]["city"]
         if search_fair_query.cities and city not in search_fair_query.cities:
             return False
-        if search_fair_query.date_min and date < search_fair_query.date_min:
+        if date_min and date <= date_min:
             return False
-        return not (search_fair_query.date_max and date > search_fair_query.date_max)
+        return not (date_max and date >= date_max)
 
     return [Fair.model_validate(result) for result in db.all() if search_query_func(result)]
 

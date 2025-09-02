@@ -5,12 +5,12 @@ from backend.models.fair_model import Fair
 from backend.models.ride_model import Ride
 from backend.services.fair_service import list_fairs_containing_ride_id
 from components.image_loader import fetch_cached_image
-from frontend.const import _, field_value
+from frontend.const import _, field_value, youtube_video_player
 
 
 def display_fair(fair: Fair) -> None:
     """Display an entry to a fair which had the concerned ride."""
-    ui.label(f"🎡 {fair.name}").classes("text-xl font-bold")
+    ui.label(f"{fair.name}").classes("text-xl font-bold")
     ui.label(fair.first_location_str()).classes("text-gray-700")
     ui.label(f'Du {fair.start_date.strftime("%d %B %Y")} au {fair.end_date.strftime("%d %B %Y")}').classes("text-gray-700")
 
@@ -47,20 +47,29 @@ def ride_view(ride: Ride) -> None:
                     ui.image(image).classes("w-full rounded shadow")
 
     ui.separator()
-    ui.label(field_value("RIDE_WAS_INSTALLED_IN_FAIRS")).classes("text-2xl font-semibold mb-2")
 
-    with ui.grid(columns=3):
-        for fair in list_fairs_containing_ride_id(ride.id):
-            display_fair(fair=fair)
+    with ui.tabs().classes("w-full space-arround") as ride_tabs:
+        ui.tab("ride_history", label=field_value("RIDE_WAS_INSTALLED_IN_FAIRS"), icon="attractions")
+        ui.tab("videos", label=field_value("RIDE_LIST_OF_VIDEOS"), icon="videocam")
+        ui.tab("images", label=field_value("RIDE_LIST_OF_IMAGES"), icon="image")
 
-    ui.separator()
-    with ui.row().classes("w-full flex-wrap"):
-        for url in ride.videos_url:
-            with ui.column().classes("w-1/3 p-2"):
-                ui.video(str(url)).classes("w-full rounded shadow-md")
+    with ui.tab_panels(ride_tabs, value="ride_history").classes("w-full"):
+        with ui.tab_panel("ride_history"):
+            ui.label(field_value("RIDE_WAS_INSTALLED_IN_FAIRS")).classes("text-2xl font-semibold mb-2")
+            with ui.grid(columns=3):
+                for fair in list_fairs_containing_ride_id(ride.id):
+                    display_fair(fair=fair)
 
-    ui.separator()
-    with ui.row().classes("w-full flex-wrap"):
-        for url in ride.images_url:
-            with ui.column().classes("w-1/3 p-2"):
-                ui.image(str(url)).classes("w-full rounded shadow-md")
+        with ui.tab_panel("videos"):
+            ui.label(field_value("RIDE_LIST_OF_VIDEOS")).classes("text-2xl font-semibold mb-2")
+            with ui.row().classes("w-full flex-wrap"):
+                for url in ride.videos_url:
+                    with ui.column().classes("w-1/3 p-2"):
+                        youtube_video_player(url)
+
+        with ui.tab_panel("images"):
+            ui.label(field_value("RIDE_LIST_OF_IMAGES")).classes("text-2xl font-semibold mb-2")
+            with ui.row().classes("w-full flex-wrap"):
+                for url in ride.images_url:
+                    with ui.column().classes("w-1/3 p-2"):
+                        ui.image(str(url)).classes("w-full rounded shadow-md")

@@ -2,6 +2,9 @@ import gettext
 import locale
 from pathlib import Path
 
+from nicegui import ui
+from pydantic import HttpUrl
+
 locale.setlocale(locale.LC_ALL, "fr_FR.UTF-8")
 
 locale_path = Path(__file__).parent.parent / "locales"
@@ -19,3 +22,9 @@ def mandatory_field_value(value: str) -> str:
 def field_value(value: str) -> str:
     """Return a translated field."""
     return f"{_(value)}"
+
+
+def youtube_video_player(video_url: HttpUrl) -> None:
+    """Display an html iframe to the youtube video. It is mandatory to do this way because ui.video doest support yt."""
+    ui.link(str(video_url))
+

@@ -124,7 +124,7 @@ class Fair(FairBase):
 class SearchFairQuery(BaseModel):
     """Search fair query params to search filter through fairs."""
 
-    date_min: date = Field(default=(datetime.now() - relativedelta(days=1)).date())
+    date_min: date = Field(default=(datetime.now() - relativedelta(months=1)).date())
     date_max: date = Field(default=(datetime.now() + relativedelta(months=6)).date())
     cities: list[str] = Field(default_factory=list)
 

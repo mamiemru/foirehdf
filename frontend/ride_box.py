@@ -85,7 +85,6 @@ def display_ride_as_item_in_card(ride: Ride) -> None:
 @ui.refreshable
 def _display_rides(rides: list[Ride]) -> None:
     ui.label().bind_text_from(app.storage.client["layout_grid"])
-    ui.notify(app.storage.client["layout_grid"])
     if app.storage.client["layout_grid"]:
         with ui.row().classes("w-full flex-wrap justify-center"):
             for ride in rides:
